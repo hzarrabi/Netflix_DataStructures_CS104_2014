@@ -21,8 +21,11 @@ Map<keyType, valueType>::Map()//constructor for map
 template <class keyType, class valueType>
 Map<keyType, valueType>::Map (const Map<keyType, valueType> & other)
 {
+	head = NULL;
+	tail = NULL;
+	numItems=0;
 	MapItem <keyType, valueType> *tempP;
-	tempP=other->head;
+	tempP=other.head;
 	
 	while (tempP!= NULL)
 	{
