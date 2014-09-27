@@ -48,9 +48,11 @@ Map<keyType, valueType>::~Map()//constructor for map
 }
 
 
+
+
 //operator overloading
 template <class keyType, class valueType>
-void Map<keyType, valueType>::operator=(const Map<keyType, valueType> &other) 
+Map<keyType, valueType>& Map<keyType, valueType>::operator=(const Map<keyType, valueType> &other) //you return Map<keyType, valueType>& becaue you want to be able to do a=b=c and you don't want to return void on b
 {
 	MapItem <keyType, valueType> *current=this->head;//will set current to head
 	MapItem <keyType, valueType> *tempP;//will be set to current in while loop then deleted
@@ -71,9 +73,6 @@ void Map<keyType, valueType>::operator=(const Map<keyType, valueType> &other)
 		this->add(tempP->key,tempP->value);
 		tempP=tempP->next;		
 	}
-
-           
-
 }
 
 

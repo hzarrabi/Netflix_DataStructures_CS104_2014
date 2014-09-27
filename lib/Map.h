@@ -23,7 +23,12 @@ class Map
 
 
 
-    void operator=(const Map &);//operator overloading for "="
+
+
+
+
+    Map<keyType, valueType>& operator=(const Map &);//operator overloading for "="
+    //void for now but will probably have to change or something. Likely have to change to "Map<keyType, valueType>&"
 
     int size () const; // returns the number of key-value pairs
 
