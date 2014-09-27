@@ -48,6 +48,36 @@ Map<keyType, valueType>::~Map()//constructor for map
 }
 
 
+//operator overloading
+template <class keyType, class valueType>
+void Map<keyType, valueType>::operator=(const Map<keyType, valueType> &other) 
+{
+	MapItem <keyType, valueType> *current=this->head;//will set current to head
+	MapItem <keyType, valueType> *tempP;//will be set to current in while loop then deleted
+	while(current!=NULL)
+	{
+		tempP=current;
+		current=current->next;
+		delete tempP;
+	}
+	this->head=NULL;//will set the head and tail of the map to null because it's empty now
+	this->tail=NULL;   
+
+
+	//adding everything from one map to other
+	tempP=other->head;
+	while (tempP!= NULL)
+	{
+		this->add(tempP->key,tempP->value);
+		tempP=tempP->next;		
+	}
+
+           
+
+}
+
+
+
 
 //SIZE
 template <class keyType, class valueType>

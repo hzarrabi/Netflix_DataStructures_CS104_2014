@@ -15,11 +15,15 @@ template <class keyType, class valueType>
 class Map
 {
   public:
-    Map ();  // constructor for a new empty map
+    Map (); // constructor for a new empty map
     
     Map (const Map<keyType, valueType> & other);//copy constructor!!!!!!
 
     ~Map (); // destructor
+
+
+
+    void operator=(const Map &);//operator overloading for "="
 
     int size () const; // returns the number of key-value pairs
 
