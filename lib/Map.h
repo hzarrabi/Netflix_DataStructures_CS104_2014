@@ -27,8 +27,8 @@ class Map
 
 
 
-    Map<keyType, valueType>& operator=(const Map &);//operator overloading for "="
-    //void for now but will probably have to change or something. Likely have to change to "Map<keyType, valueType>&"
+    Map<keyType, valueType>& operator=(const Map<keyType, valueType> &other);//operator overloading for "="
+    //returns Map type incase we do a=b=c;
 
     int size () const; // returns the number of key-value pairs
 
@@ -41,7 +41,7 @@ class Map
      /* Removes the association for the given key.
         If the key has no association, it should do nothing. */
 
-    const valueType & get (const keyType & key) const;
+    const valueType & get (const keyType & key,bool & success) const;
      /* Returns the value associated with the given key.
         If the key existed in the map, success should be set to true.
         If the key has no association, it should set success to false. */

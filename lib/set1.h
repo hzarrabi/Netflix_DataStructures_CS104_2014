@@ -26,6 +26,15 @@ Set<T>::~Set()//deconstructor
 }
 
 
+template <class T>
+Set<T>& Set<T>::operator=(const Set<T> &other)
+{
+	internalStorage=other;//use the overload constructor for map
+}
+
+
+
+
 
 template <class T>
 void Set<T>::add (const T & item)
@@ -52,7 +61,7 @@ template <class T>
 bool Set<T>::contains (const T &item) const 
 {
 	bool success = false; 
-	string s = internalStorage.get(item);//if item found then change success to true, and return success?
+	internalStorage.get(item,success);//if item found then change success to true, and returns success
 	return success;
 }
 

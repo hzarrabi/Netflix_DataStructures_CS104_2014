@@ -231,11 +231,12 @@ void Map<keyType, valueType>::remove (keyType key)
 
 //GET
 template <class keyType, class valueType>
-const valueType & Map<keyType, valueType>::get (const keyType & key) const
+const valueType & Map<keyType, valueType>::get (const keyType & key, bool & success) const
 {
 	MapItem <keyType, valueType> *tempP;//temp variable 
 	tempP = head;
-	valueType result;
+	bool keer = true;
+	//valueType result;
 	if(head == NULL)//the case where map is empty 
 	{
 		cout<<"The map is empty"<<endl;
@@ -247,15 +248,18 @@ const valueType & Map<keyType, valueType>::get (const keyType & key) const
 		{
 			if(tempP->key == key)
 			{
-				result = tempP->value;
+				success=keer;
 				break;
 			}
+			else
+			{
 			tempP= tempP->next;
+			}
 		}
 
 	}
 
-	return result;
+	return tempP->value;
 }
 
 

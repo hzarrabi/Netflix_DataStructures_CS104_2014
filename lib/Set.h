@@ -15,6 +15,10 @@ class Set
 
     ~Set (); // destructor
 
+
+
+    Set<T>& operator=(const Set<T> & other);//overload operator for set
+
     int size () const; // returns the number of elements in the set
 
     void add (const T &item); 
