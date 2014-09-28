@@ -34,6 +34,10 @@ class Set
         However, will not create duplicates, i.e., it ignores elements
         already in the set. */
 
+
+    bool deepS (const T &item);
+
+
   private:
     Map<T, string> internalStorage;
      

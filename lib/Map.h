@@ -51,6 +51,9 @@ class Map
         If both maps (this and other) contain an association for the same
         key, then the one of this is used. */
 
+
+    bool deepM(keyType key);//returns bool if the item exists (basically to check i was making deep copies)
+
   private:
      /* The head and tail of the linked list you're using to store
         all the associations. */

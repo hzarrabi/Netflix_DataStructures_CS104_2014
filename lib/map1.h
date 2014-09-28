@@ -280,4 +280,17 @@ void Map <keyType, valueType>::merge (const Map<keyType, valueType> & other)
 
 
 
+template <class keyType, class valueType>
+bool Map <keyType, valueType>::deepM(keyType key)
+{
 
+	if (head->key==key)
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+}

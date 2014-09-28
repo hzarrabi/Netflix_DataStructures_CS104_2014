@@ -66,5 +66,11 @@ void Set<T>::merge (const Set<T> & other)//merge new set with old set(map)
 
 
 
-
+template <class T>
+bool Set<T>::deepS (const T &item)
+{
+bool success=false;
+success=internalStorage.deepM(item);
+return success;
+}
 
