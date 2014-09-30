@@ -25,7 +25,7 @@ Set<T>::~Set()//deconstructor
 
 }
 
-
+//overload operator
 template <class T>
 Set<T>& Set<T>::operator=(const Set<T> &other)
 {
@@ -38,28 +38,28 @@ Set<T>& Set<T>::operator=(const Set<T> &other)
 
 
 
-
+//add
 template <class T>
 void Set<T>::add (const T & item)
 {
 	internalStorage.add(item, "");//adding item to set, second thing in parameter is empty quotes for useless string :)
 }
 
-
+//size
 template <class T>
 int Set<T>::size () const
 {
 	return internalStorage.size ();//returns size of set
 }
 
-
+//remove
 template <class T>
 void Set<T>::remove (const T & item)
 {
 	internalStorage.remove(item);//removes item if key found
 }
 
-
+//contains
 template <class T>
 bool Set<T>::contains (const T &item) const 
 {
@@ -68,7 +68,7 @@ bool Set<T>::contains (const T &item) const
 	return success;
 }
 
-
+//merge
 template <class T>
 void Set<T>::merge (const Set<T> & other)//merge new set with old set(map)
 {
@@ -86,3 +86,24 @@ success=internalStorage.deepM(item);
 return success;
 }
 
+
+//first
+template <class T>
+void Set<T>::first()//makes curEl pointer point to the first element so head?
+{
+	internalStorage.first();
+}
+
+
+//next
+template <class T>
+void Set<T>::next()//makes curEl point to the next element
+{
+	internalStorage.next();
+}
+
+template <class T>
+const T & Set<T>::getCurrent ()
+{
+	return internalStorage.getCurrentKey ();
+}

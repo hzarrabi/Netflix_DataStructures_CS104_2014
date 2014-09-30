@@ -7,17 +7,38 @@ using namespace std;
 
 int main()
 {
-  Map<int,int> mapA;
+  Set<int> mapA;
 
-  Map<int,int> mapB;
+ // Map<int,int> mapB;
  
 
-  mapA.add(33,25);
-
-  mapA.add(34,25);
+  
 
 
-  mapA.first();
+  //mapA.add(232);
+  //mapA.add(445,3534);
+  //mapA.add(434,3434);
+
+  mapA.add(633);
+
+
+try
+  {
+   mapA.first();
+  }
+
+  catch(NoSuchElementException)
+  {
+  	cout<<"The map is empty, can't set the treaversal pointer to the first element!"<<endl;
+  }
+ 
+
+
+
+ mapA.add(663);
+
+
+  //--------------------------------------
 
   try
   {
@@ -30,6 +51,8 @@ int main()
   }
   
 
+
+cout<<mapA.getCurrent()<<endl;
 
 
   

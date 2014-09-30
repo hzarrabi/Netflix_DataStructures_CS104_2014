@@ -325,17 +325,28 @@ bool Map <keyType, valueType>::deepM(keyType key)
 template <class keyType, class valueType>
 void Map <keyType, valueType>::first()
 {
+	if(head==NULL)
+	{
+		throw NoSuchElementException();
+	}
+	
 	curEl=head;
+
 }
 
 
 template <class keyType, class valueType>
 void Map <keyType, valueType>::next()
 {
-	if(curEl->next==NULL)
+	if(curEl->next==NULL || head==NULL)
 	{
 		throw NoSuchElementException();
 	}
+	else if(head==NULL)
+	{
+		throw NoSuchElementException();
+	}
+	
 	curEl=curEl->next;
 
 }

@@ -42,6 +42,12 @@ class Set
     bool deepS (const T &item);
 
 
+    void first();//makes curEl pointer point to the first element so head?
+
+    void next();//makes curEl point to the next element;
+
+    const T & getCurrent ();
+
   private:
     Map<T, string> internalStorage;
      
