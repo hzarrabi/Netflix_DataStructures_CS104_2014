@@ -48,6 +48,12 @@ class Set
 
     const T & getCurrent ();
 
+    Set<T> setUnion (const Set<T> & other) const;
+
+
+    Set<T> setIntersection (const Set<T> & other) const;
+
+
   private:
     Map<T, string> internalStorage;
      

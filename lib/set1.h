@@ -107,3 +107,36 @@ const T & Set<T>::getCurrent ()
 {
 	return internalStorage.getCurrentKey ();
 }
+
+
+//set Union
+template <class T>
+Set<T> Set<T>::setUnion (const Set<T> & other) const
+{
+	Set<T> tempSet(this);//copy constructing a tempSet that take in all the values of this
+
+	tempSet.merge(other);//merging the tempSet an the set passed in
+
+	return tempSet;
+}
+
+
+
+//set Intersection
+template <class T>
+Set<T> Set<T>::setIntersection (const Set<T> & other) const
+{
+	Set<T> tempSet(this);//copy constructing a tempSet that take in all the values of this
+
+	for(int i =0; i < other->size(); i++)
+	{
+
+		if(this->contains(other->getCurrent))//if other's item is in this then put that item in the new set
+		{
+			tempSet.add(other->getCurrent);
+		}
+		other->next();//then iterate curEl to the next item
+	}
+
+	return tempSet;
+}
