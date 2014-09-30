@@ -9,13 +9,22 @@ int main()
 {
   Set<int> setA;
 
-  setA.add(12);
+  Set<int> setB;
+ 
+
+  setB.add(33);
 
   setA.add(22);
 
   setA.add(32);
 
-  cout<<setA.contains(12)<<endl;
+  setB=setA;
+
+
+  bool gooz=false;
+
+  //cout<<setB.get(343,gooz)<<endl;
+  cout<<setB.contains(22)<<endl;
 
   
 

@@ -29,7 +29,10 @@ Set<T>::~Set()//deconstructor
 template <class T>
 Set<T>& Set<T>::operator=(const Set<T> &other)
 {
-	internalStorage=other;//use the overload constructor for map
+	internalStorage=other.internalStorage;//use the overload constructor for map
+
+	return *this;
+
 }
 
 

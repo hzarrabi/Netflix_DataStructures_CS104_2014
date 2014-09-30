@@ -67,12 +67,14 @@ Map<keyType, valueType>& Map<keyType, valueType>::operator=(const Map<keyType, v
 
 
 	//adding everything from one map to other
-	tempP=other->head;
+	tempP=other.head;
 	while (tempP!= NULL)
 	{
 		this->add(tempP->key,tempP->value);
 		tempP=tempP->next;		
 	}
+
+	return *this;
 }
 
 
