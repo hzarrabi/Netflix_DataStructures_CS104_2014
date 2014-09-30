@@ -13,6 +13,7 @@ Map<keyType, valueType>::Map()//constructor for map
 	head=NULL;
 	tail=NULL;
 	numItems=0;
+	curEl=NULL;
 }
 
 
@@ -24,6 +25,7 @@ Map<keyType, valueType>::Map (const Map<keyType, valueType> & other)
 	head = NULL;
 	tail = NULL;
 	numItems=0;
+	curEl=NULL;
 	
 	
 	MapItem <keyType, valueType> *tempP;
@@ -106,6 +108,8 @@ void Map<keyType, valueType>::add(keyType key, valueType value)//add function fo
 		newItem->prev=NULL;
 		newItem->next=NULL;
 		numItems++;
+
+		curEl=head;//make curEl point to head
 	}
 
 	else  //it has one or more items
@@ -171,6 +175,7 @@ void Map<keyType, valueType>::remove (keyType key)
 			cout<<"The key has been found and the item has been deleted"<<endl;
 			head=NULL;
 			tail=NULL;
+			curEl=head;//makes curEl = to head which is null if you remove the only element
 			numItems--;
 			//DELETE THE ITEM			
 			}
@@ -187,6 +192,12 @@ void Map<keyType, valueType>::remove (keyType key)
 				{
 					if(tempP->prev==NULL && tempP->next != NULL)//if first one is key
 					{
+
+						if(curEl==head)//makes curEl = to the second element that is now beoming the first 
+						{
+							curEl=tempP->next;
+						}
+
 						head=tempP->next;
 						head->prev=NULL;
 						numItems--;
@@ -194,6 +205,11 @@ void Map<keyType, valueType>::remove (keyType key)
 					}
 					else if(tempP->next==NULL && tempP->prev!=NULL)//if last one is key
 					{
+						if(curEl==tail)//if curEl is point to the thing at the end and it get removed point it to null
+						{
+							curEl=head;
+						}
+
 						tail=tempP->prev;
 						tail->next=NULL;
 						numItems--;
@@ -201,6 +217,10 @@ void Map<keyType, valueType>::remove (keyType key)
 					}
 					else if (tempP->next==NULL && tempP->prev==NULL)//if there is one element
 					{
+						if(curEl==head)//you make curEl = null because the map is now empty
+						{
+							curEl=NULL;
+						}
 						head=NULL;
 						tail=NULL;
 						numItems--;
@@ -300,3 +320,38 @@ bool Map <keyType, valueType>::deepM(keyType key)
 		return false;
 	}
 }
+
+
+template <class keyType, class valueType>
+void Map <keyType, valueType>::first()
+{
+	curEl=head;
+}
+
+
+template <class keyType, class valueType>
+void Map <keyType, valueType>::next()
+{
+	if(curEl->next==NULL)
+	{
+		throw NoSuchElementException();
+	}
+	curEl=curEl->next;
+
+}
+
+template <class keyType, class valueType>
+const keyType & Map <keyType, valueType>::getCurrentKey ()
+{
+	return curEl->key;
+}
+
+
+template <class keyType, class valueType>
+const valueType & Map <keyType, valueType>::getCurrentValue()
+{
+	return curEl->value;
+}
+
+
+

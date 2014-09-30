@@ -7,24 +7,30 @@ using namespace std;
 
 int main()
 {
-  Set<int> setA;
+  Map<int,int> mapA;
 
-  Set<int> setB;
+  Map<int,int> mapB;
  
 
-  setB.add(33);
+  mapA.add(33,25);
 
-  setA.add(22);
-
-  setA.add(32);
-
-  setB=setA;
+  mapA.add(34,25);
 
 
-  bool gooz=false;
+  mapA.first();
 
-  //cout<<setB.get(343,gooz)<<endl;
-  cout<<setB.contains(22)<<endl;
+  try
+  {
+  	mapA.next();
+  }
+
+  catch(NoSuchElementException)
+  {
+  	cout<<"You are already at the last map item!"<<endl;
+  }
+  
+
+
 
   
 

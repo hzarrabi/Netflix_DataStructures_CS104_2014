@@ -11,6 +11,18 @@ struct MapItem
 };
 
 
+class NoSuchElementException//for exception handling
+{
+public:
+    NoSuchElementException(){};//excption
+    ~NoSuchElementException (){};
+
+};
+
+
+
+
+
 template <class keyType, class valueType>
 class Map
 {
@@ -54,11 +66,26 @@ class Map
 
     bool deepM(keyType key);//returns bool if the item exists (basically to check i was making deep copies)
 
+    void first();//makes curEl pointer point to the first element so head?
+
+    void next();//makes curEl point to the next element;
+
+    const keyType & getCurrentKey ();
+
+    const valueType & getCurrentValue ();
+
+    
+
   private:
      /* The head and tail of the linked list you're using to store
         all the associations. */
 
      MapItem <keyType, valueType> *head, *tail;
+
+     MapItem <keyType, valueType> *curEl;//this is the mapItem pointer we will use for the traversal funtions 
+
+
+
 
      /* If you like, you can add further data fields and private
         helper methods. */
