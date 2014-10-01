@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <string.h>
+#include <sstream>
 #include <iomanip>
 #include "Set.h"
 #include "../Movie.h"
@@ -39,7 +40,21 @@ int main(int argc, char *argv[])
       {
         while(getline(userData,buffer))
         {
-          cout<<buffer<<endl;
+          string command;//either begin or add
+          stringstream oneByOne(buffer);
+          oneByOne>>command;
+          //cout<<command<<endl;
+          if(command=="BEGIN")
+          {
+            oneByOne>>command;//puts the id into command
+            //PUT ID INTO THE MAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            getline(userData,buffer);
+            buffer=buffer.substr(buffer.find_first_of(" ")+1);
+            cout<<buffer<<"this should be Aaron Cote"<<endl;
+            //PUT NAME INTO MAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            getline(userData,buffer);
+          }
+
         }
       }
       else
@@ -52,9 +67,26 @@ int main(int argc, char *argv[])
       movieData.open(movieFile.c_str());
       if(movieData.is_open())
       {
+        string command;//either begin or keyword
+        string movieTitle;//will serve as the key to set?
+
         while(getline(movieData,buffer))
         {
-          cout<<buffer<<endl;
+          stringstream oneByOne(buffer);
+          oneByOne>>command;//puts command in
+          if(command=="BEGIN")
+          {
+            buffer=buffer.substr(buffer.find_first_of(" ")+1);
+            movieTitle=buffer;//puts the movie title in as key
+            cout<<movieTitle<<endl;
+            //PUT movie title into set!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          }
+          else if(command=="KEYWORD:")
+          {
+            buffer=buffer.substr(buffer.find_first_of(" ")+1);
+            cout<<buffer<<" this should be keyword of:"<<movieTitle<<endl;
+            //ADD KEYWORD TO THE SET OF THE MOVIEEEEEEEE
+          }
         }
       }
       else
