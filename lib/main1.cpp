@@ -23,6 +23,9 @@ int main(int argc, char *argv[])
   string userFile;//string that holds the name of the userfile 
   string movieFile;//string that hold the name for the movie file
 
+  Map<string,User*>  mapUser;//map that takes user id and object of type user
+  Map<string,Movie*> movieMap;//map that hold the movie objects
+
   file.open(argv[1]);//opens the file in your command line argumen
 
   if (file.is_open())
@@ -38,6 +41,8 @@ int main(int argc, char *argv[])
       userData.open(userFile.c_str());
       if(userData.is_open())
       {
+        string userID1;
+        string userName1;
         while(getline(userData,buffer))
         {
           string command;//either begin or add
@@ -46,13 +51,16 @@ int main(int argc, char *argv[])
           //cout<<command<<endl;
           if(command=="BEGIN")
           {
-            oneByOne>>command;//puts the id into command
-            //PUT ID INTO THE MAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            getline(userData,buffer);
-            buffer=buffer.substr(buffer.find_first_of(" ")+1);
-            cout<<buffer<<"this should be Aaron Cote"<<endl;
+            oneByOne>>userID1;//puts the id into command
+          }
+          else if(command=="NAME:")
+          {
+            userName1=buffer.substr(buffer.find_first_of(" ")+1);
+            cout<<userName1<<"this should be Aaron Cote"<<endl;
             //PUT NAME INTO MAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             getline(userData,buffer);
+            User *userAccount = new User(userID1,userName1);
+            mapUser.add(userID1,userAccount);
           }
 
         }
@@ -74,17 +82,23 @@ int main(int argc, char *argv[])
         {
           stringstream oneByOne(buffer);
           oneByOne>>command;//puts command in
+          Movie *moviePointer;
           if(command=="BEGIN")
           {
             buffer=buffer.substr(buffer.find_first_of(" ")+1);
             movieTitle=buffer;//puts the movie title in as key
             cout<<movieTitle<<endl;
             //PUT movie title into set!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            moviePointer = new Movie(movieTitle);
+            movieMap.add(movieTitle,moviePointer);
           }
           else if(command=="KEYWORD:")
           {
             buffer=buffer.substr(buffer.find_first_of(" ")+1);
+            movieTitle=buffer;
             cout<<buffer<<" this should be keyword of:"<<movieTitle<<endl;
+            moviePointer->addKeyword(movieTitle); 
+
             //ADD KEYWORD TO THE SET OF THE MOVIEEEEEEEE
           }
         }
