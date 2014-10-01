@@ -61,7 +61,7 @@ void Set<T>::remove (const T & item)
 
 //contains
 template <class T>
-bool Set<T>::contains (const T &item) const 
+bool Set<T>::contains (const T &item) const
 {
 	bool success = false; 
 	internalStorage.get(item,success);//if item found then change success to true, and returns success
@@ -103,7 +103,7 @@ void Set<T>::next()//makes curEl point to the next element
 }
 
 template <class T>
-const T & Set<T>::getCurrent ()
+const T & Set<T>::getCurrent () 
 {
 	return internalStorage.getCurrentKey ();
 }
@@ -113,7 +113,7 @@ const T & Set<T>::getCurrent ()
 template <class T>
 Set<T> Set<T>::setUnion (const Set<T> & other) const
 {
-	Set<T> tempSet(this);//copy constructing a tempSet that take in all the values of this
+	Set<T> tempSet(*this);//copy constructing a tempSet that take in all the values of this
 
 	tempSet.merge(other);//merging the tempSet an the set passed in
 
@@ -126,16 +126,16 @@ Set<T> Set<T>::setUnion (const Set<T> & other) const
 template <class T>
 Set<T> Set<T>::setIntersection (const Set<T> & other) const
 {
-	Set<T> tempSet(this);//copy constructing a tempSet that take in all the values of this
+	Set<T> tempSet();//copy constructing a tempSet that take in all the values of this
 
-	for(int i =0; i < other->size(); i++)
+	for(int i =0; i < other.size(); i++)
 	{
 
-		if(this->contains(other->getCurrent()))//if other's item is in this then put that item in the new set
+		if(this->contains(other.getCurrent()))//if other's item is in this then put that item in the new set
 		{
-			tempSet.add(other->getCurrent());
+			tempSet.add(other.getCurrent());
 		}
-		other->next();//then iterate curEl to the next item
+		other.next();//then iterate curEl to the next item
 	}
 
 	return tempSet;

@@ -2,6 +2,7 @@
 #define MOVIE_H
 
 #include "lib/Set.h"
+#include "lib/Map.h"
 #include <string>
 #include <iostream>
 using namespace std;

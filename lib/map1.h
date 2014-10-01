@@ -1,6 +1,7 @@
 #include "Map.h"
 #include <iostream>
 #include <stdlib.h>
+#include <fstream>
 
 
 using namespace std;
