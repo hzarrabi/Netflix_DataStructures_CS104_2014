@@ -2,12 +2,13 @@
 #include <exception>
 #include <stdexcept>
 #include "Set.h"
+#include "../Movie.h"
 
 using namespace std;
 
 int main()
 {
-  Set<int> mapA;
+  /*Set<int> mapA;
 
  // Map<int,int> mapB;
  
@@ -59,7 +60,10 @@ cout<<mapA.getCurrent()<<endl;
 
 
   
+*/
 
+
+Movie cos("antar chose");
 
 
   

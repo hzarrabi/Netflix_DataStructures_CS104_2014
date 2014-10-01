@@ -131,9 +131,9 @@ Set<T> Set<T>::setIntersection (const Set<T> & other) const
 	for(int i =0; i < other->size(); i++)
 	{
 
-		if(this->contains(other->getCurrent))//if other's item is in this then put that item in the new set
+		if(this->contains(other->getCurrent()))//if other's item is in this then put that item in the new set
 		{
-			tempSet.add(other->getCurrent);
+			tempSet.add(other->getCurrent());
 		}
 		other->next();//then iterate curEl to the next item
 	}
