@@ -42,5 +42,5 @@ void Movie::addKeyword (string keyword)
 //getAllKeywords
 Set<string> Movie::getAllKeywords () const
 {
-
+  return keyWords;
 }

@@ -56,18 +56,22 @@ int main(int argc, char *argv[])
           else if(command=="NAME:")
           {
             userName1=buffer.substr(buffer.find_first_of(" ")+1);
-            cout<<userName1<<"this should be Aaron Cote"<<endl;
+            //cout<<userName1<<"this should be Aaron Cote"<<endl;
             //PUT NAME INTO MAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             getline(userData,buffer);
             User *userAccount = new User(userID1,userName1);
             mapUser.add(userID1,userAccount);
           }
 
+          //bool gooa;
+          //mapUser.get("aaroncot",gooa);
+
         }
       }
       else
       {
         cout<<"Your user file:"<<userFile<<" could not be found."<<endl;
+        return 0;
       }
 
 
@@ -87,7 +91,7 @@ int main(int argc, char *argv[])
           {
             buffer=buffer.substr(buffer.find_first_of(" ")+1);
             movieTitle=buffer;//puts the movie title in as key
-            cout<<movieTitle<<endl;
+            //cout<<movieTitle<<endl;
             //PUT movie title into set!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             moviePointer = new Movie(movieTitle);
             movieMap.add(movieTitle,moviePointer);
@@ -96,7 +100,7 @@ int main(int argc, char *argv[])
           {
             buffer=buffer.substr(buffer.find_first_of(" ")+1);
             movieTitle=buffer;
-            cout<<buffer<<" this should be keyword of:"<<movieTitle<<endl;
+            //cout<<buffer<<" this should be keyword of:"<<movieTitle<<endl;
             moviePointer->addKeyword(movieTitle); 
 
             //ADD KEYWORD TO THE SET OF THE MOVIEEEEEEEE
@@ -106,6 +110,7 @@ int main(int argc, char *argv[])
       else
       {
         cout<<"Your user file:"<<movieFile<<" could not be found."<<endl;
+        return 0;
       }
 
 
@@ -118,6 +123,112 @@ int main(int argc, char *argv[])
       return 0;
   }
 
+
+
+
+
+
+cout<<"WELCOME TO GETFLIX!!\n"<<endl;
+
+cout<<"What would you like to do?:"<<endl;
+cout<<"1. Log In"<<endl;
+cout<<"2. Create a new user"<<endl;
+cout<<"3. QUIT\n"<<endl;
+
+
+int userCommand;
+cout<<"Enter number of command:";
+cin>>userCommand;
+cout<<""<<endl;
+
+
+
+
+while(userCommand<1 || userCommand>3)
+  {
+  cout<<"You did not enter the correct command number. Try again:";
+  cin>>userCommand;
+  cout<<""<<endl;
+  }
+
+
+if(userCommand==1)//they want to log in
+{
+  string logInID;
+  cout<<"Welcome!"<<endl;
+  cout<<"What is your log in ID";
+  cin>>logInID;
+  bool gooz=false;
+  if (mapUser.get(logInID,gooz))
+  {
+    int yellow;
+    cout<<"Succesfuly logged in!"<<endl;
+    cout<<"1.Search for a movie by title"<<endl;
+    cout<<"2.Search for a movie by keyword"<<endl;
+    cout<<"3.Logout";
+
+    while(yellow<1 || yellow>3)
+    {
+      cout<<"You did not enter the correct command number. Try again:";
+      cin>>yellow;
+      cout<<""<<endl;
+    }
+
+    if(yellow==1)
+    {
+      string movieTitle1;
+      cout<<"What movie would you like to search?:";
+      cin>>movieTitle1;
+    }
+
+    else if(yellow==2)
+    {
+      string newKeyWord1;
+      cout<<"What keyword would you like to search for?:";
+      cin>> newKeyWord1;
+    }
+
+    else if(yellow==3)
+    {
+      cout<<"Logged out!"<<endl;
+    }
+
+
+/*cout<<"1.Search for a movie by title"<<endl;
+cout<<"2.Search for a movie by keyword"<<endl;
+cout<<"3.Logout"<<endl;
+cout<<"What would you like to do?:"<<endl;
+cin>>logInCommand;
+cout<<""<<endl;*/
+  }
+  else
+  {
+    cout<<"Could not log you in!"<<endl;
+  }
+}
+
+
+else if(userCommand==2)//they want to log in
+{
+string newUserID;
+string newUserName;
+cout<<"Creating New User!"<<endl;
+cout<<"What is your user ID?:";
+cin>>newUserID;
+cout<<""<<endl;
+cout<<"What is your user Name?:";
+//getline(cin
+cin>>newUserName;
+//cout<<newUserName;
+User *userAccount = new User(newUserID,newUserName);//make new user object
+mapUser.add(newUserID,userAccount);//add the user object to your userMap
+cout<<"Your account has been made!"<<endl;
+}
+
+else if(userCommand==3)//they want to log in
+{
+cout<<"QUITTING NOW. THANKS FOR VISITING!"<<endl;
+}
 
 
 
