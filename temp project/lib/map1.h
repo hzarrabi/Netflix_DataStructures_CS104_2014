@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
+#include <string.h>
 
 
 using namespace std;
@@ -178,6 +179,8 @@ void Map<keyType, valueType>::add(keyType key, valueType value)//add function fo
 		
 				
 			//more than one item add to the end
+			else
+			{
 			MapItem<keyType, valueType> *newItem=new MapItem <keyType, valueType>();//new instance map
 			tail->next=newItem;
 			newItem->prev=tail;
@@ -187,7 +190,8 @@ void Map<keyType, valueType>::add(keyType key, valueType value)//add function fo
 			newItem->key=key;
 			newItem->value=value;
 			numItems++;
-			//break;		
+			//break;
+			}
 				
 		}
 	}
@@ -398,4 +402,29 @@ void Map <keyType, valueType>::printKeys()
 		tempP=tempP->next;
 	}
 	cout<<"\n"<<endl;
+}
+
+
+//DELETE MAP
+template <class keyType, class valueType>
+void Map <keyType, valueType>::deleteMap()
+{
+	if(this->size()==0)
+	{
+		return;
+	}
+	MapItem<keyType, valueType> *temp=head;
+	MapItem<keyType, valueType> *temp1;
+	while(temp!=NULL)
+	{	
+		temp1=temp->next;
+		if(temp1==NULL)
+		{
+			delete temp1;
+			delete temp;
+			break;
+		}
+		delete temp;
+		temp=temp1;
+	}
 }

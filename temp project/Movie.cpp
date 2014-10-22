@@ -47,3 +47,9 @@ Set<string> Movie::getAllKeywords () const
 {
 	return keywords;
 }
+
+
+ void Movie::deleteKeywords()
+ {
+ 	keywords.deleteSet();
+ }

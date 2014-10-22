@@ -5,6 +5,4 @@ BEGIN dkempe
 NAME: David Kempe
 END
 
-BEGIN hzarrabi
-NAME: hooman zarrabi
-END
+

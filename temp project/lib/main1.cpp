@@ -14,6 +14,7 @@ using namespace std;
 
 void mainDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
 void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
+void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
 void newUserDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
 void fileInput(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap,string &fileName,string mainFile);
 
@@ -32,13 +33,22 @@ Map<string,Movie*> movieMap;//map that hold the movie name and movie objects
 
 fileInput(mapUser, movieMap,userFileName,mainFileName);
 
+/*movieMap.first();
+movieMap.getCurrentValue()->getAllKeywords().printSet();
+movieMap.next();
+movieMap.getCurrentValue()->getAllKeywords().printSet();
+movieMap.next();
+movieMap.getCurrentValue()->getAllKeywords().printSet();
+movieMap.next();
+movieMap.getCurrentValue()->getAllKeywords().printSet();*/
+
 
 cout<<"WELCOME TO GETFLIX!!\n"<<endl;
 
-  mainDisplay(mapUser,movieMap,userFileName);
+mainDisplay(mapUser,movieMap,userFileName);
 
 
-  return 0;
+return 0;
 }
 
 
@@ -225,7 +235,7 @@ void mainDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, stri
 //loggedInDisplay
 void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName)
 {
-  string logInID;
+    string logInID;
     cout<<"Welcome!"<<endl;
     cout<<"What is your log in ID?:";
     cin>>logInID;
@@ -241,14 +251,26 @@ void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, str
 
     if (mapUser.get(logInID))
     {
-      int yellow;
-      cout<<"Succesfuly logged in "<<logInID<<"!"<<endl;
+      keywordMenu(mapUser,movieMap,fileName);
+    }
+    else
+    {
+      cout<<"Could not log you in!"<<endl;
+    }
+}
+//----------------------------------------
+
+
+void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName)
+{
+
       cout<<"\n";
       cout<<"1.Search for a movie by title"<<endl;
       cout<<"2.Search for a movie by keyword"<<endl;
       cout<<"3.Logout"<<endl;
       cout<<"\n";
       cout<<"Enter number of command:";
+      int yellow;
       cin>>yellow;
       cout<<"\n"<<endl;
 
@@ -290,23 +312,79 @@ void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, str
         getline(cin, newKeyWord1);
         //checking if the movie map has movies with current keyword
         movieMap.first();//makes curEl point to first element
-
-        bool gooz=true;
-        while(gooz)
+        bool chose=true;
+        int counter1=0;
+        while(chose)
         {
-          if(movieMap.getCurrentValue()->getAllKeywords().contains(newKeyWord1)|| movieMap.getCurrentValue()->getTitle()==newKeyWord1)
+          if(movieMap.size()!=0)//if map is not emppty
           {
-            cout<<movieMap.getCurrentKey()<<endl;
+            if(movieMap.getCurrentValue()->getAllKeywords().contains(newKeyWord1)|| movieMap.getCurrentValue()->getTitle()==newKeyWord1)
+            {
+              counter1++;
+            }
+            try
+            {
+              movieMap.next();
+            }
+            catch(NoSuchElementException)
+            {
+              if(counter1==0)//if statement used to test wether keyword was found
+              {
+                cout<<"No match"<<endl;
+              }
+              chose=false;
+            }
           }
-          try
+          else
           {
-            movieMap.next();
-          }
-          catch(NoSuchElementException)
-          {
-            gooz=false;
+            chose=false;
           }
         }
+
+        if(counter1>0)//if the keyword was found
+        {
+          //this second while loop prompts them to keep going to the next keyword
+          movieMap.first();
+          bool gooz=true;
+          while(gooz)
+          {
+            if(movieMap.getCurrentValue()->getAllKeywords().contains(newKeyWord1)|| movieMap.getCurrentValue()->getTitle()==newKeyWord1)
+            {
+              cout<<movieMap.getCurrentKey()<<endl;
+              movieMap.getCurrentValue()->getAllKeywords().printSet();//prints all keywords of the movie who's keyword was found
+              counter1--;
+              if(counter1>0)
+              {
+                int choice;
+                cout<<"\n1.Next movie"<<endl;
+                cout<<"2.Return to menu"<<endl;
+                cin>>choice;
+                if(choice==1)
+                {
+                  cout<<"\nGoing to next keyword:"<<endl;
+                }
+                else if(choice==2)
+                {
+                  keywordMenu(mapUser,movieMap,fileName);
+                }
+              }
+              else if(counter1==0)
+              {
+                cout<<"No more keywords to display! Going to main menu.\n"<<endl;
+                keywordMenu(mapUser,movieMap,fileName);
+              }
+            }
+            try
+            {
+              movieMap.next();
+            }
+            catch(NoSuchElementException)
+            {
+              gooz=false;
+            }
+          }
+        }
+
       }
 
 
@@ -318,13 +396,11 @@ void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, str
         mainDisplay(mapUser, movieMap, fileName);//prompts them with mainDisplay function if they logout
 
       }
-    }
-    else
-    {
-      cout<<"Could not log you in!"<<endl;
-    }
 }
 //----------------------------------------
+
+
+
 
 
 //----------------------------------------

@@ -76,6 +76,8 @@ class Map
     bool keyExist(keyType key) const;
 
     void printKeys();//prints the keys of the map (also used for set)
+
+    void deleteMap();//deallocates memory for the map
     
 
   private:

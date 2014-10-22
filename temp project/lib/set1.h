@@ -163,3 +163,12 @@ void Set<T>::printSet()
 {
 	internalStorage.printKeys();//prints the keys of the set
 }
+
+
+
+//delete set
+template <class T>
+void Set<T>::deleteSet()
+{
+	internalStorage.deleteMap();
+}

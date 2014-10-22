@@ -51,6 +51,8 @@ class Set
 
     void printSet();//prints all keys of the set
 
+    void deleteSet();//deallocates set
+
 
   private:
     Map<T, string> internalStorage;

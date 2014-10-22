@@ -25,6 +25,8 @@ class Movie {
     Set<string> getAllKeywords () const;
       //Returns a set of all keywords associated with the movie. 
 
+    void deleteKeywords();//deallocates memory from movie class;(more specifically the set of it's keywords)
+
   private:
     // you get to decide what goes here
     string movieTitle;//title of the movie;
