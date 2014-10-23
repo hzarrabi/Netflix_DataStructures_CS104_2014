@@ -53,7 +53,7 @@ class Map
      /* Removes the association for the given key.
         If the key has no association, it should do nothing. */
 
-    const valueType & get (const keyType & key,bool & success) const;
+    const valueType & get (const keyType & key) const;
      /* Returns the value associated with the given key.
         If the key existed in the map, success should be set to true.
         If the key has no association, it should set success to false. */
@@ -64,7 +64,6 @@ class Map
         key, then the one of this is used. */
 
 
-    bool deepM(keyType key);//returns bool if the item exists (basically to check i was making deep copies)
 
     void first();//makes curEl pointer point to the first element so head?
 
@@ -74,6 +73,11 @@ class Map
 
     const valueType & getCurrentValue ();
 
+    bool keyExist(keyType key) const;
+
+    void printKeys();//prints the keys of the map (also used for set)
+
+    //void deleteMap();//deallocates memory for the map
     
 
   private:

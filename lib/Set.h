@@ -38,20 +38,20 @@ class Set
         However, will not create duplicates, i.e., it ignores elements
         already in the set. */
 
-
-    bool deepS (const T &item);
-
-
     void first();//makes curEl pointer point to the first element so head?
 
     void next();//makes curEl point to the next element;
 
-    const T & getCurrent ();
+    const T & getCurrent ();//gets curent key that curEl is at
 
     Set<T> setUnion (const Set<T> & other) const;
 
 
     Set<T> setIntersection (const Set<T> & other) const;
+
+    void printSet();//prints all keys of the set
+
+    //void deleteSet();//deallocates set
 
 
   private:

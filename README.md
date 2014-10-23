@@ -13,3 +13,8 @@ make *name of main txt file"
 
 
 the other two txt files are inside of data
+
+
+to run go to bin and do:
+
+./

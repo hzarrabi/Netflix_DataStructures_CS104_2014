@@ -22,7 +22,6 @@ Set<T>::Set (const Set<T> & other):internalStorage(other.internalStorage)//copy 
 template <class T>
 Set<T>::~Set()//deconstructor
 {
-
 }
 
 //overload operator
@@ -63,8 +62,15 @@ void Set<T>::remove (const T & item)
 template <class T>
 bool Set<T>::contains (const T &item) const
 {
-	bool success = false; 
-	internalStorage.get(item,success);//if item found then change success to true, and returns success
+	bool success = true; 
+	try
+	{
+		internalStorage.get(item);//if item found then change success to true, and returns success
+	}
+	catch(NoSuchElementException)
+	{
+		success = false;//if the exception has been caught (key hasn't been found) then you set success to false
+	}
 	return success;
 }
 
@@ -73,25 +79,24 @@ template <class T>
 void Set<T>::merge (const Set<T> & other)//merge new set with old set(map)
 {
 	internalStorage.merge(other.internalStorage);//other is the second map you're merging into internal storage?
-
 }
 
 
-
-template <class T>
-bool Set<T>::deepS (const T &item)
-{
-bool success=false;
-success=internalStorage.deepM(item);
-return success;
-}
 
 
 //first
 template <class T>
 void Set<T>::first()//makes curEl pointer point to the first element so head?
 {
-	internalStorage.first();
+	try
+	{
+		internalStorage.first();
+	}
+
+	catch(NoSuchElementException)
+	{
+		cout<<"Your set set is empty. No first element."<<endl;
+	}
 }
 
 
@@ -99,9 +104,18 @@ void Set<T>::first()//makes curEl pointer point to the first element so head?
 template <class T>
 void Set<T>::next()//makes curEl point to the next element
 {
-	internalStorage.next();
+	try
+	{
+		internalStorage.next();
+	}
+
+	catch(NoSuchElementException)
+	{
+		cout<<"Cannot get next element."<<endl;
+	}
 }
 
+//getCurrent (key)
 template <class T>
 const T & Set<T>::getCurrent () 
 {
@@ -126,7 +140,7 @@ Set<T> Set<T>::setUnion (const Set<T> & other) const
 template <class T>
 Set<T> Set<T>::setIntersection (const Set<T> & other) const
 {
-	Set<T> tempSet();//copy constructing a tempSet that take in all the values of this
+	Set<T> tempSet;//making a new tempSet that takes in all the keys that are the same
 
 	for(int i =0; i < other.size(); i++)
 	{
@@ -140,3 +154,20 @@ Set<T> Set<T>::setIntersection (const Set<T> & other) const
 
 	return tempSet;
 }
+
+
+//set Intersection
+template <class T>
+void Set<T>::printSet()
+{
+	internalStorage.printKeys();//prints the keys of the set
+}
+
+
+
+/*//delete set
+template <class T>
+void Set<T>::deleteSet()
+{
+	internalStorage.deleteMap();
+}*/
