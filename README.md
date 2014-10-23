@@ -8,13 +8,17 @@
 
 to compile do:
 
-make *name of main txt file"
+make
 
 
 
 the other two txt files are inside of data
 
 
-to run go to bin and do:
+to run:
 
-./
+cd bin
+
+./main *name of main txt file" (if the main text file is in the main directory use "../")
+
+
