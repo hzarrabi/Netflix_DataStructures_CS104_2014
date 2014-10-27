@@ -162,12 +162,90 @@ void Set<T>::printSet()
 {
 	internalStorage.printKeys();//prints the keys of the set
 }
+//=======================================================================================================================
+//implementing set iterator
 
-
-
-/*//delete set
+//overload constructor
 template <class T>
-void Set<T>::deleteSet()
+Set<T>::Iterator::Iterator(const Set<T>* setPtr, typename Map<T, string>::Iterator mapIt) : mapIt()
 {
-	internalStorage.deleteMap();
-}*/
+	setParent=setPtr;
+	mapIt=mapIt;
+}
+
+
+//*
+template <class T>
+T Set<T>::Iterator::operator* () const
+{
+	Pair<T,string> p = *mapIt;//dereferencing the iterator of map
+	return p.first;//returns the key of the set
+
+}
+
+//++
+template <class T>
+typename Set<T>::Iterator Set<T>::Iterator::operator++ ()
+{
+	mapIt=++mapIt;
+	return *this;
+}
+
+//=
+template <class T>
+typename Set<T>::Iterator Set<T>::Iterator::operator= (const Set<T>::Iterator & other)
+{
+	if (this==&other)
+	{
+		return &this;
+	}
+
+	setParent=other.setParent;
+	mapIt=other.mapIt;
+	return *this;
+}
+
+//==
+template <class T>
+bool Set<T>::Iterator::operator== (const Set<T>::Iterator & other) const
+{
+	if(setParent==other.setParent && mapIt==other.mapIt)//if iterators are pointing to same thing return true
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
+	}
+
+}
+
+//!=
+template <class T>
+bool Set<T>::Iterator::operator!= (const Set<T>::Iterator & other) const
+{
+		if(setParent!=other.setParent || mapIt!=other.mapIt)//if iterators are pointing to same thing return true
+		{
+			return true;
+		}
+
+		else
+		{
+			return false;
+		}
+}
+
+//begin
+template <class T>
+typename Set<T>::Iterator Set<T>::begin() const
+{
+	return Set<T>::Iterator(this, internalStorage.begin()); //return a set iterator that contains a pointer to datastructure and a map iterator 
+}
+
+//end
+template <class T>
+typename Set<T>::Iterator Set<T>::end() const
+{
+	return Set<T>::Iterator(this, internalStorage.end()); //return a set iterator that contains a pointer to datastructure and a map iterator 
+}

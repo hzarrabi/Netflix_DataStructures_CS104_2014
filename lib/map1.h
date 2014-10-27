@@ -420,28 +420,97 @@ void Map <keyType, valueType>::printKeys()
 	}
 	cout<<"\n"<<endl;
 }
+//==============================================================================================================================================
+//iterator implementations
 
-
-/*//DELETE MAP
+//constructor for iterator
 template <class keyType, class valueType>
-void Map <keyType, valueType>::deleteMap()
+Map<keyType, valueType>::Iterator::Iterator(const Map<keyType, valueType> *mapPtr, MapItem<keyType, valueType> *item)
 {
-	if(this->size()==0)
+	this->mapParent=mapPtr;//passing in the map that the iterator belongs to
+	this->itemIt=item;//passing in the item that the iterator will point to
+}
+
+
+//*
+template <class keyType, class valueType>
+Pair<keyType, valueType> Map<keyType, valueType>::Iterator::operator* () const
+{
+	Pair<keyType, valueType> p(itemIt->key,itemIt->value);//making a pair
+
+	return p;
+}
+
+//++
+template <class keyType, class valueType>
+typename Map<keyType, valueType>::Iterator  Map<keyType, valueType>::Iterator::operator++ ()
+{ 
+	if(itemIt->next!=NULL)//if this iterator isn't pointing to the last element 
 	{
-		return;
+		itemIt=itemIt->next;
 	}
-	MapItem<keyType, valueType> *temp=head;
-	MapItem<keyType, valueType> *temp1;
-	while(temp!=NULL)
-	{	
-		temp1=temp->next;
-		if(temp1==NULL)
-		{
-			delete temp1;
-			delete temp;
-			break;
-		}
-		delete temp;
-		temp=temp1;
+	return *this;
+}
+
+//=
+template <class keyType, class valueType>
+typename Map<keyType, valueType>::Iterator Map<keyType, valueType>::Iterator::operator=(const Iterator &other)
+{
+	if(this=&other)
+	{
+		return *this;
 	}
-}*/
+
+	itemIt=other.itemIt;
+	mapParent=other.mapParent;
+	return *this;
+}
+
+
+//==
+template <class keyType, class valueType>
+bool Map<keyType, valueType>::Iterator::operator== (const Map<keyType, valueType>::Iterator & other) const
+{
+	if(itemIt==other.itemIt && mapParent==other.mapParent)//if the iterators are pointing to the same item 
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+}
+
+//!=
+template <class keyType, class valueType>
+bool Map<keyType, valueType>::Iterator::operator!= (const Map<keyType, valueType>::Iterator & other) const
+{
+	if(itemIt!=other.itemIt || mapParent!=other.mapParent)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//begin	
+template <class keyType, class valueType>
+typename Map<keyType, valueType>::Iterator Map<keyType, valueType>::begin() const
+{
+	return Map<keyType, valueType>::Iterator(this, head);	
+}
+
+//end
+template <class keyType, class valueType>
+typename Map<keyType, valueType>::Iterator Map<keyType, valueType>::end() const
+{
+	 return Map<keyType, valueType>::Iterator(this, NULL);
+}
+
+//default constructor
+template <class keyType, class valueType>
+Map<keyType, valueType>::Iterator::Iterator()
+{
+}

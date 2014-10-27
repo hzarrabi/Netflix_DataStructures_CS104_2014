@@ -10,13 +10,14 @@
 #include "../Movie.h"
 #include "../User.h"
 
+
 using namespace std;
 
-void mainDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
-void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
-void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
-void newUserDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName);
-void fileInput(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap,string &fileName,string mainFile);
+void mainDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
+void loggedInMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
+void keywordMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
+void newUserDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
+void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap,string &fileName,string mainFile);
 
 
 
@@ -28,30 +29,28 @@ int main(int argc, char *argv[])
 
 
 
-  Map<string,User*>  mapUser;//map that takes user id and object of type user
-  Map<string,Movie*> movieMap;//map that hold the movie name and movie objects
+  Map<string,User*>  *mapUser = new Map<string,User*>;//map that takes user id and object of type user
+  Map<string,Movie*> *movieMap = new Map<string,Movie*>;//map that hold the movie name and movie objects
+
+
 
   fileInput(mapUser, movieMap,userFileName,mainFileName);
-
-  cout<<"WELCOME TO GETFLIX!!\n"<<endl;
-
-  mainDisplay(mapUser,movieMap,userFileName);
-
-
-//deallocating memory
- while (true)
-  {
-    movieMap.first();
-    delete movieMap.getCurrentValue();
-    try
+  //deallocating memory 
+   while (true)
     {
-      movieMap.next();
+      movieMap->first();
+      delete movieMap->getCurrentValue();
+      try
+      {
+        movieMap->next();
+      }
+      catch(NoSuchElementException)
+      {
+        break;
+      }
     }
-    catch(NoSuchElementException)
-    {
-      break;
-    }
-  }
+    delete mapUser;
+    delete movieMap;
 
   return 0;
 }
@@ -65,7 +64,7 @@ int main(int argc, char *argv[])
 //FUNCTION IMPLEMENTATIONS
 
 //fileinput
-void fileInput(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string &fileName, string mainFile)
+void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string &fileName, string mainFile)
 {
 
     ifstream file;//the file object for the main file 
@@ -79,8 +78,9 @@ void fileInput(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string
 
     if (file.is_open())
     {
-        getline(file,fileName);//reads in the first line that holds userFile 
+        getline(file,fileName);//reads in the first line that holds userFile
         getline(file,movieFile);//reads in the second line that holds movieFile
+
 
         ifstream userData;
         ifstream movieData;
@@ -92,23 +92,46 @@ void fileInput(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string
         {
           string userID1;
           string userName1;
+          string checkedMovie;//movied that is checked out
+          bool whichBegin=true;//used to do specific begin command
           while(getline(userData,buffer))
           {
             string command;//either begin or add
             stringstream oneByOne(buffer);
             oneByOne>>command;
-            if(command=="BEGIN")
+            User *userAccount;//declaring userAccount of type User
+            if(command=="BEGIN" && whichBegin==true)
             {
               oneByOne>>userID1;//puts the id into command
+              whichBegin=false;
             }
             else if(command=="NAME:")
             {
               userName1=buffer.substr(buffer.find_first_of(" ")+1);
+              userAccount = new User(userID1,userName1);
+            }
+            else if(command=="MOVIE:")
+            {
+              checkedMovie=buffer.substr(buffer.find_first_of(" ")+1);
+              Movie *rentedMovie=new Movie("checkedMovie");
+              userAccount->rentMovie(rentedMovie);//putting the movie* object into the rented movie of the user
+            }
+            else if(command=="BEGIN" && whichBegin==false)
+            {
+              whichBegin=true;
+              getline(userData,buffer);
+              while(buffer!="END QUEUE")
+              {
+                cout<<buffer<<endl;
+                Movie *rentedMovie=new Movie(buffer);//making movie object pointer of 
+                userAccount->movieQueue()->enqueue(rentedMovie);
+                getline(userData,buffer);
+
+              }
             }
             else if(command=="END")//here the userID and the userName are added to the userMap
             {
-              User *userAccount = new User(userID1,userName1);
-              mapUser.add(userID1,userAccount);
+              mapUser->add(userID1,userAccount);
             }
           }
         }
@@ -153,10 +176,14 @@ void fileInput(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string
             }
             else if(command=="END")
             {
-              movieMap.add(movieTitle,moviePointer);//add movie object to the movie map
+              movieMap->add(movieTitle,moviePointer);//add movie object to the movie map
             }
 
           }
+        //******************************************************************************************
+        cout<<"WELCOME TO GETFLIX!!\n"<<endl;
+        mainDisplay(mapUser,movieMap,fileName);//starting the program when the file contents read in
+        //******************************************************************************************
         }
         else
         {
@@ -177,7 +204,7 @@ void fileInput(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string
 //---------------------------------
 
 //function log in menu
-void mainDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName)
+void mainDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
 {
   cout<<"What would you like to do?:"<<endl;
   cout<<"1. Log In"<<endl;
@@ -226,7 +253,7 @@ void mainDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, stri
 
 //------------------------
 //loggedInDisplay which prompts them to login etc
-void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName)
+void loggedInMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
 {
     string logInID;
     cout<<"Welcome!"<<endl;
@@ -234,7 +261,7 @@ void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, str
     cin>>logInID;
     cout<<"\n";
     
-    while(mapUser.keyExist(logInID)==false)//prompting them to enter a loginId that exists
+    while(mapUser->keyExist(logInID)==false)//prompting them to enter a loginId that exists
     {
       cout<<"You didn't enter the correct login in ID, try again:";
       cin>>logInID;
@@ -242,7 +269,7 @@ void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, str
       cout<<""<<endl;
     }
 
-    if (mapUser.get(logInID))
+    if (mapUser->get(logInID))
     {
       keywordMenu(mapUser,movieMap,fileName);
     }
@@ -250,7 +277,7 @@ void loggedInMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, str
 //----------------------------------------
 
 //this is for when they have alreedy logged in
-void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName)
+void keywordMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
 {
 
       cout<<"\n";
@@ -280,14 +307,14 @@ void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, stri
         cout<<"\n";
 
         //cout<<"the size of the movie map is:"<<movieMap.getCurrentKey()<<endl;
-        if(movieMap.keyExist(movieTitle1)==false)
+        if(movieMap->keyExist(movieTitle1)==false)
         {
           cout<<"This movie does not exist!"<<endl;
         }
         else
         {
           cout<<movieTitle1<<endl;
-          movieMap.get(movieTitle1)->getAllKeywords().printSet();//should print all keywords
+          movieMap->get(movieTitle1)->getAllKeywords().printSet();//should print all keywords
         }
         keywordMenu(mapUser,movieMap,fileName);
 
@@ -301,20 +328,20 @@ void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, stri
         cin.ignore();
         getline(cin, newKeyWord1);
         //checking if the movie map has movies with current keyword
-        movieMap.first();//makes curEl point to first element
+        movieMap->first();//makes curEl point to first element
         bool chose=true;
         int counter1=0;
         while(chose)
         {
-          if(movieMap.size()!=0)//if map is not emppty
+          if(movieMap->size()!=0)//if map is not emppty
           {
-            if(movieMap.getCurrentValue()->getAllKeywords().contains(newKeyWord1)|| movieMap.getCurrentValue()->getTitle()==newKeyWord1)
+            if(movieMap->getCurrentValue()->getAllKeywords().contains(newKeyWord1)|| movieMap->getCurrentValue()->getTitle()==newKeyWord1)
             {
               counter1++;
             }
             try
             {
-              movieMap.next();
+              movieMap->next();
             }
             catch(NoSuchElementException)
             {
@@ -335,14 +362,14 @@ void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, stri
         if(counter1>0)//if the keyword was found
         {
           //this second while loop prompts them to keep going to the next keyword
-          movieMap.first();
+          movieMap->first();
           bool gooz=true;
           while(gooz)
           {
-            if(movieMap.getCurrentValue()->getAllKeywords().contains(newKeyWord1)|| movieMap.getCurrentValue()->getTitle()==newKeyWord1)
+            if(movieMap->getCurrentValue()->getAllKeywords().contains(newKeyWord1)|| movieMap->getCurrentValue()->getTitle()==newKeyWord1)
             {
-              cout<<movieMap.getCurrentKey()<<endl;
-              movieMap.getCurrentValue()->getAllKeywords().printSet();//prints all keywords of the movie who's keyword was found
+              cout<<movieMap->getCurrentKey()<<endl;
+              movieMap->getCurrentValue()->getAllKeywords().printSet();//prints all keywords of the movie who's keyword was found
               counter1--;
               if(counter1>0)
               {
@@ -367,7 +394,7 @@ void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, stri
             }
             try
             {
-              movieMap.next();
+              movieMap->next();
             }
             catch(NoSuchElementException)
             {
@@ -395,7 +422,7 @@ void keywordMenu(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, stri
 
 
 //----------------------------------------
-void newUserDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, string fileName)
+void newUserDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
 {
   string newUserID;
     string newUserName;
@@ -403,7 +430,7 @@ void newUserDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, s
     cout<<"What is your user ID?:";
     cin>>newUserID;
     cout<<""<<endl;
-    while(mapUser.keyExist(newUserID)==true)
+    while(mapUser->keyExist(newUserID)==true)
     {
       cout<<"This ID already exists. Please enter another:";
       cin>>newUserID;
@@ -413,7 +440,7 @@ void newUserDisplay(Map<string,User*>  &mapUser, Map<string,Movie*> &movieMap, s
     cin.ignore();
     getline(cin, newUserName);
     User *userAccount = new User(newUserID,newUserName);//make new user object
-    mapUser.add(newUserID,userAccount);//add the user object to your userMap
+    mapUser->add(newUserID,userAccount);//add the user object to your userMap
     cout<<"Your account has been made!"<<endl;
 
     ofstream myFile;

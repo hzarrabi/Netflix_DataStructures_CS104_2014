@@ -1,9 +1,9 @@
 BEGIN aaroncot
 NAME: Aaron Cote
-END
-BEGIN dkempe
-NAME: David Kempe
-END
-BEGIN adsfasdf
-NAME: adsfasdf
+MOVIE: The Hobbit: An Unexpected Journey
+BEGIN QUEUE
+City Lights
+The Hobbit: The Desolation of Smaug
+City Lights
+END QUEUE
 END
