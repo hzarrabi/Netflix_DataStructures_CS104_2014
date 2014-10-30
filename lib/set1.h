@@ -99,15 +99,16 @@ template <class T>
 Set<T> Set<T>::setIntersection (const Set<T> & other) const
 {
 	Set<T> tempSet;//making a new tempSet that takes in all the keys that are the same
-
+	Set<T>::Iterator a = other.begin();
 	for(int i =0; i < other.size(); i++)
 	{
 
-		if(this->contains(other.getCurrent()))//if other's item is in this then put that item in the new set
+		if(this->contains(*a))//if other's item is in this then put that item in the new set
 		{
-			tempSet.add(other.getCurrent());
+			tempSet.add(*a);
 		}
-		other.next();//then iterate curEl to the next item
+
+		++a;//then iterate curEl to the next item
 	}
 
 	return tempSet;
