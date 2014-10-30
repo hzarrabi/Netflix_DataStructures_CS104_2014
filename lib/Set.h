@@ -25,12 +25,6 @@ class Set
 
     void merge (const Set<T> & other);
 
-    void first();//makes curEl pointer point to the first element so head?
-
-    void next();//makes curEl point to the next element;
-
-    const T & getCurrent ();//gets curent key that curEl is at
-
     Set<T> setUnion (const Set<T> & other) const;
 
     Set<T> setIntersection (const Set<T> & other) const;

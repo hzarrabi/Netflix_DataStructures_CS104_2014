@@ -72,14 +72,6 @@ class Map
         If both maps (this and other) contain an association for the same
         key, then the one of this is used. */
 
-    void first();//makes curEl pointer point to the first element so head?
-
-    void next();//makes curEl point to the next element;
-
-    const keyType & getCurrentKey ();
-
-    const valueType & getCurrentValue ();
-
     bool keyExist(keyType key) const;
 
     void printKeys();//prints the keys of the map (also used for set)

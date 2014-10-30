@@ -81,48 +81,6 @@ void Set<T>::merge (const Set<T> & other)//merge new set with old set(map)
 	internalStorage.merge(other.internalStorage);//other is the second map you're merging into internal storage?
 }
 
-
-
-
-//first
-template <class T>
-void Set<T>::first()//makes curEl pointer point to the first element so head?
-{
-	try
-	{
-		internalStorage.first();
-	}
-
-	catch(NoSuchElementException)
-	{
-		cout<<"Your set set is empty. No first element."<<endl;
-	}
-}
-
-
-//next
-template <class T>
-void Set<T>::next()//makes curEl point to the next element
-{
-	try
-	{
-		internalStorage.next();
-	}
-
-	catch(NoSuchElementException)
-	{
-		cout<<"Cannot get next element."<<endl;
-	}
-}
-
-//getCurrent (key)
-template <class T>
-const T & Set<T>::getCurrent () 
-{
-	return internalStorage.getCurrentKey ();
-}
-
-
 //set Union
 template <class T>
 Set<T> Set<T>::setUnion (const Set<T> & other) const

@@ -60,6 +60,14 @@ void Queue<T>::dequeue ()
 	{
 		throw EmptyQueueException();
 	}
+	else if(qSize==1)
+	{
+		qItem<T> *tempItem=head;
+		head=NULL;
+		tail=NULL;
+		delete tempItem;
+		qSize--;
+	}
 	else
 	{
 		qItem<T> *tempItem=head;
@@ -73,9 +81,9 @@ void Queue<T>::dequeue ()
 
 //peekFront
 template <class T>
-const T & Queue<T>::peekFront ()
+const T & Queue<T>::peekFront()
 {
-	if(qSize=0)
+	if(qSize==0)
 	{
 		throw EmptyQueueException();
 	}

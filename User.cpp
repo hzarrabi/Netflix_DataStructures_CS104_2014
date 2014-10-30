@@ -54,7 +54,7 @@ Queue<Movie*>* User::movieQueue ()
 //rentMovie
 void User::rentMovie (Movie *m)
 {
-	if(rentedMovie!=NULL)
+	if(rentedMovie==NULL)
 	{
 		rentedMovie=m;//if there isn't aready a movie rented out
 	}

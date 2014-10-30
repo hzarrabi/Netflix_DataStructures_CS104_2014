@@ -356,58 +356,6 @@ void Map <keyType, valueType>::merge (const Map<keyType, valueType> & other)
 }
 
 
-
-template <class keyType, class valueType>
-void Map <keyType, valueType>::first()
-{
-	if(head==NULL)
-	{
-		//NoSuchElementException e;
-		throw NoSuchElementException();
-	}
-	
-	curEl=head;
-
-}
-
-
-
-
-
-template <class keyType, class valueType>
-void Map <keyType, valueType>::next()
-{
-	if(curEl->next==NULL || head==NULL)
-	{
-		//NoSuchElementException e;
-		throw NoSuchElementException();
-	}
-	curEl=curEl->next;
-
-}
-
-template <class keyType, class valueType>
-const keyType & Map <keyType, valueType>::getCurrentKey ()
-{
-	if(head==NULL)//if map is empty throw NoSuchElementException
-	{
-		throw NoSuchElementException();
-	}
-	return curEl->key;
-}
-
-
-template <class keyType, class valueType>
-const valueType & Map <keyType, valueType>::getCurrentValue()
-{
-	if(head==NULL)//if map is empty throw NoSuchElementException
-	{
-		throw NoSuchElementException();
-	}
-	return curEl->value;
-}
-
-
 template <class keyType, class valueType>
 void Map <keyType, valueType>::printKeys()
 {
@@ -445,10 +393,11 @@ Pair<keyType, valueType> Map<keyType, valueType>::Iterator::operator* () const
 template <class keyType, class valueType>
 typename Map<keyType, valueType>::Iterator  Map<keyType, valueType>::Iterator::operator++ ()
 { 
-	if(itemIt->next!=NULL)//if this iterator isn't pointing to the last element 
+	if(itemIt->next==NULL)//if this iterator isn't pointing to the last element 
 	{
-		itemIt=itemIt->next;
+		throw NoSuchElementException();
 	}
+	itemIt=itemIt->next;
 	return *this;
 }
 

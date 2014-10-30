@@ -20,7 +20,7 @@ class EmptyQueueException:public std::exception//for exception when queue is emp
 public:
   virtual const char* what() const throw()
   {
-   return "Empty Queue!";
+   return "Empty Queue";
   }
 
 };
