@@ -5,7 +5,7 @@
 
 TEST (MergeSortTest, BasicCase) {
   //this vector has odd numbers starting at 5
-  std::vector<int> v;
+  vector<int> v;
   v.push_back(49);
   v.push_back(29);
   v.push_back(31);
@@ -32,7 +32,7 @@ TEST (MergeSortTest, BasicCase) {
 
 
   
-  std::vector<int> v_sorted = MergeSort::sort(v);
+  vector<int> v_sorted = MergeSort::sort(v);
   for(int i = 0; i < v.size(); i++) {
     EXPECT_EQ(v_sorted.at(i), (i*2) + 5);
   }

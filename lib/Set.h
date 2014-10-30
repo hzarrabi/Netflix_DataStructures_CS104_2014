@@ -1,7 +1,9 @@
 #include "Map.h"
-
+#include <iostream>
 #ifndef SET_H
 #define SET_H
+
+using namespace std;
 
 template <class T>
 class Set
@@ -30,6 +32,7 @@ class Set
     Set<T> setIntersection (const Set<T> & other) const;
 
     void printSet();//prints all keys of the set
+
     //============================================================================
      class Iterator 
      {
@@ -61,22 +64,20 @@ class Set
 
           const Set<T> *setParent;//pointer to the set that the iterator belongs to
 
-          const typename Map<T, string>::Iterator *mapIt;
+          typename Map<T, string>::Iterator mapIt;
 
           Iterator(const Set<T>* setPtr, typename Map<T, string>::Iterator mapIt);
      };
 
-  private:
-    Map<T, string> internalStorage;
-
-    Set<T>::Iterator begin () const;
+     Set<T>::Iterator begin () const;
        // returns an iterator initialized to the first element
 
-    Set<T>::Iterator end () const;
+     Set<T>::Iterator end () const;
      /* returns an iterator initialized past the last element,
         to designate that the end of the map has been reached. */
 
-
+  private:
+    Map<T, string> internalStorage;
      
 
     

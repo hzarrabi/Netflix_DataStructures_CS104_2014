@@ -405,7 +405,7 @@ typename Map<keyType, valueType>::Iterator  Map<keyType, valueType>::Iterator::o
 template <class keyType, class valueType>
 typename Map<keyType, valueType>::Iterator Map<keyType, valueType>::Iterator::operator=(const Iterator &other)
 {
-	if(this=&other)
+	if(this== &other)
 	{
 		return *this;
 	}

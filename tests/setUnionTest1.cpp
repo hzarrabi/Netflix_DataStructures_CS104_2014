@@ -1,29 +1,48 @@
 #include "../lib/MergeSort.h"
+#include "../lib/Set.h"
 #include "gtest/gtest.h"
 
+using namespace std;
 
-
-TEST (MergeSortTest, BasicCase) {
+TEST (setUnionTest1, BasicCase) {
  
 
+  Set<int> set1;//first set
+  Set<int> set2;//second set
+
+  set1.add(267);
+  set1.add(55);
+  set1.add(196);
+  set1.add(6);
+  set1.add(87);
+  set1.add(1233323);
+  set1.add(207);
+  set1.add(1253343);
+  set2.add(353);
+  set2.add(260);
+  set2.add(3003240);
+  set2.add(99);
+  set2.add(124);
+  set2.add(300);
+  set2.add(174);
+  set2.add(23);
+  set2.add(90);
+
+
+  Set<int> setFinal =set1.setUnion(set2);//using set union
   vector<int> v;
-  v.push_back(267);
-  v.push_back(55);
-  v.push_back(196);
-  v.push_back(6);
-  v.push_back(87);
-  v.push_back(1233323);
-  v.push_back(207);
-  v.push_back(1253343);
-  v.push_back(353);
-  v.push_back(260);
-  v.push_back(3003240);
-  v.push_back(99);
-  v.push_back(124);
-  v.push_back(300);
-  v.push_back(174);
-  v.push_back(23);
-  v.push_back(90);
+  try
+  {
+    for(Set<int>::Iterator a = setFinal.begin(); a!=setFinal.end(); ++a)
+    {
+      cout<<*a<<endl;
+      v.push_back(*a);//copying from set to vector
+    }
+}
+
+catch(NoSuchElementException e){}
+
+  vector<int> v_sorted=MergeSort::sort(v);
   /*
   if ordered vector would have
   6
@@ -45,7 +64,6 @@ TEST (MergeSortTest, BasicCase) {
   3003240
   */
   
-    vector<int> v_sorted = MergeSort::sort(v);
     EXPECT_EQ(v_sorted.at(0), 6);
     EXPECT_EQ(v_sorted.at(1), 23);
     EXPECT_EQ(v_sorted.at(2), 55);

@@ -4,12 +4,12 @@
 #include <iostream>
 #include <vector>
 
-
+using namespace std;
 
 class MergeSort {
   public:
     template <class T>
-    static std::vector<T> sort (std::vector<T> a)
+    static vector<T> sort (vector<T> a)
     {
     	//if the vector has 1 or no elements return it;base case
     	if (a.size()<=1)//reason we need to account for size 0 is if they initially enter an empty vector
@@ -18,8 +18,8 @@ class MergeSort {
     	}
     	else
     	{
-    		std::vector<T>leftVec;//this will hold contents of left side part of the vector
-    		std::vector<T>rightVec;//this will hold contents of right side of vector
+    		vector<T>leftVec;//this will hold contents of left side part of the vector
+    		vector<T>rightVec;//this will hold contents of right side of vector
 
     		int middle=(a.size()+1)/2;
 
@@ -35,10 +35,10 @@ class MergeSort {
     			rightVec.push_back(a[i]);
     		}
 
-    		std::vector<T> left=sort(leftVec);//recursive call
-    		std::vector<T> right=sort(rightVec);//recursive call
+    		vector<T> left=sort(leftVec);//recursive call
+    		vector<T> right=sort(rightVec);//recursive call
 
-    		std::vector<T>FinalVec;//this will be the final vector that is returned
+    		vector<T>FinalVec;//this will be the final vector that is returned
     		FinalVec=merge(left,right);//will merge and sort when all the vectors
 
             return FinalVec;
@@ -51,9 +51,9 @@ class MergeSort {
 
    private:
     template <class T>
-   	static std::vector<T> merge (std::vector<T> left,std::vector<T> right)
+   	static vector<T> merge (vector<T> left,vector<T> right)
    	{
-	    std::vector<T> final;
+	    vector<T> final;
         int l=0;//int used traverse left vector
         int r=0;//int used to traverse righ vector
 

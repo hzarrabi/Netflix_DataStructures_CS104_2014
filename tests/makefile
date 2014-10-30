@@ -15,14 +15,17 @@ endif
 
 #makefile for intersectiontest
 GTEST_CPPFLAGS = -Wall -g -I$(HEADER_DIR) -I$(SRC_DIR) -Wextra -pthread -std=gnu++0x
-all:mergesortest mergesortest2 mergesortest3
-mergesortest:merge_sort_test.cpp  
+all:mergesortest mergesortest2 mergesortest3 setUnionTest1
+mergesorttest:merge_sort_test.cpp  
 	$(CC) $(GTEST_CPPFLAGS) $^ $(GTEST_LL) -o $@
 
 
 #makefile for intersectiontest
-mergesortest2:merge_sort_test_2.cpp  
+mergesorttest2:merge_sort_test_2.cpp  
 	$(CC) $(GTEST_CPPFLAGS) $^ $(GTEST_LL) -o $@
 
-mergesortest3:merge_sort_test_3.cpp  
+mergesorttest3:merge_sort_test_3.cpp  
+	$(CC) $(GTEST_CPPFLAGS) $^ $(GTEST_LL) -o $@
+
+setUnionTest1: setUnionTest1.cpp
 	$(CC) $(GTEST_CPPFLAGS) $^ $(GTEST_LL) -o $@

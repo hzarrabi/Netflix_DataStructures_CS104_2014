@@ -128,7 +128,7 @@ template <class T>
 Set<T>::Iterator::Iterator(const Set<T>* setPtr, typename Map<T, string>::Iterator mapIt) : mapIt()
 {
 	setParent=setPtr;
-	mapIt=mapIt;
+	this->mapIt=mapIt;
 }
 
 
@@ -145,17 +145,17 @@ T Set<T>::Iterator::operator* () const
 template <class T>
 typename Set<T>::Iterator Set<T>::Iterator::operator++ ()
 {
-	mapIt=++mapIt;
+	mapIt= ++mapIt;
 	return *this;
 }
 
 //=
 template <class T>
-typename Set<T>::Iterator Set<T>::Iterator::operator= (const Set<T>::Iterator & other)
+typename Set<T>::Iterator Set<T>::Iterator::operator= (const Set<T>::Iterator & other) 
 {
 	if (this==&other)
 	{
-		return &this;
+		return *this;
 	}
 
 	setParent=other.setParent;
