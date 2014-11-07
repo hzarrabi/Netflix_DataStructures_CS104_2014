@@ -123,7 +123,6 @@ void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string
               getline(userData,buffer);
               while(buffer!="END QUEUE")
               {
-                cout<<buffer<<endl;
                 Movie *rentedMovie=new Movie(buffer);//making movie object pointer of 
                 userAccount->movieQueue()->enqueue(rentedMovie);
                 getline(userData,buffer);
@@ -593,8 +592,8 @@ void writeFile(Map<string,User*>  *mapUser, string fileName)
                 myFile<<"END QUEUE"<<endl;
               }
               myFile<<"END"<<endl;
-              myFile.close();
             }
+            myFile.close();
       }
       catch (NoSuchElementException e)
       {

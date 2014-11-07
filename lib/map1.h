@@ -182,7 +182,7 @@ void Map<keyType, valueType>::add(keyType key, valueType value)//add function fo
 
 			newItem->key=key;
 			newItem->value=value;
-			//numItems++;
+			numItems++;
 
 			}
 			/*while(tempP->next!=NULL)
