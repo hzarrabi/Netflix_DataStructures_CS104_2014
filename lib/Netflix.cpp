@@ -6,78 +6,26 @@
 #include <string.h>
 #include <sstream>
 #include <iomanip>
-#include "Set.h"
-#include "MergeSort.h"
-#include "../Movie.h"
-#include "../User.h"
 #include "Netflix.h"
 
 
-using namespace std;
-
-/*void mainDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
-void loggedInMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
-void keywordMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
-void newUserDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName);
-void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap,string &fileName,string mainFile);
-void writeFile(Map<string,User*>  *mapUser, string fileName);
-string loggedInID;//id of the person that's logged in*/
-
-
-int main(int argc, char *argv[])
+//constructor
+Netflix::Netflix()
 {
-  string mainFileName(argv[1]);
-  //string userFileName;
-
-
-  Netflix netflix;
-
-  netflix.fileInput(mainFileName);
-
-
-
-  /*Map<string,User*>  *mapUser = new Map<string,User*>;//map that takes user id and object of type user
-  Map<string,Movie*> *movieMap = new Map<string,Movie*>;//map that hold the movie name and movie objects
-
-
-
-  fileInput(mapUser, movieMap,userFileName,mainFileName);
-  //deallocating memory 
-  Map<string, Movie*>::Iterator delIt = movieMap->begin();
-   while (true)
-    {
-      Pair<string, Movie*> temp = *delIt;
-      delete temp.second;
-      try
-      {
-        ++delIt;
-      }
-      catch(NoSuchElementException)
-      {
-        break;
-      }
-    }
-    delete mapUser;
-    delete movieMap;*/
-
-  return 0;
+mapUser = new Map<string,User*>;//map that takes user id and object of type user
+movieMap = new Map<string,Movie*>;//map that hold the movie name and movie objects
 }
 
-
-
-
-
-
-//****************************************************************************************************************
-//FUNCTION IMPLEMENTATIONS
-
-//fileinput
-
-/*
-void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string &fileName, string mainFile)
+//destructor 
+Netflix::~Netflix()
 {
 
-    ifstream file;//the file object for the main file 
+}
+
+//FILEINPUT
+void Netflix::fileInput(string mainFile)
+{
+ifstream file;//the file object for the main file 
     string buffer;//this will take in lines from the file
 
     //string userFile;//string that holds the name of the userfile 
@@ -85,10 +33,9 @@ void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string
 
     
     file.open(mainFile.c_str());//opens the file in your command line argumen
-
     if (file.is_open())
     {
-        getline(file,fileName);//reads in the first line that holds userFile
+        getline(file,userFileName);//reads in the first line that holds userFile
         getline(file,movieFile);//reads in the second line that holds movieFile
 
 
@@ -97,7 +44,7 @@ void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string
 
 
         //opens userFile
-        userData.open(fileName.c_str());
+        userData.open(userFileName.c_str());
         if(userData.is_open())
         {
           string userID1;
@@ -134,11 +81,11 @@ void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string
                 Movie *rentedMovie=new Movie(buffer);//making movie object pointer of 
                 userAccount->movieQueue()->enqueue(rentedMovie);
                 getline(userData,buffer);
-
               }
             }
             else if(command=="END")//here the userID and the userName are added to the userMap
             {
+              cout<<"hello"<<endl;
               mapUser->add(userID1,userAccount);
               whichBegin=true;
             }
@@ -146,9 +93,8 @@ void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string
         }
         else
         {
-          cout<<"Your user file:"<<fileName<<" could not be found."<<endl;
+          cout<<"Your user file:"<<userFileName<<" could not be found."<<endl;
         }
-
 
   //==============================================================================================
 
@@ -191,7 +137,7 @@ void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string
           }
         //******************************************************************************************
         cout<<"WELCOME TO GETFLIX!!\n"<<endl;
-        mainDisplay(mapUser,movieMap,fileName);//starting the program when the file contents read in
+        mainDisplay();//starting the program when the file contents read in
         //******************************************************************************************
         }
         else
@@ -207,13 +153,8 @@ void fileInput(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string
     }
 }
 
-
-//---------------------------------
-
-//---------------------------------
-
-//function log in menu
-void mainDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
+//MAINDISPLAY
+void Netflix::mainDisplay()
 {
   cout<<"What would you like to do?:"<<endl;
   cout<<"1. Log In"<<endl;
@@ -227,8 +168,6 @@ void mainDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, stri
   cout<<""<<endl;
 
 
-
-
   while(userCommand<1 || userCommand>3)
     {
     cout<<"You did not enter the correct command number. Try again:";
@@ -239,32 +178,27 @@ void mainDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, stri
 
   if(userCommand==1)//they want to log in
   {
-    loggedInMenu(mapUser,movieMap,fileName);
+    loggedInMenu();
   }
 
 
   else if(userCommand==2)//they want to create a new user
   {
-    newUserDisplay(mapUser,movieMap,fileName);
+    newUserDisplay();
   }
 
   else if(userCommand==3)//they want to log in
   {
     cout<<"QUITTING NOW. THANKS FOR VISITING!"<<endl;
-    writeFile(mapUser, fileName);
+    writeFile();
   }
 }
-//------------------------
 
 
-
-
-
-//------------------------
-//loggedInDisplay which prompts them to login etc
-void loggedInMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
+//LOGGEDINMENU
+void Netflix::loggedInMenu()
 {
-    cout<<"Welcome!"<<endl;
+ 	cout<<"Welcome!"<<endl;
     cout<<"What is your log in ID?:";
     cin>>loggedInID;
     cout<<"\n";
@@ -279,13 +213,13 @@ void loggedInMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, str
 
     if (mapUser->get(loggedInID))
     {
-      keywordMenu(mapUser,movieMap,fileName);
+      keywordMenu();
     }
 }
-//----------------------------------------
 
-//this is for when they have alreedy logged in
-void keywordMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
+
+//KEYWORDMENU
+void Netflix::keywordMenu()
 {
 
       cout<<"\n";
@@ -326,7 +260,7 @@ void keywordMenu(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, stri
           cout<<movieTitle1<<endl;
           movieMap->get(movieTitle1)->getAllKeywords().printSet();//should print all keywords
         }
-        keywordMenu(mapUser,movieMap,fileName);
+        keywordMenu();
 
 
       }
@@ -360,7 +294,7 @@ else if(yellow==2)
                   if(counter1==0)//if statement used to test wether keyword was found
                   {
                     cout<<"No match"<<endl;
-                    keywordMenu(mapUser,movieMap,fileName);
+                    keywordMenu();
                   }
                   chose=false;
                 }
@@ -371,6 +305,7 @@ else if(yellow==2)
               }
             }
 
+            //------------------------------------------------------------------------------------------------
             if(counter1>0)//if the keyword was found
             {
               //this second while loop prompts them to keep going to the next keyword
@@ -384,34 +319,44 @@ else if(yellow==2)
                 {
                   cout<<temp.first<<endl;
                   temp.second->getAllKeywords().printSet();//prints all keywords of the movie who's keyword was found
-                  //counter1--;
-                  if(counter1>0)
+                  counter1--;
+                  if(counter1>-1)
                   {
                     //int choice;
-                    counter1--;
+                    //counter1--;
+                    if(counter1>0)
+                    {
                     cout<<"\n1.Next movie"<<endl;
                     cout<<"2.Add movie to queue"<<endl;
                     cout<<"3.Return to menu"<<endl;
                     cin>>choice;
+                    }
+                    else if(counter1==0)
+                    {
+                    cout<<"2.Add movie to queue"<<endl;
+                    cout<<"3.Return to menu"<<endl;
+                    cin>>choice;
+                    }
                     if(choice==1)
                     {
                       cout<<"\nGoing to next keyword:"<<endl;
-                      counter1--;
+                      //counter1--;
                     }
                     else if(choice==2)
                     {
                       Movie* newMovie = new Movie(temp.first);
                       mapUser->get(loggedInID)->movieQueue()->enqueue(newMovie);//added new movie to queue
+                      counter1++;
                     }
                     else if(choice==3)
                     {
-                      keywordMenu(mapUser,movieMap,fileName);
+                      keywordMenu();
                     }
                   }
-                  else if(counter1==0)
+                  else if(counter1==-1)
                   {
                     cout<<"No more keywords to display! Going to main menu.\n"<<endl;
-                    keywordMenu(mapUser,movieMap,fileName);
+                    keywordMenu();
                   }
                 }
                 if(choice!=2)//so it will keep prompting them with same movie
@@ -435,7 +380,7 @@ else if(yellow==2)
             if(mapUser->get(loggedInID)->currentMovie() == NULL)
             {
               cout<<"No current movie."<<endl<<endl;
-              keywordMenu(mapUser,movieMap,fileName);
+              keywordMenu();
             }
             else
             {
@@ -452,7 +397,7 @@ else if(yellow==2)
             if(temp->isEmpty())
             {
               cout<<"Movie queue is empty"<<endl;
-              keywordMenu(mapUser,movieMap,fileName);
+              keywordMenu();
             }
             else
             {
@@ -507,13 +452,13 @@ else if(yellow==2)
 
                   else if(p==4)//if they want to return to user menu
                   {
-                      keywordMenu(mapUser,movieMap,fileName);
+                      keywordMenu();
                   }
 
                   if(temp->isEmpty())//checks to see if movie queue is empty
                   {
                     cout<<"Movie queue is empty"<<endl<<endl;
-                    keywordMenu(mapUser,movieMap,fileName);
+                    keywordMenu();
                   }
               }
             }
@@ -525,20 +470,16 @@ else if(yellow==2)
       {
         cout<<"LOGGED OUT!"<<endl;
         cout<<" "<<endl;
-        mainDisplay(mapUser, movieMap, fileName);//prompts them with mainDisplay function if they logout
+        mainDisplay();//prompts them with mainDisplay function if they logout
 
       }
 }
-//----------------------------------------
 
 
-
-
-
-//----------------------------------------
-void newUserDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, string fileName)
+//NEWUSERDISPLAY
+void Netflix::newUserDisplay()
 {
-    string newUserName;
+string newUserName;
     cout<<"Creating New User!"<<endl;
     cout<<"What is your user ID?:";
     cin>>loggedInID;
@@ -553,17 +494,21 @@ void newUserDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, s
     cin.ignore();
     getline(cin, newUserName);
     User *userAccount = new User(loggedInID,newUserName);//make new user object
+    cout<<mapUser->size()<<endl;
     mapUser->add(loggedInID,userAccount);//add the user object to your userMap
-    cout<<"Your account has been made!"<<endl;
+        cout<<mapUser->size()<<endl;
 
-    keywordMenu(mapUser, movieMap, fileName);
+    cout<<"Your account has been made!"<<endl;
+    keywordMenu();
 }
 
 
-void writeFile(Map<string,User*>  *mapUser, string fileName)
+//WRITEFILE
+void Netflix::writeFile()
 {
-    ofstream myFile;
-    myFile.open(fileName.c_str());//opens the user file and appends so you don't clear all contents
+  cout<<"size of map is "<<mapUser->size()<<endl;
+	ofstream myFile;
+    myFile.open(userFileName.c_str());//opens the user file and appends so you don't clear all contents
     if(!myFile.is_open())
     {
       cout<<"File could not be found!"<<endl;
@@ -578,6 +523,7 @@ void writeFile(Map<string,User*>  *mapUser, string fileName)
             {
               Pair<string, User*> p = *f;
               myFile<<"BEGIN "<<p.first<<endl;
+              cout<<p.first<<endl;
               myFile<<"NAME: "<<p.second->getName()<<endl;
               if(p.second->currentMovie()!=NULL)
               {
@@ -594,8 +540,9 @@ void writeFile(Map<string,User*>  *mapUser, string fileName)
                 myFile<<"END QUEUE"<<endl;
               }
               myFile<<"END"<<endl;
-              myFile.close();
             }
+            myFile.close();
+            exit(1);
       }
       catch (NoSuchElementException e)
       {
@@ -606,6 +553,3 @@ void writeFile(Map<string,User*>  *mapUser, string fileName)
 
     //when they succesfully login, display loginDisplay to them
 }
-
-
-*/
