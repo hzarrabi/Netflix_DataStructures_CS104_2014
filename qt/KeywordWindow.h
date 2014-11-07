@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QtGui>
 
 class KeywordWindow : public QWidget
 {
@@ -14,8 +15,8 @@ class KeywordWindow : public QWidget
 		KeywordWindow (QWidget *parent = NULL);
 
 	private:
-		
-		QPushButton *returnMovie, *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword;
+
+		QPushButton *returnMovie, *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *logOut;
 		QLineEdit *search;
 
 };
