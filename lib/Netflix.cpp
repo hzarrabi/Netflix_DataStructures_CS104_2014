@@ -85,7 +85,6 @@ ifstream file;//the file object for the main file
             }
             else if(command=="END")//here the userID and the userName are added to the userMap
             {
-              cout<<"hello"<<endl;
               mapUser->add(userID1,userAccount);
               whichBegin=true;
             }
@@ -494,10 +493,7 @@ string newUserName;
     cin.ignore();
     getline(cin, newUserName);
     User *userAccount = new User(loggedInID,newUserName);//make new user object
-    cout<<mapUser->size()<<endl;
     mapUser->add(loggedInID,userAccount);//add the user object to your userMap
-        cout<<mapUser->size()<<endl;
-
     cout<<"Your account has been made!"<<endl;
     keywordMenu();
 }
@@ -506,7 +502,6 @@ string newUserName;
 //WRITEFILE
 void Netflix::writeFile()
 {
-  cout<<"size of map is "<<mapUser->size()<<endl;
 	ofstream myFile;
     myFile.open(userFileName.c_str());//opens the user file and appends so you don't clear all contents
     if(!myFile.is_open())
@@ -523,7 +518,6 @@ void Netflix::writeFile()
             {
               Pair<string, User*> p = *f;
               myFile<<"BEGIN "<<p.first<<endl;
-              cout<<p.first<<endl;
               myFile<<"NAME: "<<p.second->getName()<<endl;
               if(p.second->currentMovie()!=NULL)
               {

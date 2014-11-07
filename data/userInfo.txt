@@ -12,3 +12,13 @@ END
 BEGIN dsaf
 NAME: asdfad
 END
+BEGIN sdafasdf
+NAME: asdfa
+BEGIN QUEUE
+The Princess Bride
+The Princess Bride
+The Princess Bride
+City Lights
+City Lights
+END QUEUE
+END
