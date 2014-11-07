@@ -1,13 +1,13 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'LoginWindow.h'
 **
-** Created: Fri Nov 7 11:52:57 2014
+** Created: Fri Nov 7 14:16:37 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "LoginWindow.h"
+#include "qt/LoginWindow.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'LoginWindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63

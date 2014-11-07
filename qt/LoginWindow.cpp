@@ -1,11 +1,17 @@
 #include "LoginWindow.h"
+#include "KeywordWindow.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QFormLayout>
+#include <iostream>
 
-LoginWindow::LoginWindow (QWidget *parent) : QWidget (parent)
+using namespace std;
+
+LoginWindow::LoginWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 {
+	temp=n;
+
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
 	login = new QLineEdit;
@@ -30,7 +36,30 @@ LoginWindow::LoginWindow (QWidget *parent) : QWidget (parent)
 	mainLayout->addLayout(buttonLayout);
 	setLayout (mainLayout);
 
-
-
+	connect(loginButton,SIGNAL(clicked()),this,SLOT(loggedIn()));	
+	connect(newUserButton,SIGNAL(clicked()),this,SLOT(newUser()));
+	connect(quitButton,SIGNAL(clicked()),this,SLOT(quitPushed()));
 }
 
+
+void LoginWindow::loggedIn()
+{
+	string userID = login->text().toStdString();//making qlineEdit into string
+	if(temp->userExists(userID))
+	{
+		cout<<"dsfgds"<<endl;
+		w=new KeywordWindow(NULL,temp);
+  		w->show();
+  		this->hide();
+	}
+}
+
+void LoginWindow::newUser()
+{
+	cout<<"loggin windows"<<endl;
+}
+
+void LoginWindow::quitPushed()
+{
+	close();
+}

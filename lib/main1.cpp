@@ -12,6 +12,9 @@
 #include "../User.h"
 #include "Netflix.h"
 
+#include<QApplication>
+#include "../qt/LoginWindow.h"
+
 
 using namespace std;
 
@@ -22,9 +25,16 @@ int main(int argc, char *argv[])
 {
   string mainFileName(argv[1]);
 
-  Netflix netflix;
+  Netflix *netflix=new Netflix;
 
-  netflix.fileInput(mainFileName);
+  netflix->fileInput(mainFileName);
+
+  QApplication app (argc, argv);
+  LoginWindow *w= new LoginWindow(NULL,netflix);
+  w->show();
+  return app.exec();
+
+
 
 
   return 0;

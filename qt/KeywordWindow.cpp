@@ -5,7 +5,7 @@
 #include <QFormLayout>
  #include <QtGui>
 
-KeywordWindow::KeywordWindow (QWidget *parent) : QWidget (parent)
+KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 {
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
@@ -75,5 +75,50 @@ KeywordWindow::KeywordWindow (QWidget *parent) : QWidget (parent)
 	mainLayout->addWidget(logOut);
 
 	setLayout (mainLayout);
+
+
+	connect(returnMovie,SIGNAL(clicked()),this,SLOT(returnPressed()));	
+	connect(rentMovie,SIGNAL(clicked()),this,SLOT(returnPressed()));
+	connect(deleteQueue,SIGNAL(clicked()),this,SLOT(deletePressed()));
+	connect(movieBack,SIGNAL(clicked()),this,SLOT(backPressed()));
+	connect(searchTitle,SIGNAL(clicked()),this,SLOT(titlePressed()));
+	connect(searchKeyword,SIGNAL(clicked()),this,SLOT(keywordPressed()));
+	connect(logOut,SIGNAL(clicked()),this,SLOT(logOutPressed()));
+
+
+
+
+
+}
+
+
+
+void KeywordWindow::returnPressed()
+{
+
+}
+void KeywordWindow::rentPressed()
+{
+
+}
+void KeywordWindow::deletePressed()
+{
+
+}
+void KeywordWindow::backPressed()
+{
+
+}
+void KeywordWindow::titlePressed()
+{
+
+}
+void KeywordWindow::keywordPressed()
+{
+
+}
+void KeywordWindow::logOutPressed()
+{
+
 }
 

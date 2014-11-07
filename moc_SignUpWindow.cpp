@@ -1,15 +1,15 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'LoginWindow.h'
+** Meta object code from reading C++ file 'SignUpWindow.h'
 **
-** Created: Fri Nov 7 11:52:57 2014
+** Created: Fri Nov 7 13:54:58 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "LoginWindow.h"
+#include "qt/SignUpWindow.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'LoginWindow.h' doesn't include <QObject>."
+#error "The header file 'SignUpWindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
 #error "This file was generated using the moc from 4.8.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,13 +17,13 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_LoginWindow[] = {
+static const uint qt_meta_data_SignUpWindow[] = {
 
  // content:
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -31,68 +31,65 @@ static const uint qt_meta_data_LoginWindow[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      13,   12,   12,   12, 0x0a,
-      24,   12,   12,   12, 0x0a,
-      34,   12,   12,   12, 0x0a,
+      14,   13,   13,   13, 0x0a,
+      20,   13,   13,   13, 0x0a,
 
        0        // eod
 };
 
-static const char qt_meta_stringdata_LoginWindow[] = {
-    "LoginWindow\0\0loggedIn()\0newUser()\0"
-    "quitPushed()\0"
+static const char qt_meta_stringdata_SignUpWindow[] = {
+    "SignUpWindow\0\0add()\0cancelPage()\0"
 };
 
-void LoginWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void SignUpWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         Q_ASSERT(staticMetaObject.cast(_o));
-        LoginWindow *_t = static_cast<LoginWindow *>(_o);
+        SignUpWindow *_t = static_cast<SignUpWindow *>(_o);
         switch (_id) {
-        case 0: _t->loggedIn(); break;
-        case 1: _t->newUser(); break;
-        case 2: _t->quitPushed(); break;
+        case 0: _t->add(); break;
+        case 1: _t->cancelPage(); break;
         default: ;
         }
     }
     Q_UNUSED(_a);
 }
 
-const QMetaObjectExtraData LoginWindow::staticMetaObjectExtraData = {
+const QMetaObjectExtraData SignUpWindow::staticMetaObjectExtraData = {
     0,  qt_static_metacall 
 };
 
-const QMetaObject LoginWindow::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_LoginWindow,
-      qt_meta_data_LoginWindow, &staticMetaObjectExtraData }
+const QMetaObject SignUpWindow::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_SignUpWindow,
+      qt_meta_data_SignUpWindow, &staticMetaObjectExtraData }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &LoginWindow::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &SignUpWindow::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *LoginWindow::metaObject() const
+const QMetaObject *SignUpWindow::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *LoginWindow::qt_metacast(const char *_clname)
+void *SignUpWindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_LoginWindow))
-        return static_cast<void*>(const_cast< LoginWindow*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_SignUpWindow))
+        return static_cast<void*>(const_cast< SignUpWindow*>(this));
     return QWidget::qt_metacast(_clname);
 }
 
-int LoginWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int SignUpWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 2;
     }
     return _id;
 }

@@ -1,13 +1,13 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'KeywordWindow.h'
 **
-** Created: Fri Nov 7 12:10:21 2014
+** Created: Fri Nov 7 13:54:54 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "KeywordWindow.h"
+#include "qt/KeywordWindow.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'KeywordWindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63

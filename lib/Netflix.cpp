@@ -135,8 +135,8 @@ ifstream file;//the file object for the main file
 
           }
         //******************************************************************************************
-        cout<<"WELCOME TO GETFLIX!!\n"<<endl;
-        mainDisplay();//starting the program when the file contents read in
+        //cout<<"WELCOME TO GETFLIX!!\n"<<endl;
+       // mainDisplay();//starting the program when the file contents read in
         //******************************************************************************************
         }
         else
@@ -152,45 +152,20 @@ ifstream file;//the file object for the main file
     }
 }
 
-//MAINDISPLAY
-void Netflix::mainDisplay()
+
+bool Netflix::userExists(string hello)
 {
-  cout<<"What would you like to do?:"<<endl;
-  cout<<"1. Log In"<<endl;
-  cout<<"2. Create a new user"<<endl;
-  cout<<"3. QUIT\n"<<endl;
+ if(mapUser->keyExist(hello)==false)
+ {
+  return false;
+ }
 
-
-  int userCommand;
-  cout<<"Enter number of command:";
-  cin>>userCommand;
-  cout<<""<<endl;
-
-
-  while(userCommand<1 || userCommand>3)
-    {
-    cout<<"You did not enter the correct command number. Try again:";
-    cin>>userCommand;
-    cout<<""<<endl;
-    }
-
-
-  if(userCommand==1)//they want to log in
-  {
-    loggedInMenu();
-  }
-
-
-  else if(userCommand==2)//they want to create a new user
-  {
-    newUserDisplay();
-  }
-
-  else if(userCommand==3)//they want to log in
-  {
-    cout<<"QUITTING NOW. THANKS FOR VISITING!"<<endl;
-    writeFile();
-  }
+ else
+ {
+  return true;
+  loggedInID=hello;//making the logInID equal to the loginIn
+  
+ }
 }
 
 
@@ -469,7 +444,7 @@ else if(yellow==2)
       {
         cout<<"LOGGED OUT!"<<endl;
         cout<<" "<<endl;
-        mainDisplay();//prompts them with mainDisplay function if they logout
+        //mainDisplay();//prompts them with mainDisplay function if they logout
 
       }
 }

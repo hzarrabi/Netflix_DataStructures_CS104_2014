@@ -4,7 +4,7 @@
 #include <QLabel>
 #include <QFormLayout>
 
-SignUpWindow::SignUpWindow (QWidget *parent) : QWidget (parent)
+SignUpWindow::SignUpWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 {
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
@@ -31,6 +31,20 @@ SignUpWindow::SignUpWindow (QWidget *parent) : QWidget (parent)
 	setLayout (mainLayout);
 
 
+	connect(confirm,SIGNAL(clicked()),this,SLOT(add()));	
+	connect(cancel,SIGNAL(clicked()),this,SLOT(cancelPage()));
+
+
+
+}
+
+
+void SignUpWindow::add()
+{
+
+}
+void SignUpWindow::cancelPage()
+{
 
 }
 

@@ -23,11 +23,12 @@ public:
 	Netflix();
 	~Netflix();
 	void fileInput(string mainFile);//function that reads in things from the files
+	bool userExists(string hello);//menu prompy when u start(login,new user, quit)
+
 
 private:
 
 	//all other functions that either get called in eachother or in fileinput()
-	void mainDisplay();//menu prompy when u start(login,new user, quit)
 	void loggedInMenu();//menu when you log in
 	void keywordMenu();//menu that appears when you want to search for title,keyword. etc
 	void newUserDisplay();//meny for adding new user
