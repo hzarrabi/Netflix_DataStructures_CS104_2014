@@ -5,20 +5,5 @@ BEGIN QUEUE
 City Lights
 The Hobbit: The Desolation of Smaug
 City Lights
-The Princess Bride
-City Lights
-END QUEUE
-END
-BEGIN dsaf
-NAME: asdfad
-END
-BEGIN sdafasdf
-NAME: asdfa
-BEGIN QUEUE
-The Princess Bride
-The Princess Bride
-The Princess Bride
-City Lights
-City Lights
 END QUEUE
 END
