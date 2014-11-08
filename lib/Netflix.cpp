@@ -162,10 +162,16 @@ bool Netflix::userExists(string hello)
 
  else
  {
-  return true;
   loggedInID=hello;//making the logInID equal to the loginIn
-  
+  return true;
+
  }
+}
+
+
+string Netflix::getLoggedInID()
+{
+  return loggedInID;
 }
 
 
@@ -522,3 +528,73 @@ void Netflix::writeFile()
 
     //when they succesfully login, display loginDisplay to them
 }
+
+
+  string Netflix::currentMovie()
+  {
+    User *idiot = mapUser->get(loggedInID);//getting the user pointer of the user
+    if(idiot->currentMovie()==NULL)
+    {
+      return "";
+    }
+    Movie* khar = idiot->currentMovie();
+    return khar->getTitle();
+  }
+
+
+  string Netflix::currentName()
+  {
+    User *idiot = mapUser->get(loggedInID);
+    return idiot->getName();
+  }
+
+  string Netflix::getID()
+  {
+    return loggedInID;
+  }
+
+
+  bool Netflix::returnMovie()
+  {
+    User *idiot = mapUser->get(loggedInID);
+    if(idiot->currentMovie()==NULL)
+    {
+      return false;
+    }
+    else
+    {
+      idiot->returnMovie();
+      return true;
+    }
+  }
+
+  string Netflix::returnFrontQ()
+  {
+    User *idiot = mapUser->get(loggedInID);
+    Queue<Movie*>* temp;
+    temp=idiot->movieQueue();
+    if(temp->isEmpty())
+    {
+      return "";
+    }
+    else
+    {
+      return temp->peekFront()->getTitle();
+    }
+  }
+
+
+  bool Netflix::qEmpty()
+  {
+    User *idiot = mapUser->get(loggedInID);
+    Queue<Movie*>* temp;
+    temp=idiot->movieQueue();
+    if(temp->isEmpty())
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }

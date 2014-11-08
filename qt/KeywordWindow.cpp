@@ -7,6 +7,9 @@
 
 KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 {
+
+	temp=n;
+
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
 
@@ -16,8 +19,12 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
  	returnMovie=new QPushButton("&Return Movie");
  	buttonLayout->addWidget(returnMovie);
 
+ 	string gooz=n->currentMovie();
+ 	QString qstr = QString::fromStdString(gooz);
+
+
  	QVBoxLayout *rbox = new QVBoxLayout;
- 	rbox->addWidget(new QLabel("Citizen Kane"));//adding qlabel to the first layou
+ 	rbox->addWidget(currentMovie=new QLabel(qstr));//adding qlabel to the first layou
  	rbox->addLayout(buttonLayout);//addind button to first layout
 
  	returnBox->setLayout(rbox);
@@ -33,8 +40,11 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
  	buttonLayout1->addWidget(movieBack);
 
 
+ 	string antar=n->returnFrontQ();
+ 	QString qstr2=QString::fromStdString(antar);
+
  	QVBoxLayout *qbox = new QVBoxLayout;
- 	qbox->addWidget(new QLabel("Front Queue: Modern Times"));//adding qlabel to the first layou
+ 	qbox->addWidget(movieQueue=new QLabel(qstr2));//adding qlabel to the first layou
  	qbox->addLayout(buttonLayout1);
 
 
@@ -63,7 +73,13 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 
  	//=======adding everything to the main layout===================================================
 
-	QLabel* label=new QLabel("Welcome to CSCI 104-Flix, David Kempe (dkempe)");
+ 	string ID=n->getID();
+ 	string name=n->currentName();
+ 	string total="Welcome to CSCI 104-Flix, "+name+" "+"("+ID+")";
+ 	QString qstr1 = QString::fromStdString(total);
+
+
+	QLabel* label=new QLabel(qstr1);
 	label->setAlignment(Qt::AlignCenter);
  	
 	logOut=new QPushButton("Log&out");
@@ -78,7 +94,7 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 
 
 	connect(returnMovie,SIGNAL(clicked()),this,SLOT(returnPressed()));	
-	connect(rentMovie,SIGNAL(clicked()),this,SLOT(returnPressed()));
+	connect(rentMovie,SIGNAL(clicked()),this,SLOT(rentPressed()));
 	connect(deleteQueue,SIGNAL(clicked()),this,SLOT(deletePressed()));
 	connect(movieBack,SIGNAL(clicked()),this,SLOT(backPressed()));
 	connect(searchTitle,SIGNAL(clicked()),this,SLOT(titlePressed()));
@@ -95,10 +111,39 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 
 void KeywordWindow::returnPressed()
 {
+	if(temp->returnMovie()==false)
+	{
 
+	}
+
+	else
+	{
+		returnMovie->setEnabled(false);
+		currentMovie->setText("");
+	}
 }
 void KeywordWindow::rentPressed()
 {
+	if(temp->qEmpty())//if queue is empty 
+	{
+		rentMovie->setEnabled(false);//makes its button grey
+	}
+	else//if queue is not empty
+	{
+		if(temp->returnMovie()==false)//if there is no movie rented 
+		{
+			string antar1=temp->returnFrontQ();
+ 			QString qstr2=QString::fromStdString(antar1);
+			currentMovie->setText(qstr2);//sets the current rented movie to front of queue
+
+		}
+
+		else//there is a movie rented
+		{
+
+		}
+
+	}
 
 }
 void KeywordWindow::deletePressed()

@@ -29,6 +29,9 @@ class KeywordWindow : public QWidget
 
 		QPushButton *returnMovie, *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *logOut;
 		QLineEdit *search;
+		Netflix *temp;
+		QLabel *currentMovie, *movieQueue;
+
 
 };
 

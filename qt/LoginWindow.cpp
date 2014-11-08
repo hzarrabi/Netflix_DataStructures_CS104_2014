@@ -47,7 +47,6 @@ void LoginWindow::loggedIn()
 	string userID = login->text().toStdString();//making qlineEdit into string
 	if(temp->userExists(userID))
 	{
-		cout<<"dsfgds"<<endl;
 		w=new KeywordWindow(NULL,temp);
   		w->show();
   		this->hide();

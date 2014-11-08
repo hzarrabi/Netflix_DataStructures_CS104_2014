@@ -21,7 +21,6 @@ class SignUpWindow : public QWidget
 	private:
 		QPushButton *confirm, *cancel;
 		QLineEdit *login, *password;
-
 };
 
 #endif

@@ -24,6 +24,13 @@ public:
 	~Netflix();
 	void fileInput(string mainFile);//function that reads in things from the files
 	bool userExists(string hello);//menu prompy when u start(login,new user, quit)
+	string currentMovie();//returns the current movie that's checked out
+	bool returnMovie();//function that checks to see if there is a movie checked out
+	string currentName();//returns the current user of who's signed in
+	string getID();
+
+	string returnFrontQ();//returns the item at the front of the queue
+	bool qEmpty();//tells if the queue is empty
 
 
 private:
@@ -33,6 +40,8 @@ private:
 	void keywordMenu();//menu that appears when you want to search for title,keyword. etc
 	void newUserDisplay();//meny for adding new user
 	void writeFile();//function that rights to the file
+	string getLoggedInID();
+
 
 	//private varibles
 	string loggedInID;//functions that hold the id of the person that just signed in(each NetFlix will have specific ID logged in)
