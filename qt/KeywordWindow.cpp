@@ -137,7 +137,9 @@ void KeywordWindow::rentPressed()
 			string antar1=temp->returnFrontQ();
  			QString qstr2=QString::fromStdString(antar1);
 			currentMovie->setText(qstr2);//sets the current rented movie to front of queue
-			returnMovie->setEnabled(true);
+			currentMovie->setEnabled(false);
+			Movie *m=new Movie(antar1);//making a new movie that is the movie you're renting out
+			temp->checkOut(m);//checking the movie out
 			temp->dequeue();
 			string antar=temp->returnFrontQ();
  			QString qtemp=QString::fromStdString(antar);
@@ -156,11 +158,20 @@ void KeywordWindow::rentPressed()
 }
 void KeywordWindow::deletePressed()
 {
-
+temp->dequeue();
+string antar=temp->returnFrontQ();
+QString qtemp=QString::fromStdString(antar);
+movieQueue->setText(qtemp);
 }
 void KeywordWindow::backPressed()
 {
-
+string antar=temp->returnFrontQ();
+temp->dequeue();
+Movie *m=new Movie(antar);//making a new movie that is the movie you're renting out
+temp->pushQ(m);
+antar=temp->returnFrontQ();
+QString qtemp=QString::fromStdString(antar);
+movieQueue->setText(qtemp);
 }
 void KeywordWindow::titlePressed()
 {

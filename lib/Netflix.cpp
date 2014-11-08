@@ -631,3 +631,16 @@ void Netflix::writeFile()
     User *idiot = mapUser->get(loggedInID);
     idiot->returnMovie();
   }
+
+  void Netflix::checkOut(Movie *m)
+  {
+     User *idiot = mapUser->get(loggedInID);
+     idiot->rentMovie(m);
+  }
+
+  void Netflix::pushQ(Movie *m)
+  {
+    User *idiot = mapUser->get(loggedInID);
+    Queue<Movie*> *gooz=idiot->movieQueue();
+    gooz->enqueue(m);
+  }

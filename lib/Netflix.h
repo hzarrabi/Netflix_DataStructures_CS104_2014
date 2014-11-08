@@ -33,6 +33,8 @@ public:
 	string returnFrontQ();//returns the item at the front of the queue
 	bool qEmpty();//tells if the queue is empty
 	void dequeue();
+	void checkOut(Movie *m);
+	void pushQ(Movie *m);
 
 
 private:
@@ -50,6 +52,7 @@ private:
 	string mainFileName;//the name of the main file that holds names of the other files
 	string userFileName;//this hold the name of the userFile that we will later WRITE TO!!
 	
+
 	Map<string,User*>  *mapUser;//map that takes user id and object of type user
     Map<string,Movie*> *movieMap;//map that hold the movie name and movie objects
 
