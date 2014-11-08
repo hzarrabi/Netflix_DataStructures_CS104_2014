@@ -568,6 +568,19 @@ void Netflix::writeFile()
     }
   }
 
+  bool Netflix::returnEmpty()
+  {
+    User *idiot = mapUser->get(loggedInID);
+    if(idiot->currentMovie()==NULL)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+
   string Netflix::returnFrontQ()
   {
     User *idiot = mapUser->get(loggedInID);
@@ -597,4 +610,24 @@ void Netflix::writeFile()
     {
       return false;
     }
+  }
+
+  void Netflix::dequeue()
+  {
+    User *idiot = mapUser->get(loggedInID);
+    Queue<Movie*>* temp;
+    temp=idiot->movieQueue();
+    if(temp->isEmpty())
+    {
+    }
+    else
+    {
+      temp->dequeue();
+    }
+  }
+
+  void Netflix::returnTheMovie()
+  {
+    User *idiot = mapUser->get(loggedInID);
+    idiot->returnMovie();
   }

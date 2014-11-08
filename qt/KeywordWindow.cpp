@@ -105,6 +105,7 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 
 
 
+
 }
 
 
@@ -118,6 +119,7 @@ void KeywordWindow::returnPressed()
 
 	else
 	{
+		temp->dequeue();
 		returnMovie->setEnabled(false);
 		currentMovie->setText("");
 	}
@@ -130,17 +132,23 @@ void KeywordWindow::rentPressed()
 	}
 	else//if queue is not empty
 	{
-		if(temp->returnMovie()==false)//if there is no movie rented 
+		if(temp->returnEmpty()==false)//if there is no movie rented 
 		{
 			string antar1=temp->returnFrontQ();
  			QString qstr2=QString::fromStdString(antar1);
 			currentMovie->setText(qstr2);//sets the current rented movie to front of queue
+			returnMovie->setEnabled(true);
+			temp->dequeue();
+			string antar=temp->returnFrontQ();
+ 			QString qtemp=QString::fromStdString(antar);
+ 			movieQueue->setText(qtemp);
+
 
 		}
 
 		else//there is a movie rented
 		{
-
+			rentMovie->setEnabled(false);//makes its button grey
 		}
 
 	}
