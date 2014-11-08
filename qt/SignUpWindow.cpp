@@ -6,6 +6,10 @@
 
 SignUpWindow::SignUpWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 {
+
+	tempM=n->returnMovieMap();
+	tempU=n->returnUserMap();
+
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
 	login = new QLineEdit;
@@ -41,6 +45,18 @@ SignUpWindow::SignUpWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 
 void SignUpWindow::add()
 {
+	string userID = login->text().toStdString();//making qlineEdit into string
+	string userName = password->text().toStdString();//making qlineEdit into string
+	if(tempU->keyExist(userID)||userName=="")
+	{
+		cout<<"ddsfsa"<<endl;
+	}
+	else
+	{
+		User *tempUser=new User(userID,userName);
+		tempU->add(userID,tempUser);
+		close();
+	}
 
 }
 void SignUpWindow::cancelPage()

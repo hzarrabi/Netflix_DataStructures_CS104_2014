@@ -22,8 +22,12 @@ class Netflix
 public:
 	Netflix();
 	~Netflix();
+
+	Map<string,Movie*> *returnMovieMap();
+	Map<string,User*> *returnUserMap();
+
 	void fileInput(string mainFile);//function that reads in things from the files
-	bool userExists(string hello);//menu prompy when u start(login,new user, quit)
+	//bool userExists(string hello);//menu prompy when u start(login,new user, quit)
 	string currentMovie();//returns the current movie that's checked out
 	bool returnMovie();//returns movie
 	bool returnEmpty();
@@ -35,6 +39,7 @@ public:
 	void dequeue();
 	void checkOut(Movie *m);
 	void pushQ(Movie *m);
+	void setLogginID(string an);
 
 
 private:

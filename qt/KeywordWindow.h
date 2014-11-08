@@ -5,7 +5,9 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QtGui>
+#include "displayWindow.h"
 #include "../lib/Netflix.h"
+
 
 
 class KeywordWindow : public QWidget
@@ -31,6 +33,7 @@ class KeywordWindow : public QWidget
 		QLineEdit *search;
 		Netflix *temp;
 		QLabel *currentMovie, *movieQueue;
+		//displayWindow *l;
 
 
 };

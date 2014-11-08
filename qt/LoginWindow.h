@@ -17,6 +17,8 @@ class LoginWindow : public QWidget
 
 	public:
 		LoginWindow (QWidget* parent=NULL, Netflix *n=NULL);
+		Map<string,Movie*> *tempM;
+		Map<string,User*> *tempU;
 
 	public slots:
 		void loggedIn();
@@ -29,6 +31,7 @@ class LoginWindow : public QWidget
 		QLineEdit *login;//this is the text area that takes in the loginID
 		Netflix *temp;
 		KeywordWindow *w;
+		SignUpWindow *s;
 
 };
 

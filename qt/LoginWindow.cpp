@@ -1,5 +1,5 @@
 #include "LoginWindow.h"
-#include "KeywordWindow.h"
+//#include "KeywordWindow.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
@@ -11,6 +11,9 @@ using namespace std;
 LoginWindow::LoginWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 {
 	temp=n;
+
+	tempM=n->returnMovieMap();
+	tempU=n->returnUserMap();
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
@@ -45,17 +48,20 @@ LoginWindow::LoginWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 void LoginWindow::loggedIn()
 {
 	string userID = login->text().toStdString();//making qlineEdit into string
-	if(temp->userExists(userID))
+	if(tempU->keyExist(userID))
 	{
+		cout<<"sdfa"<<endl;
+		temp->setLogginID(userID);
 		w=new KeywordWindow(NULL,temp);
   		w->show();
-  		this->hide();
 	}
 }
 
 void LoginWindow::newUser()
 {
-	cout<<"loggin windows"<<endl;
+		s=new SignUpWindow(NULL,temp);
+  		s->show();
+  		//this->hide();
 }
 
 void LoginWindow::quitPushed()

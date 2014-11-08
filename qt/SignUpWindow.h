@@ -13,6 +13,8 @@ class SignUpWindow : public QWidget
 
 	public:
 		SignUpWindow (QWidget* parent=NULL, Netflix *n=NULL);
+		Map<string,Movie*> *tempM;
+		Map<string,User*> *tempU;
 
 	public slots:
 		void add();

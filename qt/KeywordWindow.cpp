@@ -180,6 +180,9 @@ void KeywordWindow::titlePressed()
 void KeywordWindow::keywordPressed()
 {
 
+	/*l=new displayWindow("shit",temp);
+	l->show();*/
+
 }
 void KeywordWindow::logOutPressed()
 {

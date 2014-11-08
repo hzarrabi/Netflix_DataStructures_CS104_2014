@@ -153,20 +153,16 @@ ifstream file;//the file object for the main file
 }
 
 
-bool Netflix::userExists(string hello)
+Map<string,Movie*>* Netflix::returnMovieMap()
 {
- if(mapUser->keyExist(hello)==false)
- {
-  return false;
- }
-
- else
- {
-  loggedInID=hello;//making the logInID equal to the loginIn
-  return true;
-
- }
+  return movieMap;
 }
+
+Map<string,User*>* Netflix::returnUserMap()
+{
+  return mapUser;
+}
+
 
 
 string Netflix::getLoggedInID()
@@ -174,6 +170,11 @@ string Netflix::getLoggedInID()
   return loggedInID;
 }
 
+
+void Netflix::setLogginID(string an)
+{
+  loggedInID=an;
+}
 
 //LOGGEDINMENU
 void Netflix::loggedInMenu()
