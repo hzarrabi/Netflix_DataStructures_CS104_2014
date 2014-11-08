@@ -1,13 +1,12 @@
-#include "SignUpWindow.h"
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QFormLayout>
+#include "NewUserWindow.h"
 
-SignUpWindow::SignUpWindow (QWidget* parent, Netflix *n) : QWidget (parent)
+
+Dialog::Dialog(QWidget *parent, Netflix *n) : QDialog(parent)//,ui(new Ui::Dialog)
 {
+    //ui->setupUi(this);
+    parentWidget()->hide();
 
-	tempM=n->returnMovieMap();
+    tempM=n->returnMovieMap();
 	tempU=n->returnUserMap();
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -34,22 +33,31 @@ SignUpWindow::SignUpWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 	mainLayout->addLayout(buttonLayout);
 	setLayout (mainLayout);
 
-
 	connect(confirm,SIGNAL(clicked()),this,SLOT(add()));	
 	connect(cancel,SIGNAL(clicked()),this,SLOT(cancelPage()));
 
+}
 
+Dialog::~Dialog()
+{
 
 }
 
 
-void SignUpWindow::add()
+//closeEvent
+void Dialog::closeEvent(QCloseEvent *)
+{
+    parentWidget()->show();
+}
+
+void Dialog::add()
 {
 	string userID = login->text().toStdString();//making qlineEdit into string
 	string userName = password->text().toStdString();//making qlineEdit into string
 	if(tempU->keyExist(userID)||userName=="")
 	{
-		cout<<"ddsfsa"<<endl;
+		  QWidget *popup = new QWidget();
+      	  popup->show();
 	}
 	else
 	{
@@ -59,8 +67,8 @@ void SignUpWindow::add()
 	}
 
 }
-void SignUpWindow::cancelPage()
+
+void Dialog::cancelPage()
 {
-
+	close();
 }
-

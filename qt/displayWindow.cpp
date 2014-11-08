@@ -1,6 +1,5 @@
 #include "LoginWindow.h"
 #include "KeywordWindow.h"
-#include "displayWindow.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>

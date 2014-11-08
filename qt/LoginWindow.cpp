@@ -1,10 +1,4 @@
 #include "LoginWindow.h"
-//#include "KeywordWindow.h"
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QFormLayout>
-#include <iostream>
 
 using namespace std;
 
@@ -59,9 +53,8 @@ void LoginWindow::loggedIn()
 
 void LoginWindow::newUser()
 {
-		s=new SignUpWindow(NULL,temp);
-  		s->show();
-  		//this->hide();
+  		mDialog = new Dialog(this,temp);
+		mDialog->show();
 }
 
 void LoginWindow::quitPushed()

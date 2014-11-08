@@ -4,8 +4,15 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QFormLayout>
+#include <iostream>
+
+
 #include "KeywordWindow.h"
-#include "SignUpWindow.h"
+#include "NewUserWindow.h"
 #include "../lib/Netflix.h"
 
 
@@ -31,8 +38,7 @@ class LoginWindow : public QWidget
 		QLineEdit *login;//this is the text area that takes in the loginID
 		Netflix *temp;
 		KeywordWindow *w;
-		SignUpWindow *s;
-
+		Dialog *mDialog;
 };
 
 #endif
