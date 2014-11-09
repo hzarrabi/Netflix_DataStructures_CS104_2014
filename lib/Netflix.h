@@ -42,6 +42,8 @@ public:
 
 
 	int findKeywords(string keyword);//***IMPORTANT****
+	void writeFile();//function that rights to the file
+
 
 
 private:
@@ -50,7 +52,6 @@ private:
 	void loggedInMenu();//menu when you log in
 	void keywordMenu();//menu that appears when you want to search for title,keyword. etc
 	void newUserDisplay();//meny for adding new user
-	void writeFile();//function that rights to the file
 	string getLoggedInID();
 
 

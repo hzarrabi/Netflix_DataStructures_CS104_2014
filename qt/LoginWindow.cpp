@@ -63,5 +63,13 @@ void LoginWindow::newUser()
 
 void LoginWindow::quitPushed()
 {
+	temp->writeFile();//write to file when we exit
+	close();
+}
+
+
+void LoginWindow::closeEvent (QCloseEvent *event)
+{
+	temp->writeFile();//write to file when we exit
 	close();
 }

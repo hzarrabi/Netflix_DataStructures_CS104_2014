@@ -26,6 +26,7 @@ class LoginWindow : public QWidget
 		LoginWindow (QWidget* parent=NULL, Netflix *n=NULL);
 		Map<string,Movie*> *tempM;
 		Map<string,User*> *tempU;
+		void closeEvent (QCloseEvent *event);
 
 	public slots:
 		void loggedIn();
