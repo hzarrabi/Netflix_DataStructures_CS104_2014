@@ -49,6 +49,10 @@ class displayWindow : public QDialog
 
 		QLabel *everything;
 
+		int nexts;
+
+		Map<string, Movie*>::Iterator findIterator;
+
 };
 
 #endif //DISPLAYWINDOW_H

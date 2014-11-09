@@ -21,13 +21,44 @@ displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDial
  	returnM=new QPushButton("&Return to Main Menu");
  	buttonLayout->addWidget(returnM);
 
-
+ 	//word entered was a movie
 	if(tempM->keyExist(movie))
 	{
 		title = QString::fromStdString(movie);//sets the title on the page to the movie's title
 		keywords=QString::fromStdString(tempM->get(movie)->getAllKeywords().getSet());//sets the qstring to the keywords of that movie
 		next->setEnabled(false);
 	}
+
+
+	//word entered was a keyword 
+	else
+	{
+		nexts=temp->findKeywords(movie);//setting the number of nexts
+		findIterator=tempM->begin();
+		bool chose=true;
+	    while(chose)
+	    {
+	            Pair<string, Movie*> findPair = *findIterator;//temp is a pair that holds the key and value of the iterator
+	            if(findPair.second->getAllKeywords().contains(movie) || findPair.second->getTitle()==movie)
+	            {
+	              nexts--;
+	              title=QString::fromStdString(findPair.first);//setting title of page to the movie that corresponds to that keyword
+	              keywords=QString::fromStdString(findPair.second->getAllKeywords().getSet());
+	              break;
+	            }
+	            try
+	            {
+	              ++findIterator;//iterator go to next movieMap item
+	            }
+	            catch(NoSuchElementException)
+	            {
+	              chose=false;
+	            }
+	  	}
+
+	}
+
+
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 	QLabel* label=new QLabel(title);

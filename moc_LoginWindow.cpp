@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'LoginWindow.h'
 **
-** Created: Sat Nov 8 18:57:10 2014
+** Created: Sat Nov 8 20:20:47 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
