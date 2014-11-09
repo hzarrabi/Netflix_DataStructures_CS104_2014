@@ -554,21 +554,6 @@ void Netflix::writeFile()
     return loggedInID;
   }
 
-
-  bool Netflix::returnMovie()
-  {
-    User *idiot = mapUser->get(loggedInID);
-    if(idiot->currentMovie()==NULL)
-    {
-      return false;
-    }
-    else
-    {
-      idiot->returnMovie();
-      return true;
-    }
-  }
-
   bool Netflix::returnEmpty()
   {
     User *idiot = mapUser->get(loggedInID);

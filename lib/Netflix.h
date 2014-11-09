@@ -29,7 +29,6 @@ public:
 	void fileInput(string mainFile);//function that reads in things from the files
 	//bool userExists(string hello);//menu prompy when u start(login,new user, quit)
 	string currentMovie();//returns the current movie that's checked out
-	bool returnMovie();//returns movie
 	bool returnEmpty();
 	void returnTheMovie();
 	string currentName();//returns the current user of who's signed in

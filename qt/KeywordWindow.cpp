@@ -1,14 +1,16 @@
 #include "KeywordWindow.h"
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QFormLayout>
- #include <QtGui>
 
-KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
+
+KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
 {
 
+	parentWidget()->hide();//hides the main login window
+
+
 	temp=n;
+	tempM=n->returnMovieMap();
+	tempU=n->returnUserMap();
+
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
@@ -109,39 +111,49 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 }
 
 
+void KeywordWindow::closeEvent(QCloseEvent *)
+{
+    parentWidget()->show();
+}
+
 
 void KeywordWindow::returnPressed()
 {
-	if(temp->returnMovie()==false)
-	{
-
-	}
-
-	else
-	{
-		temp->dequeue();
-		returnMovie->setEnabled(false);
-		currentMovie->setText("");
-	}
+	User *idiot = tempU->get(temp->getID());
+    if(idiot->currentMovie()==NULL)//if doesn't have a movie checked out do nothing
+    {
+      //return false;
+    }
+    else//else return the movie
+    {
+      idiot->returnMovie();
+      returnMovie->setEnabled(false);
+	  currentMovie->setText("");
+    }
+    rentMovie->setEnabled(true);//makes its button grey
 }
 void KeywordWindow::rentPressed()
 {
-	if(temp->qEmpty())//if queue is empty 
+	User *idiot = tempU->get(temp->getID());
+	Queue<Movie*>* t=idiot->movieQueue();
+	if(t->isEmpty())//if queue is empty 
 	{
 		rentMovie->setEnabled(false);//makes its button grey
+		deleteQueue->setEnabled(false);//makes its button grey
+		movieBack->setEnabled(false);//makes its button grey
 	}
 	else//if queue is not empty
 	{
-		if(temp->returnEmpty()==false)//if there is no movie rented 
+		if(idiot->currentMovie()==NULL)//if there is no movie rented 
 		{
-			string antar1=temp->returnFrontQ();
+			string antar1=t->peekFront()->getTitle();
  			QString qstr2=QString::fromStdString(antar1);
 			currentMovie->setText(qstr2);//sets the current rented movie to front of queue
-			currentMovie->setEnabled(false);
+			returnMovie->setEnabled(true);
 			Movie *m=new Movie(antar1);//making a new movie that is the movie you're renting out
-			temp->checkOut(m);//checking the movie out
-			temp->dequeue();
-			string antar=temp->returnFrontQ();
+			idiot->rentMovie(m);//checking the movie out
+			t->dequeue();
+			string antar=t->peekFront()->getTitle();
  			QString qtemp=QString::fromStdString(antar);
  			movieQueue->setText(qtemp);
 
@@ -156,22 +168,52 @@ void KeywordWindow::rentPressed()
 	}
 
 }
+
+
 void KeywordWindow::deletePressed()
 {
-temp->dequeue();
-string antar=temp->returnFrontQ();
-QString qtemp=QString::fromStdString(antar);
-movieQueue->setText(qtemp);
+	User *idiot = tempU->get(temp->getID());
+	Queue<Movie*>* t=idiot->movieQueue();
+	if(t->isEmpty())//if queue is empty 
+	{
+		rentMovie->setEnabled(false);//makes its button grey
+		deleteQueue->setEnabled(false);//makes its button grey
+		movieBack->setEnabled(false);//makes its button grey
+	}
+	else
+	{
+		t->dequeue();
+		if(!t->isEmpty())//if queue is empty 
+		{
+			string antar=t->peekFront()->getTitle();
+			QString qtemp=QString::fromStdString(antar);
+			movieQueue->setText(qtemp);
+		}
+		else
+		{
+			rentMovie->setEnabled(false);//makes its button grey
+			movieQueue->setText("");
+		}
+	}
 }
 void KeywordWindow::backPressed()
 {
-string antar=temp->returnFrontQ();
-temp->dequeue();
-Movie *m=new Movie(antar);//making a new movie that is the movie you're renting out
-temp->pushQ(m);
-antar=temp->returnFrontQ();
-QString qtemp=QString::fromStdString(antar);
-movieQueue->setText(qtemp);
+User *idiot = tempU->get(temp->getID());
+Queue<Movie*>* t=idiot->movieQueue();
+	if(!t->isEmpty())
+	{
+		string antar=t->peekFront()->getTitle();
+		t->dequeue();
+		Movie *m=new Movie(antar);//making a new movie that is the movie you're renting out
+		t->enqueue(m);
+		antar=t->peekFront()->getTitle();
+		QString qtemp=QString::fromStdString(antar);
+		movieQueue->setText(qtemp);
+	}
+	else
+	{
+		movieBack->setEnabled(false);//makes its button grey
+	}
 }
 void KeywordWindow::titlePressed()
 {

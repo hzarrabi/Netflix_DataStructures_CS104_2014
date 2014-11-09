@@ -1,22 +1,32 @@
 #ifndef KEYWORDWINDOWS_H
 #define KEYWORDWINDOWS_H
 
+#include <QDialog>
+#include <QCloseEvent>
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QFormLayout>
 #include <QtGui>
 #include "displayWindow.h"
 #include "../lib/Netflix.h"
 
 
 
-class KeywordWindow : public QWidget
+
+
+class KeywordWindow : public QDialog
 {
 	
 	Q_OBJECT
 
 	public:
-		KeywordWindow (QWidget* parent=NULL, Netflix *n=NULL);
+		explicit KeywordWindow (QWidget* parent=NULL, Netflix *n=NULL);
+
+    	
 
 	public slots:
 		void returnPressed();
@@ -27,15 +37,22 @@ class KeywordWindow : public QWidget
 		void keywordPressed();
 		void logOutPressed();
 
+	protected:
+
+    void closeEvent(QCloseEvent *);
+
 	private:
 
 		QPushButton *returnMovie, *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *logOut;
 		QLineEdit *search;
-		Netflix *temp;
 		QLabel *currentMovie, *movieQueue;
+
+		Netflix *temp;
+		Map<string,Movie*> *tempM;
+		Map<string,User*> *tempU;
 		//displayWindow *l;
 
 
 };
 
-#endif
+#endif //KEYWORDWINDOWS_H

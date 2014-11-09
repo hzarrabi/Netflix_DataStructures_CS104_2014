@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'KeywordWindow.h'
 **
-** Created: Sat Nov 8 14:56:35 2014
+** Created: Sat Nov 8 15:29:21 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -73,7 +73,7 @@ const QMetaObjectExtraData KeywordWindow::staticMetaObjectExtraData = {
 };
 
 const QMetaObject KeywordWindow::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_KeywordWindow,
+    { &QDialog::staticMetaObject, qt_meta_stringdata_KeywordWindow,
       qt_meta_data_KeywordWindow, &staticMetaObjectExtraData }
 };
 
@@ -91,12 +91,12 @@ void *KeywordWindow::qt_metacast(const char *_clname)
     if (!_clname) return 0;
     if (!strcmp(_clname, qt_meta_stringdata_KeywordWindow))
         return static_cast<void*>(const_cast< KeywordWindow*>(this));
-    return QWidget::qt_metacast(_clname);
+    return QDialog::qt_metacast(_clname);
 }
 
 int KeywordWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

@@ -46,7 +46,7 @@ void LoginWindow::loggedIn()
 	{
 		cout<<"sdfa"<<endl;
 		temp->setLogginID(userID);
-		w=new KeywordWindow(NULL,temp);
+		w=new KeywordWindow(this,temp);
   		w->show();
 	}
 }
