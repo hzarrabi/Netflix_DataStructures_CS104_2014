@@ -11,18 +11,6 @@ displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDial
 	tempM=n->returnMovieMap();
 	tempU=n->returnUserMap();
 
-	if(tempM->keyExist(movie))
-	{
-		title = QString::fromStdString(movie);//sets the title on the page to the movie's title
-
-
-	}
-
-	QVBoxLayout *mainLayout = new QVBoxLayout;
-	QLabel* label=new QLabel(title);
-	label->setAlignment(Qt::AlignCenter);
-
-
 	//button layout
 	QGroupBox *returnBox= new QGroupBox(tr("Movie Info"));//the first group box
  	QHBoxLayout *buttonLayout = new QHBoxLayout;
@@ -33,11 +21,24 @@ displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDial
  	returnM=new QPushButton("&Return to Main Menu");
  	buttonLayout->addWidget(returnM);
 
+
+	if(tempM->keyExist(movie))
+	{
+		title = QString::fromStdString(movie);//sets the title on the page to the movie's title
+		keywords=QString::fromStdString(tempM->get(movie)->getAllKeywords().getSet());//sets the qstring to the keywords of that movie
+		next->setEnabled(false);
+	}
+
+	QVBoxLayout *mainLayout = new QVBoxLayout;
+	QLabel* label=new QLabel(title);
+	label->setAlignment(Qt::AlignCenter);
+
+
  	QVBoxLayout *rbox = new QVBoxLayout;
  	//QString qtemp=new QString("The Movie Keywords and Title");
 	//movieQueue->setText(qtemp);
  	//rbox->addLayout(buttonLayout);//addind button to first layout
- 	rbox->addWidget(everything=new QLabel("Keywords and sheet"));
+ 	rbox->addWidget(everything=new QLabel(keywords));
  	returnBox->setLayout(rbox);
 
  	mainLayout->addWidget(label);
@@ -45,6 +46,9 @@ displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDial
  	mainLayout->addLayout(buttonLayout);
 
  	setLayout (mainLayout);
+
+
+
 
 
 
