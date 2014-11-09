@@ -36,6 +36,9 @@ class displayWindow : public QDialog
 		void addM();
 		void returnToMenu();
 
+	signals:
+		void updateParent();
+
 
 	private:
 		QPushButton *next, *add, *returnM; 
@@ -48,6 +51,8 @@ class displayWindow : public QDialog
 		Map<string,User*> *tempU;
 
 		QLabel *everything;
+
+		string movie;
 
 		int nexts;
 

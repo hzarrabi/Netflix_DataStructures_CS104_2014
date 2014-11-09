@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'displayWindow.h'
 **
-** Created: Sat Nov 8 20:20:43 2014
+** Created: Sat Nov 8 22:08:30 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,24 +23,27 @@ static const uint qt_meta_data_displayWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+      15,   14,   14,   14, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      15,   14,   14,   14, 0x0a,
-      23,   14,   14,   14, 0x0a,
       30,   14,   14,   14, 0x0a,
+      38,   14,   14,   14, 0x0a,
+      45,   14,   14,   14, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_displayWindow[] = {
-    "displayWindow\0\0nextM()\0addM()\0"
-    "returnToMenu()\0"
+    "displayWindow\0\0updateParent()\0nextM()\0"
+    "addM()\0returnToMenu()\0"
 };
 
 void displayWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -49,9 +52,10 @@ void displayWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         Q_ASSERT(staticMetaObject.cast(_o));
         displayWindow *_t = static_cast<displayWindow *>(_o);
         switch (_id) {
-        case 0: _t->nextM(); break;
-        case 1: _t->addM(); break;
-        case 2: _t->returnToMenu(); break;
+        case 0: _t->updateParent(); break;
+        case 1: _t->nextM(); break;
+        case 2: _t->addM(); break;
+        case 3: _t->returnToMenu(); break;
         default: ;
         }
     }
@@ -90,10 +94,16 @@ int displayWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
+}
+
+// SIGNAL 0
+void displayWindow::updateParent()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
 QT_END_MOC_NAMESPACE

@@ -233,6 +233,7 @@ void KeywordWindow::keywordPressed()
 	if(temp->findKeywords(keyword)>0)
 	{
 		l=new displayWindow(this,keyword,temp);
+		QObject::connect(l, SIGNAL(updateParent()), this, SLOT(update()));
 		l->show();
 	}
 
@@ -244,3 +245,16 @@ void KeywordWindow::logOutPressed()//returns them to previous logout page
 	close();
 }
 
+void KeywordWindow::update()
+{
+	User *idiot = tempU->get(temp->getID());
+	Queue<Movie*>* t=idiot->movieQueue();
+	if(!t->isEmpty())
+	{
+		string antar=t->peekFront()->getTitle();
+		QString qtemp=QString::fromStdString(antar);
+		movieQueue->setText(qtemp);
+		deleteQueue->setEnabled(true);
+		movieBack->setEnabled(true);
+	}
+}

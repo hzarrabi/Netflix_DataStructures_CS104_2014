@@ -36,6 +36,7 @@ class KeywordWindow : public QDialog
 		void titlePressed();
 		void keywordPressed();
 		void logOutPressed();
+		void update();
 
 	protected:
 

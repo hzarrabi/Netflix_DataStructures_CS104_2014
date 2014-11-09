@@ -6,7 +6,7 @@ displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDial
 
 	parentWidget()->hide();//hides the main login window
 
-
+	this->movie=movie;
 	temp= n;
 	tempM=n->returnMovieMap();
 	tempU=n->returnUserMap();
@@ -58,27 +58,24 @@ displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDial
 
 	}
 
-
-
 	QVBoxLayout *mainLayout = new QVBoxLayout;
-	QLabel* label=new QLabel(title);
-	label->setAlignment(Qt::AlignCenter);
-
+	movieTitle=new QLabel(title);
+	movieTitle->setAlignment(Qt::AlignCenter);
 
  	QVBoxLayout *rbox = new QVBoxLayout;
- 	//QString qtemp=new QString("The Movie Keywords and Title");
-	//movieQueue->setText(qtemp);
- 	//rbox->addLayout(buttonLayout);//addind button to first layout
- 	rbox->addWidget(everything=new QLabel(keywords));
+ 	rbox->addWidget(allkeywords=new QLabel(keywords));
  	returnBox->setLayout(rbox);
 
- 	mainLayout->addWidget(label);
+ 	mainLayout->addWidget(movieTitle);
  	mainLayout->addWidget(returnBox);
  	mainLayout->addLayout(buttonLayout);
 
  	setLayout (mainLayout);
 
 
+	connect(next,SIGNAL(clicked()),this,SLOT(nextM()));	
+	connect(add,SIGNAL(clicked()),this,SLOT(addM()));
+	connect(returnM,SIGNAL(clicked()),this,SLOT(returnToMenu()));
 
 
 
@@ -91,6 +88,53 @@ void displayWindow::closeEvent(QCloseEvent *)
 	parentWidget()->show();
 }
 
-void displayWindow::nextM(){}
-void displayWindow::addM(){}
-void displayWindow::returnToMenu(){}
+void displayWindow::nextM()
+{
+	if(nexts<1)//if there are no more keywords to display
+	{
+		next->setEnabled(false);
+	}
+	else
+	{
+		bool chose=true;
+	    while(chose)
+	    {
+	            Pair<string, Movie*> findPair = *findIterator;//is a pair that holds the key and value of the iterator
+	            if(findPair.second->getAllKeywords().contains(movie) || findPair.second->getTitle()==movie)
+	            {
+	              nexts--;
+	              QString done=QString::fromStdString(findPair.first);
+	              //cout<<done<<endl;
+	              QString done2=QString::fromStdString(findPair.second->getAllKeywords().getSet());
+	              //cout<<done2<<endl;
+	              movieTitle->setText("dfgdfsg");//setting title of page to the movie that corresponds to that keyword
+	              allkeywords->setText("ddfgdsfg");
+	              break;
+	            }
+	            try
+	            {
+	              ++findIterator;//iterator go to next movieMap item
+	            }
+	            catch(NoSuchElementException)
+	            {
+	              chose=false;
+	            }
+	  	}
+
+	}
+}
+void displayWindow::addM()
+{
+
+	Pair<string, Movie*> findPair = *findIterator;
+	Movie* addedMovie=new Movie(findPair.first);
+	User *tempUser=tempU->get(temp->getID());
+	tempUser->movieQueue ()->enqueue(addedMovie);//adding the movie pointer to the users queue
+
+}
+void displayWindow::returnToMenu()
+{
+	emit updateParent();
+	parentWidget()->show();
+	close();
+}
