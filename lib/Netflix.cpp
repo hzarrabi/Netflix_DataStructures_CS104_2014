@@ -630,3 +630,37 @@ void Netflix::writeFile()
     Queue<Movie*> *gooz=idiot->movieQueue();
     gooz->enqueue(m);
   }
+
+
+  //**IMPORTANT**
+  int Netflix::findKeywords(string keyword)
+  {
+    Map<string, Movie*>::Iterator firstIt = movieMap->begin();//iterator that will check if keyword exists
+    int counter1=0;
+    bool chose=true;
+    while(chose)
+      {
+          if(movieMap->size()!=0)//if map is not emppty
+          {
+            Pair<string, Movie*> temp = *firstIt;//temp is a pair that holds the key and value of the iterator
+            if(temp.second->getAllKeywords().contains(keyword) /*|| temp.second->getTitle()==newKeyWord1*/)
+            {
+              counter1++;
+            }
+            try
+            {
+              ++firstIt;//iterator go to next movieMap item
+            }
+            catch(NoSuchElementException)
+            {
+              chose=false;
+              return counter1;//returns how many times the keyword was in there
+            }
+          }
+          else
+          {
+            chose=false;
+            return counter1;
+          }
+      }
+}

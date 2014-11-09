@@ -4,18 +4,32 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
-#include "KeywordWindow.h"
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QFormLayout>
+#include <QWidget>
+#include <QGroupBox>
+#include <QDialog>
+#include <QCloseEvent>
+#include <QtGui>
+
 #include "../lib/Netflix.h"
 
 
 
-class displayWindow : public QWidget
+class displayWindow : public QDialog
 {
 	
 	Q_OBJECT
 
 	public:
-		displayWindow (string movie, Netflix *n=NULL);
+		explicit displayWindow (QWidget* parent=NULL, string movie="", Netflix *n=NULL);
+
+
+	protected:
+
+	    void closeEvent(QCloseEvent *);
 
 	public slots:
 		void nextM();
@@ -25,9 +39,16 @@ class displayWindow : public QWidget
 
 	private:
 		QPushButton *next, *add, *returnM; 
+		QLabel *movieTitle, *allkeywords;
+		QString title;//string that has the title
+		QString keywords;//string that has the keywords
+
 		Netflix *temp;
-		QLabel *movieTitle, keywords;
+		Map<string,Movie*> *tempM;
+		Map<string,User*> *tempU;
+
+		QLabel *everything;
 
 };
 
-#endif
+#endif //DISPLAYWINDOW_H

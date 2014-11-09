@@ -368,6 +368,22 @@ void Map <keyType, valueType>::printKeys()
 	}
 	cout<<"\n"<<endl;
 }
+
+
+//returns a string with all the keys
+template <class keyType, class valueType>
+string Map <keyType, valueType>::getKeys()
+{
+	MapItem <keyType, valueType> *tempP;
+	tempP=head;
+	string allKeys="";
+	while(tempP!=NULL)
+	{
+		allKeys = allKeys+"\n"+tempP->key;//will concatinate all the keys
+		tempP=tempP->next;
+	}
+	return allKeys;
+}
 //==============================================================================================================================================
 //iterator implementations
 

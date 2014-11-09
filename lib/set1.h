@@ -115,12 +115,20 @@ Set<T> Set<T>::setIntersection (const Set<T> & other) const
 }
 
 
-//set Intersection
+//cout all the keywords
 template <class T>
 void Set<T>::printSet()
 {
 	internalStorage.printKeys();//prints the keys of the set
 }
+
+//returns one string with all the keywords
+template <class T>
+string Set<T>::getSet()
+{
+	return internalStorage.getKeys();//returns the keys of the set
+}
+
 //=======================================================================================================================
 //implementing set iterator
 

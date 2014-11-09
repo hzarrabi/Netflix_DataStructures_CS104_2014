@@ -50,7 +50,8 @@ class KeywordWindow : public QDialog
 		Netflix *temp;
 		Map<string,Movie*> *tempM;
 		Map<string,User*> *tempU;
-		//displayWindow *l;
+		
+		displayWindow *l;
 
 
 };

@@ -44,10 +44,11 @@ void LoginWindow::loggedIn()
 	string userID = login->text().toStdString();//making qlineEdit into string
 	if(tempU->keyExist(userID))
 	{
-		cout<<"sdfa"<<endl;
 		temp->setLogginID(userID);
 		w=new KeywordWindow(this,temp);
   		w->show();
+  		login->clear();//clears the user ID
+
 	}
 }
 
@@ -55,6 +56,7 @@ void LoginWindow::newUser()
 {
   		mDialog = new Dialog(this,temp);
 		mDialog->show();
+		login->clear();
 }
 
 void LoginWindow::quitPushed()

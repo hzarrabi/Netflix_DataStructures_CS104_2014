@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'displayWindow.h'
 **
-** Created: Sat Nov 8 15:29:19 2014
+** Created: Sat Nov 8 18:57:06 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -63,7 +63,7 @@ const QMetaObjectExtraData displayWindow::staticMetaObjectExtraData = {
 };
 
 const QMetaObject displayWindow::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_displayWindow,
+    { &QDialog::staticMetaObject, qt_meta_stringdata_displayWindow,
       qt_meta_data_displayWindow, &staticMetaObjectExtraData }
 };
 
@@ -81,12 +81,12 @@ void *displayWindow::qt_metacast(const char *_clname)
     if (!_clname) return 0;
     if (!strcmp(_clname, qt_meta_stringdata_displayWindow))
         return static_cast<void*>(const_cast< displayWindow*>(this));
-    return QWidget::qt_metacast(_clname);
+    return QDialog::qt_metacast(_clname);
 }
 
 int displayWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

@@ -1,6 +1,10 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <string>
+
+using namespace std;
+
 
 template <class keyType, class valueType>
 struct MapItem
@@ -75,6 +79,8 @@ class Map
     bool keyExist(keyType key) const;
 
     void printKeys();//prints the keys of the map (also used for set)
+
+    string getKeys();//returns a string with all the keys
     //====================================================================================================================
     //iterator stuff
     class Iterator 

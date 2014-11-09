@@ -1,22 +1,27 @@
-#include "LoginWindow.h"
-#include "KeywordWindow.h"
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QFormLayout>
-#include <QWidget>
-#include <iostream>
+#include "displayWindow.h"
 
-using namespace std;
 
-displayWindow::displayWindow (string movie, Netflix *n)
+displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDialog (parent)
 {
-	//need the netflix opbject (but as a pointer so changes are made to all of the windows)
+
+	parentWidget()->hide();//hides the main login window
+
+
 	temp= n;
+	tempM=n->returnMovieMap();
+	tempU=n->returnUserMap();
+
+	if(tempM->keyExist(movie))
+	{
+		title = QString::fromStdString(movie);//sets the title on the page to the movie's title
+
+
+	}
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
+	QLabel* label=new QLabel(title);
+	label->setAlignment(Qt::AlignCenter);
 
-	movieTitle=new QLabel("Title");
 
 	//button layout
 	QGroupBox *returnBox= new QGroupBox(tr("Movie Info"));//the first group box
@@ -29,15 +34,26 @@ displayWindow::displayWindow (string movie, Netflix *n)
  	buttonLayout->addWidget(returnM);
 
  	QVBoxLayout *rbox = new QVBoxLayout;
- 	rbox->addLayout(buttonLayout);//addind button to first layout
+ 	//QString qtemp=new QString("The Movie Keywords and Title");
+	//movieQueue->setText(qtemp);
+ 	//rbox->addLayout(buttonLayout);//addind button to first layout
+ 	rbox->addWidget(everything=new QLabel("Keywords and sheet"));
  	returnBox->setLayout(rbox);
 
+ 	mainLayout->addWidget(label);
  	mainLayout->addWidget(returnBox);
+ 	mainLayout->addLayout(buttonLayout);
 
  	setLayout (mainLayout);
 
 
 
+}
+
+
+void displayWindow::closeEvent(QCloseEvent *)
+{
+	parentWidget()->show();
 }
 
 void displayWindow::nextM(){}

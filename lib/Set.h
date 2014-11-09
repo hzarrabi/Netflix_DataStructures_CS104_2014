@@ -33,6 +33,9 @@ class Set
 
     void printSet();//prints all keys of the set
 
+    string getSet();
+
+
     //============================================================================
      class Iterator 
      {

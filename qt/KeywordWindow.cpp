@@ -215,19 +215,32 @@ Queue<Movie*>* t=idiot->movieQueue();
 		movieBack->setEnabled(false);//makes its button grey
 	}
 }
+
 void KeywordWindow::titlePressed()
 {
+
+	string keyword= search->text().toStdString();//making qlineEdit into string
+	if(tempM->keyExist(keyword))
+	{
+		l=new displayWindow(this,keyword,temp);
+		l->show();
+	}
 
 }
 void KeywordWindow::keywordPressed()
 {
+	string keyword = search->text().toStdString();//making qlineEdit into string
+	if(temp->findKeywords(keyword)>0)
+	{
+		l=new displayWindow(this,keyword,temp);
+		l->show();
+	}
 
-	/*l=new displayWindow("shit",temp);
-	l->show();*/
 
 }
-void KeywordWindow::logOutPressed()
+void KeywordWindow::logOutPressed()//returns them to previous logout page
 {
-
+	parentWidget()->show();
+	close();
 }
 

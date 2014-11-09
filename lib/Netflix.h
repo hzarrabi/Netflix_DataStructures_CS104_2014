@@ -41,6 +41,9 @@ public:
 	void setLogginID(string an);
 
 
+	int findKeywords(string keyword);//***IMPORTANT****
+
+
 private:
 
 	//all other functions that either get called in eachother or in fileinput()
