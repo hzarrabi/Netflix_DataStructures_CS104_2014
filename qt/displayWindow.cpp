@@ -98,17 +98,18 @@ void displayWindow::nextM()
 	{
 		bool chose=true;
 	    while(chose)
-	    {
+	    {		
+	    		++findIterator;//iterator go to next movieMap item
 	            Pair<string, Movie*> findPair = *findIterator;//is a pair that holds the key and value of the iterator
 	            if(findPair.second->getAllKeywords().contains(movie) || findPair.second->getTitle()==movie)
 	            {
 	              nexts--;
-	              QString done=QString::fromStdString(findPair.first);
-	              //cout<<done<<endl;
-	              QString done2=QString::fromStdString(findPair.second->getAllKeywords().getSet());
-	              //cout<<done2<<endl;
-	              movieTitle->setText("dfgdfsg");//setting title of page to the movie that corresponds to that keyword
-	              allkeywords->setText("ddfgdsfg");
+	              string hello=findPair.first;
+	              QString test=QString::fromStdString(hello);
+	              string hello1=findPair.second->getAllKeywords().getSet();
+	              //qDebug()<<test;
+	              movieTitle->setText(test);//setting title of page to the movie that corresponds to that keyword
+	              allkeywords->setText(QString::fromStdString(hello1));
 	              break;
 	            }
 	            try

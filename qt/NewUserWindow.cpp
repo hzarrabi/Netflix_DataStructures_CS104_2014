@@ -36,6 +36,8 @@ Dialog::Dialog(QWidget *parent, Netflix *n) : QDialog(parent)//,ui(new Ui::Dialo
 	connect(confirm,SIGNAL(clicked()),this,SLOT(add()));	
 	connect(cancel,SIGNAL(clicked()),this,SLOT(cancelPage()));
 
+	connect(password, SIGNAL(returnPressed()),confirm,SIGNAL(clicked()));
+
 }
 
 Dialog::~Dialog()
@@ -54,7 +56,7 @@ void Dialog::add()
 {
 	string userID = login->text().toStdString();//making qlineEdit into string
 	string userName = password->text().toStdString();//making qlineEdit into string
-	if(tempU->keyExist(userID)||userName=="")
+	if(tempU->keyExist(userID)||userName==""||userID=="")
 	{
 		  QWidget *popup = new QWidget();
       	  popup->show();

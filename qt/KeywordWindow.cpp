@@ -94,7 +94,6 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
 
 	setLayout (mainLayout);
 
-
 	connect(returnMovie,SIGNAL(clicked()),this,SLOT(returnPressed()));	
 	connect(rentMovie,SIGNAL(clicked()),this,SLOT(rentPressed()));
 	connect(deleteQueue,SIGNAL(clicked()),this,SLOT(deletePressed()));
@@ -103,6 +102,18 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
 	connect(searchKeyword,SIGNAL(clicked()),this,SLOT(keywordPressed()));
 	connect(logOut,SIGNAL(clicked()),this,SLOT(logOutPressed()));
 
+	connect(search, SIGNAL(returnPressed()),searchTitle,SIGNAL(clicked()));
+
+
+
+	User *idiot = tempU->get(temp->getID());
+	Queue<Movie*>* t=idiot->movieQueue();
+	if(t->isEmpty())
+	{
+		rentMovie->setEnabled(false);
+		deleteQueue->setEnabled(false);
+		movieBack->setEnabled(false);
+	}
 
 
 
@@ -242,6 +253,7 @@ void KeywordWindow::keywordPressed()
 void KeywordWindow::logOutPressed()//returns them to previous logout page
 {
 	parentWidget()->show();
+	QObject::connect(l, SIGNAL(updateParent()), this, SLOT(update()));
 	close();
 }
 

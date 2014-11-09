@@ -36,6 +36,8 @@ LoginWindow::LoginWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 	connect(loginButton,SIGNAL(clicked()),this,SLOT(loggedIn()));	
 	connect(newUserButton,SIGNAL(clicked()),this,SLOT(newUser()));
 	connect(quitButton,SIGNAL(clicked()),this,SLOT(quitPushed()));
+
+	connect(login, SIGNAL(returnPressed()),loginButton,SIGNAL(clicked()));//when they press enter
 }
 
 

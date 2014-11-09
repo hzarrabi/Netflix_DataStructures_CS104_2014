@@ -13,6 +13,7 @@
 #include <QDialog>
 #include <QCloseEvent>
 #include <QtGui>
+#include <QDebug>
 
 #include "../lib/Netflix.h"
 
