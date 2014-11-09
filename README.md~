@@ -23,5 +23,7 @@ to run:
 
 
 
+./main *name of main txt file" (if the main text file is in the main directory use "../")
+
 
 
