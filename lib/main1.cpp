@@ -432,8 +432,23 @@ else if(yellow==2)
             }
             else
             {
-              cout<<mapUser->get(loggedInID)->currentMovie()->getTitle()<<" has been removed."<<endl;
-              mapUser->get(loggedInID)->returnMovie();//deleting the movie in currentMovie
+              cout<<"Your current movie is:"<<mapUser->get(loggedInID)->currentMovie()->getTitle()<<endl;
+              cout<<"Would you like to return it?"<<endl;
+              cout<<"1-yes"<<endl;
+              cout<<"0-no"<<endl;
+              int hello;
+              cin>>hello;
+              if(hello==1)
+              {
+                cout<<mapUser->get(loggedInID)->currentMovie()->getTitle()<<" has been removed."<<endl;
+                mapUser->get(loggedInID)->returnMovie();//deleting the movie in currentMovie
+                keywordMenu(mapUser,movieMap,fileName);
+              }
+              else if(hello==0)
+              {
+                cout<<mapUser->get(loggedInID)->currentMovie()->getTitle()<<" has NOT been removed."<<endl;
+                keywordMenu(mapUser,movieMap,fileName);
+              }
             }
       }
 
@@ -561,6 +576,7 @@ void newUserDisplay(Map<string,User*>  *mapUser, Map<string,Movie*> *movieMap, s
 
 void writeFile(Map<string,User*>  *mapUser, string fileName)
 {
+
     ofstream myFile;
     myFile.open(fileName.c_str());//opens the user file and appends so you don't clear all contents
     if(!myFile.is_open())
@@ -593,14 +609,16 @@ void writeFile(Map<string,User*>  *mapUser, string fileName)
                 myFile<<"END QUEUE"<<endl;
               }
               myFile<<"END"<<endl;
-              myFile.close();
             }
       }
       catch (NoSuchElementException e)
       {
         
       }
-      
+
+      cout<<"anataserasDF DF "<<endl;
+      myFile.close();
+      exit(1);
     }
 
     //when they succesfully login, display loginDisplay to them

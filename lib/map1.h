@@ -182,18 +182,10 @@ void Map<keyType, valueType>::add(keyType key, valueType value)//add function fo
 
 			newItem->key=key;
 			newItem->value=value;
-			//numItems++;
+			numItems++;
 
 			}
-			/*while(tempP->next!=NULL)
-			{
-				if(tempP->key==key)//if key trying to add exists exit
-				{
-					//cout<<"The item with this key already exists"<<endl;
-					return;			
-				}
-				tempP=tempP->next;*/
-		
+
 				
 			//more than one item add to the end
 			else
