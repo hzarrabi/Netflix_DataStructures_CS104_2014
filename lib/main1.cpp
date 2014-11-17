@@ -616,7 +616,6 @@ void writeFile(Map<string,User*>  *mapUser, string fileName)
         
       }
 
-      cout<<"anataserasDF DF "<<endl;
       myFile.close();
       exit(1);
     }
