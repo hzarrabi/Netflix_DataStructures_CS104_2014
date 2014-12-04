@@ -77,3 +77,25 @@ Movie* User::currentMovie ()
 	return rentedMovie;
 }
 
+void User::addRatedMovies(string m, int rating)
+{
+	Movie* newMov = new Movie(m);
+	ratedMovies->add(newMov,rating);
+}
+
+
+bool User::containsRatedMovie(string m)
+{
+	//this for loop will loop through the map of rated movies to see if the movie exists
+	for(Map<Movie*, int>::Iterator f =ratedMovies->begin(); f!=ratedMovies->end(); ++f)
+	{
+		Pair<Movie*, int> p = *f;//making pair that return the key and the value
+		if(m==p.first->getTitle())
+		{
+			//in the case that the movie has been rated return false
+			return false;
+		}
+	}
+
+	return true;//this is called only if we reach the end without finding that the movie has been rated 
+}
