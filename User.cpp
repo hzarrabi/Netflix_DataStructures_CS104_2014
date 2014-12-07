@@ -99,4 +99,8 @@ bool User::containsRatedMovie(string m)
 	}
 
 	return true;//this is called only if we reach the end without finding that the movie has been rated 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 87e48091298b8488cd29655c0d91f2bde374d47a
