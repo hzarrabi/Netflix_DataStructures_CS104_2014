@@ -24,21 +24,16 @@ class RatingWindow : public QDialog
 	Q_OBJECT
 
 	public:
-		explicit RatingWindow (QWidget* parent=NULL, string movie="", Netflix *n=NULL);
+		explicit RatingWindow (QWidget* parent=NULL, string movie="", Movie * m=NULL , Netflix *n=NULL);
 
 
 	protected:
 
 		void closeEvent(QCloseEvent *);
 
-	/*	public slots:
-
-
-		signals:
-*/
-
 		public slots:
-
+			void ratePressed();
+			void cancelPressed();
 
 		signals:
 

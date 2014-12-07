@@ -137,6 +137,7 @@ void KeywordWindow::returnPressed()
     }
     else//else return the movie
     {
+      Movie* actualMovie=idiot->currentMovie();//this will get keep the movie pointer so we can add to user's rated movies
       string rentedMovie=idiot->currentMovie()->getTitle();//saving the title for rating
       idiot->returnMovie();
       returnMovie->setEnabled(false);
@@ -144,7 +145,7 @@ void KeywordWindow::returnPressed()
 	  rentMovie->setEnabled(true);//makes its button grey
 	  if(idiot->containsRatedMovie(rentedMovie))
 	  {
-	  	r=new RatingWindow(this,rentedMovie,temp);
+	  	r=new RatingWindow(this,rentedMovie,actualMovie,temp);
 		r->show();
 	  	cout<<"gayedfgdfgdoon"<<endl;
 	  }
@@ -152,6 +153,7 @@ void KeywordWindow::returnPressed()
 }
 void KeywordWindow::rentPressed()
 {
+
 	User *idiot = tempU->get(temp->getID());
 	Queue<Movie*>* t=idiot->movieQueue();
 	if(t->isEmpty())//if queue is empty 

@@ -2,7 +2,7 @@
 
 
 
-RatingWindow::RatingWindow(QWidget* parent, string movie, Netflix *n): QDialog (parent)
+RatingWindow::RatingWindow(QWidget* parent, string movie, Movie * m, Netflix *n): QDialog (parent)
 {
 	cout<<"gooz1"<<endl;
 	parentWidget()->hide();//hides the main login window
@@ -39,15 +39,28 @@ RatingWindow::RatingWindow(QWidget* parent, string movie, Netflix *n): QDialog (
 
 
 
-
-	setLayout (mainLayout);
-
-
-	//TODO the signals
+	connect(rateButton,SIGNAL(clicked()),this,SLOT(ratePressed()));	
 
 }
+
+
+void RatingWindow::ratePressed()
+{
+	int rating = rate->text().toInt();//making qlineEdit into string
+	cout<<rating<<endl;
+
+}
+
+void RatingWindow::cancelPressed()
+{
+
+
+}
+
+
 
 void RatingWindow::closeEvent(QCloseEvent *)
 {
 	parentWidget()->show();
 }
+
