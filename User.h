@@ -46,12 +46,21 @@ class User {
       /* returns the user's current checked out movie.
          Returns NULL if the user has no movie checked out. */
 
+    void addRatedMovies(string m, int rating);
+      //this will be used to add new movies that are rate
+
+    bool containsRatedMovie(string m);
+     /*this rerturns true if a movie is not in the map
+       which means that we can add the movie we rated*/
+
+
   private:
     string userID;
     string userName;
     Queue<Movie*> *movieQ;//queue that holds movie objects
     int numMovies;//holds number of movies in queue
     Movie *rentedMovie; //this points to the movie that is currently rented
+    Map<Movie*,int> *ratedMovies;//this map hold the movies the movies that a person has rated
 };
 
 #endif

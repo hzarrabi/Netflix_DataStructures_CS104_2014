@@ -1,4 +1,9 @@
 BEGIN aaroncot
 NAME: Aaron Cote
 MOVIE: The Hobbit: An Unexpected Journey
+BEGIN QUEUE
+City Lights
+The Hobbit: The Desolation of Smaug
+City Lights
+END QUEUE
 END

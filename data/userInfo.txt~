@@ -1,21 +1,3 @@
 BEGIN aaroncot
 NAME: Aaron Cote
-MOVIE: The Hobbit: An Unexpected Journey
-BEGIN QUEUE
-City Lights
-The Hobbit: The Desolation of Smaug
-City Lights
-END QUEUE
-END
-BEGIN hzarrabi
-NAME: hooman zarrabi
-BEGIN QUEUE
-The Princess Bride
-The Princess Bride
-The Princess Bride
-City Lights
-City Lights
-City Lights
-City Lights
-END QUEUE
 END

@@ -137,11 +137,18 @@ void KeywordWindow::returnPressed()
     }
     else//else return the movie
     {
+      string rentedMovie=idiot->currentMovie()->getTitle();//saving the title for rating
       idiot->returnMovie();
       returnMovie->setEnabled(false);
 	  currentMovie->setText("");
+	  rentMovie->setEnabled(true);//makes its button grey
+	  if(idiot->containsRatedMovie(rentedMovie))
+	  {
+	  	r=new RatingWindow(this,rentedMovie,temp);
+		r->show();
+	  	cout<<"gayedfgdfgdoon"<<endl;
+	  }
     }
-    rentMovie->setEnabled(true);//makes its button grey
 }
 void KeywordWindow::rentPressed()
 {

@@ -12,6 +12,7 @@
 #include <QFormLayout>
 #include <QtGui>
 #include "displayWindow.h"
+#include "RatingWindow.h"
 #include "../lib/Netflix.h"
 
 
@@ -53,6 +54,7 @@ class KeywordWindow : public QDialog
 		Map<string,User*> *tempU;
 		
 		displayWindow *l;
+		RatingWindow * r;
 
 
 };
