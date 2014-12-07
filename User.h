@@ -50,14 +50,13 @@ class User {
       //this will be used to add new movies that are rate
 
     bool containsRatedMovie(string m);
-<<<<<<< HEAD
+
      /*this rerturns true if a movie is not in the map
        which means that we can add the movie we rated*/
 
-=======
+
       /*this rerturns true if a movie is not in the map
         which means that we can add the movie we rated*/
->>>>>>> 87e48091298b8488cd29655c0d91f2bde374d47a
 
   private:
     string userID;

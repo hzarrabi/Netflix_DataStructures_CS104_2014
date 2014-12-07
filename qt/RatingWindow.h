@@ -31,19 +31,17 @@ class RatingWindow : public QDialog
 
 		void closeEvent(QCloseEvent *);
 
-<<<<<<< HEAD
 	/*	public slots:
 
 
 		signals:
 */
-=======
+
 		public slots:
 
 
 		signals:
 
->>>>>>> 87e48091298b8488cd29655c0d91f2bde374d47a
 
 		private:
 			QPushButton *rateButton, *cancel;
@@ -61,8 +59,6 @@ class RatingWindow : public QDialog
 
 };
 
-<<<<<<< HEAD
+
 #endif //RATINGWINDOW_H
-=======
-#endif //RATINGWINDOW_H
->>>>>>> 87e48091298b8488cd29655c0d91f2bde374d47a
+

@@ -1,11 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'RatingWindow.h'
 **
-<<<<<<< HEAD
-** Created: Sat Dec 6 16:46:44 2014
-=======
-** Created: Thu Dec 4 02:59:51 2014
->>>>>>> 87e48091298b8488cd29655c0d91f2bde374d47a
+** Created: Sat Dec 6 17:30:30 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
