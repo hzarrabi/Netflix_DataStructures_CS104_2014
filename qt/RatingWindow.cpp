@@ -8,8 +8,11 @@ RatingWindow::RatingWindow(QWidget* parent, string movie, Movie * m, Netflix *n)
 	parentWidget()->hide();//hides the main login window
 
 	this->movie=movie;
+	theMovie=m;
 	temp= n;
 	tempU=n->returnUserMap();
+	theUser=tempU->get(temp->getID());
+
 
 	QHBoxLayout *buttonLayout = new QHBoxLayout;
 	rateButton=new QPushButton("&Rate");
@@ -33,13 +36,13 @@ RatingWindow::RatingWindow(QWidget* parent, string movie, Movie * m, Netflix *n)
 	mainLayout->addLayout(fl);
 	mainLayout->addLayout(buttonLayout);
 
-
-
 	setLayout (mainLayout);
 
 
 
 	connect(rateButton,SIGNAL(clicked()),this,SLOT(ratePressed()));	
+
+
 
 }
 
@@ -47,7 +50,19 @@ RatingWindow::RatingWindow(QWidget* parent, string movie, Movie * m, Netflix *n)
 void RatingWindow::ratePressed()
 {
 	int rating = rate->text().toInt();//making qlineEdit into string
-	cout<<rating<<endl;
+	
+	if(rating == 1 || rating == 2 || rating == 3 || rating == 4 || rating == 5)
+	{
+		theUser->addRatedMovies(theMovie,rating);
+	}
+
+	else
+	{
+	 QMessageBox *msgBox;
+	 msgBox= new QMessageBox();
+	 msgBox->setText("You didn't enter a number 1-5! Try again");
+	 msgBox->exec();
+	}
 
 }
 

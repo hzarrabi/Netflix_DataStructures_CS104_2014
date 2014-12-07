@@ -46,7 +46,7 @@ class User {
       /* returns the user's current checked out movie.
          Returns NULL if the user has no movie checked out. */
 
-    void addRatedMovies(string m, int rating);
+    void addRatedMovies(Movie *m, int rating);
       //this will be used to add new movies that are rate
 
     bool containsRatedMovie(string m);

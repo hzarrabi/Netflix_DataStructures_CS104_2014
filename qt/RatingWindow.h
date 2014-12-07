@@ -14,6 +14,7 @@
 #include <QCloseEvent>
 #include <QtGui>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "../lib/Netflix.h"
 
@@ -42,9 +43,13 @@ class RatingWindow : public QDialog
 			QPushButton *rateButton, *cancel;
 			QLineEdit *rate; 
 			QString title;//string that has the title
+			QMessageBox *msgBox;
 
 			Netflix *temp;
+			User *idiot;
 			Map<string,User*> *tempU;
+			Movie *theMovie;
+			User* theUser;
 
 			QLabel *everything;
 

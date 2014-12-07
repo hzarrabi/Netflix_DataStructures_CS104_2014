@@ -78,10 +78,9 @@ Movie* User::currentMovie ()
 	return rentedMovie;
 }
 
-void User::addRatedMovies(string m, int rating)
+void User::addRatedMovies(Movie *m, int rating)
 {
-	Movie* newMov = new Movie(m);
-	ratedMovies->add(newMov,rating);
+	ratedMovies->add(m,rating);
 }
 
 
