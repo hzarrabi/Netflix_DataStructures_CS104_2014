@@ -51,6 +51,8 @@ class User {
 
     bool containsRatedMovie(string m);
 
+    Map<Movie*,int> * rateMap();
+
      /*this rerturns true if a movie is not in the map
        which means that we can add the movie we rated*/
 

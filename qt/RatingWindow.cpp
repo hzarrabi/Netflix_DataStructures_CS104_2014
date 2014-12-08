@@ -53,7 +53,10 @@ void RatingWindow::ratePressed()
 	
 	if(rating == 1 || rating == 2 || rating == 3 || rating == 4 || rating == 5)
 	{
+		cout<<"the title of the rated movie is:"<<theMovie->getTitle()<<endl;
 		theUser->addRatedMovies(theMovie,rating);
+		parentWidget()->show();
+		this->close();
 	}
 
 	else
@@ -62,6 +65,7 @@ void RatingWindow::ratePressed()
 	 msgBox= new QMessageBox();
 	 msgBox->setText("You didn't enter a number 1-5! Try again");
 	 msgBox->exec();
+	 delete msgBox;
 	}
 
 }

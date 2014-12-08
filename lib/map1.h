@@ -409,10 +409,10 @@ Pair<keyType, valueType> Map<keyType, valueType>::Iterator::operator* () const
 template <class keyType, class valueType>
 typename Map<keyType, valueType>::Iterator  Map<keyType, valueType>::Iterator::operator++ ()
 { 
-	if(itemIt->next==NULL)//if this iterator isn't pointing to the last element 
+/*	if(itemIt->next==NULL)//if this iterator isn't pointing to the last element 
 	{
 		throw NoSuchElementException();
-	}
+	}*/
 	itemIt=itemIt->next;
 	return *this;
 }

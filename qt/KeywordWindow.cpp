@@ -143,6 +143,7 @@ void KeywordWindow::returnPressed()
       returnMovie->setEnabled(false);
 	  currentMovie->setText("");
 	  rentMovie->setEnabled(true);//makes its button grey
+	  cout<<"fmllllllll"<<endl;
 	  if(idiot->containsRatedMovie(rentedMovie))
 	  {
 	  	r=new RatingWindow(this,rentedMovie,actualMovie,temp);
@@ -262,7 +263,7 @@ void KeywordWindow::keywordPressed()
 void KeywordWindow::logOutPressed()//returns them to previous logout page
 {
 	parentWidget()->show();
-	QObject::connect(l, SIGNAL(updateParent()), this, SLOT(update()));
+	//QObject::connect(l, SIGNAL(updateParent()), this, SLOT(update()));
 	close();
 }
 

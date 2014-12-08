@@ -66,7 +66,7 @@ void User::returnMovie ()
 {
 	if(rentedMovie!=NULL)
 	{
-		delete rentedMovie;
+		//delete rentedMovie;
 		rentedMovie=NULL;
 	}
 }
@@ -86,16 +86,31 @@ void User::addRatedMovies(Movie *m, int rating)
 
 bool User::containsRatedMovie(string m)
 {
+	cout<<"wtfff"<<endl;
 	//this for loop will loop through the map of rated movies to see if the movie exists
-	for(Map<Movie*, int>::Iterator f =ratedMovies->begin(); f!=ratedMovies->end(); ++f)
+	try
 	{
-		Pair<Movie*, int> p = *f;//making pair that return the key and the value
-		if(m==p.first->getTitle())
+		for(Map<Movie*, int>::Iterator f =ratedMovies->begin(); f!=ratedMovies->end(); ++f)
 		{
-			//in the case that the movie has been rated return false
-			return false;
+			cout<<"wtfff"<<endl;
+			Pair<Movie*, int> p = *f;//making pair that return the key and the value
+			if(m==p.first->getTitle())
+			{
+				//in the case that the movie has been rated return false
+				return false;
+			}
 		}
+	}
+	catch(NoSuchElementException)
+	{
+		return true;
 	}
 
 	return true;//this is called only if we reach the end without finding that the movie has been rated 
+}
+
+
+Map<Movie*,int> * User::rateMap()
+{
+	return ratedMovies;
 }

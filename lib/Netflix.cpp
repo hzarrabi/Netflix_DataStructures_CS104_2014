@@ -50,17 +50,17 @@ ifstream file;//the file object for the main file
           string userID1;
           string userName1;
           string checkedMovie;//movied that is checked out
-          bool whichBegin=true;//used to do specific begin command
+          int whichBegin=1;//used to do specific begin command
           while(getline(userData,buffer))
           {
             string command;//either begin or add
             stringstream oneByOne(buffer);
             oneByOne>>command;
             User *userAccount;//declaring userAccount of type User
-            if(command=="BEGIN" && whichBegin==true)
+            if(command=="BEGIN" && whichBegin==1)
             {
               oneByOne>>userID1;//puts the id into command
-              whichBegin=false;
+              whichBegin=2;
             }
             else if(command=="NAME:")
             {
@@ -69,11 +69,12 @@ ifstream file;//the file object for the main file
             }
             else if(command=="MOVIE:")
             {
+              cout<<"setting the rented movie"<<endl;
               checkedMovie=buffer.substr(buffer.find_first_of(" ")+1);
               Movie *rentedMovie=new Movie(checkedMovie);
               userAccount->rentMovie(rentedMovie);//putting the movie* object into the rented movie of the user
             }
-            else if(command=="BEGIN" && whichBegin==false)
+            else if(command=="BEGIN" && whichBegin==2)
             {
               getline(userData,buffer);
               while(buffer!="END QUEUE")
@@ -82,11 +83,31 @@ ifstream file;//the file object for the main file
                 userAccount->movieQueue()->enqueue(rentedMovie);
                 getline(userData,buffer);
               }
+              whichBegin=3;
+            }
+            else if(command=="BEGIN" && whichBegin==3)
+            {
+              cout<<"reading in the rating"<<endl;
+              getline(userData,buffer);
+              while(buffer!="END RATINGS")
+              {
+                int rating;
+                string movieName;
+                stringstream keeram(buffer);
+                keeram>>rating;
+                cout<<rating<<endl;
+                movieName=buffer.substr(buffer.find_first_of(" ")+1);;
+                cout<<movieName<<endl;
+                Movie *ratedMovie=new Movie(movieName);
+                userAccount->addRatedMovies(ratedMovie,rating);
+                cout<<"the size of the rated movies is::::"<<userAccount->rateMap()->size()<<endl;
+                getline(userData,buffer);
+              }
             }
             else if(command=="END")//here the userID and the userName are added to the userMap
             {
               mapUser->add(userID1,userAccount);
-              whichBegin=true;
+              whichBegin=1;
             }
           }
         }
@@ -515,6 +536,20 @@ void Netflix::writeFile()
                 }
                 myFile<<"END QUEUE"<<endl;
               }
+              //------------------
+              Map<Movie*,int> *gayeed=p.second->rateMap();
+              if(gayeed->size()!=0)
+              {
+                myFile<<"BEGIN RATINGS"<<endl;
+                for(Map<Movie*, int>::Iterator g =gayeed->begin(); g!=gayeed->end(); ++g)
+                {
+                  Pair<Movie*, int> p = *g;//making pair that return the key and the value
+                  myFile<<p.second<<" ";
+                  myFile<<p.first->getTitle()<<endl;
+                }
+                myFile<<"END RATINGS"<<endl;
+              }
+              //----------
               myFile<<"END"<<endl;
             }
             myFile.close();
@@ -522,7 +557,7 @@ void Netflix::writeFile()
       }
       catch (NoSuchElementException e)
       {
-        
+        cout<<"there was an exception caught! check your writing to file"<<endl;
       }
       
     }
