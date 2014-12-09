@@ -7,7 +7,7 @@ City Lights
 END QUEUE
 BEGIN RATINGS
 4 The Lord of the Rings: The Return of the King 
-1 Battlefield Earth
 5 The Shawshank Redemption
+4 Battlefield Earth
 END RATINGS
 END

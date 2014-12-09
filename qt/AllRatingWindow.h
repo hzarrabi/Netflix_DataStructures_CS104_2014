@@ -14,6 +14,7 @@
 #include <QCloseEvent>
 #include <QtGui>
 #include <QDebug>
+#include "RatingWindow.h"
 
 #include "../lib/Netflix.h"
 
@@ -35,6 +36,8 @@ class allRatingWindow : public QDialog
 	public slots:
 		void nextClicked();
 		void rateClicked();
+		void adjustClicked();
+
 
 	private:
 		QPushButton *next,*adjust, *cancel; 
@@ -48,6 +51,8 @@ class allRatingWindow : public QDialog
 		Map<Movie*, int> *fml;
 
 		int nexts;
+
+		RatingWindow *w;
 
 		Map<Movie*,int>::Iterator firstIt;
 

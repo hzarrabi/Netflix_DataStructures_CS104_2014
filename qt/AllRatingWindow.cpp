@@ -18,16 +18,16 @@ allRatingWindow::allRatingWindow (QWidget* parent, Netflix *n) : QDialog (parent
 
 
 
+
+
 	//button layout
  	QHBoxLayout *buttonLayout = new QHBoxLayout;
  	next=new QPushButton("&Next Rating");
  	buttonLayout->addWidget(next);
- 	adjust=new QPushButton("&Adjust");
+ 	adjust=new QPushButton("Adjust");
  	buttonLayout->addWidget(adjust);
  	cancel=new QPushButton("&Cancel");
  	buttonLayout->addWidget(cancel);
-
-
 
 	
 
@@ -36,6 +36,8 @@ allRatingWindow::allRatingWindow (QWidget* parent, Netflix *n) : QDialog (parent
 	movieTitle->setAlignment(Qt::AlignCenter);
 	rating=new QLabel(rate);
 	rating->setAlignment(Qt::AlignCenter);
+
+
 
  	QVBoxLayout *rbox = new QVBoxLayout;
 
@@ -47,9 +49,9 @@ allRatingWindow::allRatingWindow (QWidget* parent, Netflix *n) : QDialog (parent
 
 
 	connect(next,SIGNAL(clicked()),this,SLOT(nextClicked()));	
-	/*connect(add,SIGNAL(clicked()),this,SLOT(addM()));
-	connect(returnM,SIGNAL(clicked()),this,SLOT(returnToMenu()));
-*/
+	connect(adjust,SIGNAL(clicked()),this,SLOT(adjustClicked()));
+	//connect(returnM,SIGNAL(clicked()),this,SLOT(returnToMenu()));
+
 
 
 
@@ -74,11 +76,23 @@ void allRatingWindow::nextClicked()
 		++firstIt;
 		Pair<Movie*, int> temp = *firstIt;
 		title=QString::fromStdString(temp.first->getTitle());
+		title=QString::fromStdString(temp.first->getTitle());
 		rate=QString::number(temp.second);
 		movieTitle->setText(title);
 		rating->setText(rate);
 	}
 }
+
+
+void allRatingWindow::adjustClicked()
+{
+	string tempString=title.toStdString();
+	Pair<Movie*, int> temp1 = *firstIt;
+	w=new RatingWindow(this, tempString, temp1.first,temp,false);
+	w->show();
+
+}
+
 
 void allRatingWindow::rateClicked()
 {

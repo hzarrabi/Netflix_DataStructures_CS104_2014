@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'AllRatingWindow.h'
 **
-** Created: Tue Dec 9 03:48:30 2014
+** Created: Tue Dec 9 04:04:13 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_allRatingWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,13 +33,14 @@ static const uint qt_meta_data_allRatingWindow[] = {
  // slots: signature, parameters, type, tag, flags
       17,   16,   16,   16, 0x0a,
       31,   16,   16,   16, 0x0a,
+      45,   16,   16,   16, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_allRatingWindow[] = {
     "allRatingWindow\0\0nextClicked()\0"
-    "rateClicked()\0"
+    "rateClicked()\0adjustClicked()\0"
 };
 
 void allRatingWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -50,6 +51,7 @@ void allRatingWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         switch (_id) {
         case 0: _t->nextClicked(); break;
         case 1: _t->rateClicked(); break;
+        case 2: _t->adjustClicked(); break;
         default: ;
         }
     }
@@ -88,9 +90,9 @@ int allRatingWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
