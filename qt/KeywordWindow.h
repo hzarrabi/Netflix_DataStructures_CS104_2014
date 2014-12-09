@@ -13,6 +13,7 @@
 #include <QtGui>
 #include "displayWindow.h"
 #include "RatingWindow.h"
+#include "AllRatingWindow.h"
 #include "../lib/Netflix.h"
 
 
@@ -31,6 +32,7 @@ class KeywordWindow : public QDialog
 
 	public slots:
 		void returnPressed();
+		void ratingsPressed();
 		void rentPressed();
 		void deletePressed();
 		void backPressed();
@@ -45,7 +47,7 @@ class KeywordWindow : public QDialog
 
 	private:
 
-		QPushButton *returnMovie, *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *logOut;
+		QPushButton *returnMovie,*ratings , *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *logOut;
 		QLineEdit *search;
 		QLabel *currentMovie, *movieQueue;
 
@@ -55,6 +57,7 @@ class KeywordWindow : public QDialog
 		
 		displayWindow *l;
 		RatingWindow * r;
+		allRatingWindow *s;
 
 
 };

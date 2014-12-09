@@ -20,6 +20,8 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
  	QHBoxLayout *buttonLayout = new QHBoxLayout;
  	returnMovie=new QPushButton("&Return Movie");
  	buttonLayout->addWidget(returnMovie);
+ 	ratings=new QPushButton("&See Ratings");
+ 	buttonLayout->addWidget(ratings);
 
  	string gooz=n->currentMovie();
  	QString qstr = QString::fromStdString(gooz);
@@ -101,6 +103,7 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
 	connect(searchTitle,SIGNAL(clicked()),this,SLOT(titlePressed()));
 	connect(searchKeyword,SIGNAL(clicked()),this,SLOT(keywordPressed()));
 	connect(logOut,SIGNAL(clicked()),this,SLOT(logOutPressed()));
+	connect(ratings,SIGNAL(clicked()),this,SLOT(ratingsPressed()));
 
 	connect(search, SIGNAL(returnPressed()),searchTitle,SIGNAL(clicked()));
 
@@ -151,6 +154,14 @@ void KeywordWindow::returnPressed()
   
     }
 }
+
+void KeywordWindow::ratingsPressed()
+{
+	s=new allRatingWindow(this,temp);
+	s->show();
+}
+
+
 void KeywordWindow::rentPressed()
 {
 

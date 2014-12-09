@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'KeywordWindow.h'
 **
-** Created: Tue Dec 9 00:15:08 2014
+** Created: Tue Dec 9 03:09:34 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_KeywordWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,22 +33,23 @@ static const uint qt_meta_data_KeywordWindow[] = {
  // slots: signature, parameters, type, tag, flags
       15,   14,   14,   14, 0x0a,
       31,   14,   14,   14, 0x0a,
-      45,   14,   14,   14, 0x0a,
-      61,   14,   14,   14, 0x0a,
-      75,   14,   14,   14, 0x0a,
-      90,   14,   14,   14, 0x0a,
+      48,   14,   14,   14, 0x0a,
+      62,   14,   14,   14, 0x0a,
+      78,   14,   14,   14, 0x0a,
+      92,   14,   14,   14, 0x0a,
      107,   14,   14,   14, 0x0a,
-     123,   14,   14,   14, 0x0a,
+     124,   14,   14,   14, 0x0a,
+     140,   14,   14,   14, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_KeywordWindow[] = {
     "KeywordWindow\0\0returnPressed()\0"
-    "rentPressed()\0deletePressed()\0"
-    "backPressed()\0titlePressed()\0"
-    "keywordPressed()\0logOutPressed()\0"
-    "update()\0"
+    "ratingsPressed()\0rentPressed()\0"
+    "deletePressed()\0backPressed()\0"
+    "titlePressed()\0keywordPressed()\0"
+    "logOutPressed()\0update()\0"
 };
 
 void KeywordWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -58,13 +59,14 @@ void KeywordWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         KeywordWindow *_t = static_cast<KeywordWindow *>(_o);
         switch (_id) {
         case 0: _t->returnPressed(); break;
-        case 1: _t->rentPressed(); break;
-        case 2: _t->deletePressed(); break;
-        case 3: _t->backPressed(); break;
-        case 4: _t->titlePressed(); break;
-        case 5: _t->keywordPressed(); break;
-        case 6: _t->logOutPressed(); break;
-        case 7: _t->update(); break;
+        case 1: _t->ratingsPressed(); break;
+        case 2: _t->rentPressed(); break;
+        case 3: _t->deletePressed(); break;
+        case 4: _t->backPressed(); break;
+        case 5: _t->titlePressed(); break;
+        case 6: _t->keywordPressed(); break;
+        case 7: _t->logOutPressed(); break;
+        case 8: _t->update(); break;
         default: ;
         }
     }
@@ -103,9 +105,9 @@ int KeywordWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }
