@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'RatingWindow.h'
 **
-** Created: Mon Dec 8 21:48:12 2014
+** Created: Tue Dec 9 00:15:14 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_RatingWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,12 +33,18 @@ static const uint qt_meta_data_RatingWindow[] = {
  // slots: signature, parameters, type, tag, flags
       14,   13,   13,   13, 0x0a,
       28,   13,   13,   13, 0x0a,
+      43,   13,   13,   13, 0x0a,
+      58,   13,   13,   13, 0x0a,
+      73,   13,   13,   13, 0x0a,
+      88,   13,   13,   13, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_RatingWindow[] = {
-    "RatingWindow\0\0ratePressed()\0cancelPressed()\0"
+    "RatingWindow\0\0ratePressed()\0ratePressed2()\0"
+    "ratePressed3()\0ratePressed4()\0"
+    "ratePressed5()\0cancelPressed()\0"
 };
 
 void RatingWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -48,7 +54,11 @@ void RatingWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         RatingWindow *_t = static_cast<RatingWindow *>(_o);
         switch (_id) {
         case 0: _t->ratePressed(); break;
-        case 1: _t->cancelPressed(); break;
+        case 1: _t->ratePressed2(); break;
+        case 2: _t->ratePressed3(); break;
+        case 3: _t->ratePressed4(); break;
+        case 4: _t->ratePressed5(); break;
+        case 5: _t->cancelPressed(); break;
         default: ;
         }
     }
@@ -87,9 +97,9 @@ int RatingWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 6;
     }
     return _id;
 }

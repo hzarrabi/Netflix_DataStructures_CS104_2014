@@ -34,13 +34,17 @@ class RatingWindow : public QDialog
 
 		public slots:
 			void ratePressed();
+			void ratePressed2();
+			void ratePressed3();
+			void ratePressed4();
+			void ratePressed5();
 			void cancelPressed();
 
 		signals:
 
 
 		private:
-			QPushButton *rateButton, *cancel;
+			QPushButton *rateButton,*rateButton2,*rateButton3,*rateButton4,*rateButton5, *cancel;
 			QLineEdit *rate; 
 			QString title;//string that has the title
 			QMessageBox *msgBox;
