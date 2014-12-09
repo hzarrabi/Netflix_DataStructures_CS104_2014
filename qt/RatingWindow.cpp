@@ -2,11 +2,12 @@
 
 
 
-RatingWindow::RatingWindow(QWidget* parent, string movie, Movie * m, Netflix *n): QDialog (parent)
+RatingWindow::RatingWindow(QWidget* parent, string movie, Movie * m, Netflix *n, bool rated): QDialog (parent)
 {
 	cout<<"gooz1"<<endl;
 	parentWidget()->hide();//hides the main login window
 
+	this->rated=rated;
 	this->movie=movie;
 	theMovie=m;
 	temp= n;
@@ -53,9 +54,33 @@ void RatingWindow::ratePressed()
 	
 	if(rating == 1 || rating == 2 || rating == 3 || rating == 4 || rating == 5)
 	{
-		cout<<"the title of the rated movie is:"<<theMovie->getTitle()<<endl;
-		theUser->addRatedMovies(theMovie,rating);
-		parentWidget()->show();
+		if(rated)//movie has never been rated
+		{
+			cout<<"the title of the rated movie is:"<<theMovie->getTitle()<<endl;
+			theUser->addRatedMovies(theMovie,rating);
+			parentWidget()->show();
+			//this->close();
+		}
+		else//movie has been rated before
+		{
+			Movie* tempMovie;
+			Map<Movie*, int>::Iterator firstIt = theUser->rateMap()->begin();//iterator for the map
+			while(true)
+			{
+				cout<<"the movie has already been rated!!"<<endl;
+				Pair<Movie*, int> temp = *firstIt; 
+				if(temp.first->getTitle()==movie)
+				{
+					theUser->rateMap()->remove(temp.first);
+					theUser->addRatedMovies(theMovie,rating);
+					//this->close();
+					break;
+				}
+				++firstIt;
+			}
+
+		}
+		cout<<"this should close"<<endl;
 		this->close();
 	}
 

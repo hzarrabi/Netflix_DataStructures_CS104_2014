@@ -9,6 +9,6 @@ BEGIN RATINGS
 4 The Lord of the Rings: The Return of the King 
 1 Battlefield Earth
 5 The Shawshank Redemption
-2 The Hobbit: An Unexpected Journey
+1 The Hobbit: An Unexpected Journey
 END RATINGS
 END

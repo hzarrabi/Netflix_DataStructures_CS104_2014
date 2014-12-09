@@ -144,12 +144,11 @@ void KeywordWindow::returnPressed()
 	  currentMovie->setText("");
 	  rentMovie->setEnabled(true);//makes its button grey
 	  cout<<"fmllllllll"<<endl;
-	  if(idiot->containsRatedMovie(rentedMovie))
-	  {
-	  	r=new RatingWindow(this,rentedMovie,actualMovie,temp);
+	  	
+	  	r=new RatingWindow(this,rentedMovie,actualMovie,temp,idiot->containsRatedMovie(rentedMovie));
 		r->show();
 	  	cout<<"gayedfgdfgdoon"<<endl;
-	  }
+  
     }
 }
 void KeywordWindow::rentPressed()

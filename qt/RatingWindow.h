@@ -25,7 +25,7 @@ class RatingWindow : public QDialog
 	Q_OBJECT
 
 	public:
-		explicit RatingWindow (QWidget* parent=NULL, string movie="", Movie * m=NULL , Netflix *n=NULL);
+		explicit RatingWindow (QWidget* parent=NULL, string movie="", Movie * m=NULL , Netflix *n=NULL, bool rated=true);
 
 
 	protected:
@@ -54,6 +54,7 @@ class RatingWindow : public QDialog
 			QLabel *everything;
 
 			string movie;
+			bool rated;
 
 
 
