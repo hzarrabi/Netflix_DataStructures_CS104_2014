@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'KeywordWindow.h'
 **
-** Created: Tue Dec 9 13:23:39 2014
+** Created: Tue Dec 9 14:14:53 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_KeywordWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -39,7 +39,8 @@ static const uint qt_meta_data_KeywordWindow[] = {
       92,   14,   14,   14, 0x0a,
      107,   14,   14,   14, 0x0a,
      124,   14,   14,   14, 0x0a,
-     140,   14,   14,   14, 0x0a,
+     139,   14,   14,   14, 0x0a,
+     155,   14,   14,   14, 0x0a,
 
        0        // eod
 };
@@ -49,7 +50,7 @@ static const char qt_meta_stringdata_KeywordWindow[] = {
     "ratingsPressed()\0rentPressed()\0"
     "deletePressed()\0backPressed()\0"
     "titlePressed()\0keywordPressed()\0"
-    "logOutPressed()\0update()\0"
+    "actorPressed()\0logOutPressed()\0update()\0"
 };
 
 void KeywordWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -65,8 +66,9 @@ void KeywordWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 4: _t->backPressed(); break;
         case 5: _t->titlePressed(); break;
         case 6: _t->keywordPressed(); break;
-        case 7: _t->logOutPressed(); break;
-        case 8: _t->update(); break;
+        case 7: _t->actorPressed(); break;
+        case 8: _t->logOutPressed(); break;
+        case 9: _t->update(); break;
         default: ;
         }
     }
@@ -105,9 +107,9 @@ int KeywordWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

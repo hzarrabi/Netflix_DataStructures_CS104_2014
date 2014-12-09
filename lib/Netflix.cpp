@@ -691,7 +691,7 @@ void Netflix::writeFile()
           if(movieMap->size()!=0)//if map is not emppty
           {
             Pair<string, Movie*> temp = *firstIt;//temp is a pair that holds the key and value of the iterator
-            if(temp.second->getAllKeywords().contains(keyword) /*|| temp.second->getTitle()==newKeyWord1*/)
+            if(temp.second->getAllKeywords().contains(keyword) || temp.second->getAllActors().contains(keyword))
             {
               counter1++;
             }

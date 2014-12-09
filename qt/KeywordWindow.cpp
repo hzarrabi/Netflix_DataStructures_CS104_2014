@@ -104,6 +104,7 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
 	connect(movieBack,SIGNAL(clicked()),this,SLOT(backPressed()));
 	connect(searchTitle,SIGNAL(clicked()),this,SLOT(titlePressed()));
 	connect(searchKeyword,SIGNAL(clicked()),this,SLOT(keywordPressed()));
+	connect(searchActor,SIGNAL(clicked()),this,SLOT(actorPressed()));
 	connect(logOut,SIGNAL(clicked()),this,SLOT(logOutPressed()));
 	connect(ratings,SIGNAL(clicked()),this,SLOT(ratingsPressed()));
 
@@ -272,6 +273,21 @@ void KeywordWindow::keywordPressed()
 
 
 }
+
+
+void KeywordWindow::actorPressed()
+{
+	string theActor = search->text().toStdString();//making qlineEdit into string
+	if(temp->findKeywords(theActor)>0)
+	{
+		l=new displayWindow(this,theActor,temp);
+		QObject::connect(l, SIGNAL(updateParent()), this, SLOT(update()));
+		l->show();
+	}
+
+}
+
+
 void KeywordWindow::logOutPressed()//returns them to previous logout page
 {
 	parentWidget()->show();

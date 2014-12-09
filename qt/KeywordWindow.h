@@ -38,6 +38,7 @@ class KeywordWindow : public QDialog
 		void backPressed();
 		void titlePressed();
 		void keywordPressed();
+		void actorPressed();
 		void logOutPressed();
 		void update();
 

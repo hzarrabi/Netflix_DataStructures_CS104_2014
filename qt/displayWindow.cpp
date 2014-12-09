@@ -39,7 +39,7 @@ displayWindow::displayWindow (QWidget* parent, string movie, Netflix *n) : QDial
 	    while(chose)
 	    {
 	            Pair<string, Movie*> findPair = *findIterator;//temp is a pair that holds the key and value of the iterator
-	            if(findPair.second->getAllKeywords().contains(movie) || findPair.second->getTitle()==movie)
+	            if(findPair.second->getAllKeywords().contains(movie) || findPair.second->getTitle()==movie || findPair.second->getAllActors().contains(movie))
 	            {
 	              nexts--;
 	              title=QString::fromStdString(findPair.first);//setting title of page to the movie that corresponds to that keyword
