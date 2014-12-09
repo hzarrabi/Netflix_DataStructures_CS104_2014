@@ -59,9 +59,11 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
  	QGroupBox *searchBox= new QGroupBox(tr("Search for Movie"));//the second group box
  	searchTitle=new QPushButton("Search by &Title");
  	searchKeyword=new QPushButton("Search by &Keyword");
+ 	searchActor=new QPushButton("Search by &Actor");\
  	QHBoxLayout *buttonLayout2 = new QHBoxLayout;
  	buttonLayout2->addWidget(searchTitle);
  	buttonLayout2->addWidget(searchKeyword);
+ 	buttonLayout2->addWidget(searchActor);
 
  	search = new QLineEdit;//place where they search for movie
  	QFormLayout *fl = new QFormLayout;

@@ -2,10 +2,15 @@ BEGIN The Princess Bride
 KEYWORD: comedy
 KEYWORD: Inigo Montoya
 KEYWORD: Robin Wright
+ACTOR: Cary Elwes
+ACTOR: Robin Wright
 END
 BEGIN City Lights
 KEYWORD: comedy
 KEYWORD: romance
 KEYWORD: Charlie Chaplin
 KEYWORD: social criticism
+ACTOR: Charlie Chaplin
+ACTOR: Virginia Cherril
 END
+

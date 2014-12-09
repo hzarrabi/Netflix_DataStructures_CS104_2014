@@ -47,7 +47,7 @@ class KeywordWindow : public QDialog
 
 	private:
 
-		QPushButton *returnMovie,*ratings , *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *logOut;
+		QPushButton *returnMovie,*ratings , *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *searchActor, *logOut;
 		QLineEdit *search;
 		QLabel *currentMovie, *movieQueue;
 

@@ -25,11 +25,16 @@ class Movie {
     Set<string> getAllKeywords () const;
       //Returns a set of all keywords associated with the movie. 
 
+    void addActors(string actor);
+
+    Set <string> getAllActors() const;
+
 
   private:
     // you get to decide what goes here
     string movieTitle;//title of the movie;
     Set<string> keywords;//set that will hold strings
+    Set<string> actors;
 };
 
 

@@ -125,6 +125,7 @@ ifstream file;//the file object for the main file
           string command;//either begin or keyword
           string movieTitle;//will serve as the key to set?
           string keyword;
+          string actor;
 
           while(getline(movieData,buffer))
           {
@@ -145,9 +146,17 @@ ifstream file;//the file object for the main file
               buffer=buffer.substr(buffer.find_first_of(" ")+1);
               keyword=buffer;
               //cout<<buffer<<" this should be keyword of:"<<movieTitle<<endl;
-              moviePointer->addKeyword(keyword); 
+              moviePointer->addKeyword(keyword);
+              cout<<"added keyword:"<<keyword<<endl;;
 
               //ADD KEYWORD TO THE SET OF THE MOVIEEEEEEEE
+            }
+            else if(command =="ACTOR:")
+            {
+              buffer=buffer.substr(buffer.find_first_of(" ")+1);
+              actor=buffer;
+              moviePointer->addActors(actor);
+              cout<<"added:"<<actor<<endl;
             }
             else if(command=="END")
             {
@@ -558,6 +567,10 @@ void Netflix::writeFile()
       catch (NoSuchElementException e)
       {
         cout<<"there was an exception caught! check your writing to file"<<endl;
+        myFile<<"END RATINGS"<<endl;
+        myFile<<"END"<<endl;
+        myFile.close();
+        exit(1);
       }
       
     }
@@ -684,9 +697,10 @@ void Netflix::writeFile()
             }
             try
             {
+              //cout<<"is this working??"<<endl;
               ++firstIt;//iterator go to next movieMap item
             }
-            catch(NoSuchElementException)
+            catch(NoSuchElementException e)
             {
               chose=false;
               return counter1;//returns how many times the keyword was in there

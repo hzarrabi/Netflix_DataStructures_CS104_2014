@@ -48,3 +48,13 @@ Set<string> Movie::getAllKeywords () const
 	return keywords;
 }
 
+
+void Movie::addActors (string actor)
+{
+	actors.add(actor);//adds keyword to the keywords set
+}
+
+Set<string> Movie::getAllActors () const
+{
+	return actors;
+}
