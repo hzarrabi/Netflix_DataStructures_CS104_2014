@@ -13,10 +13,14 @@ Dialog::Dialog(QWidget *parent, Netflix *n) : QDialog(parent)//,ui(new Ui::Dialo
 
 	login = new QLineEdit;
 	password= new QLineEdit;
+	thePassword= new QLineEdit;
+
 
 	QFormLayout *fl = new QFormLayout;
 	fl->addRow("&User ID", login);
 	fl->addRow("&Name", password);
+	fl->addRow("&Password", thePassword);
+
 
 	QHBoxLayout *buttonLayout = new QHBoxLayout;
 	confirm = new QPushButton ("Confir&m"); // &(letter) underlines letter and if you do alt+(letter) it will click that button
@@ -56,14 +60,16 @@ void Dialog::add()
 {
 	string userID = login->text().toStdString();//making qlineEdit into string
 	string userName = password->text().toStdString();//making qlineEdit into string
-	if(tempU->keyExist(userID)||userName==""||userID=="")
+	string actualPassword=thePassword->text().toStdString();//making qlineEdit into string
+	if(tempU->keyExist(userID)||userName==""||userID=="" || actualPassword=="" )
 	{
 		  QWidget *popup = new QWidget();
       	  popup->show();
 	}
 	else
 	{
-		User *tempUser=new User(userID,userName);
+		actualPassword=sha256(actualPassword);
+		User *tempUser=new User(userID,userName,actualPassword);
 		tempU->add(userID,tempUser);
 		close();
 	}

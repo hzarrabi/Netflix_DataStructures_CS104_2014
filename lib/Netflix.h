@@ -11,6 +11,7 @@
 #include <iomanip>
 #include "Set.h"
 #include "MergeSort.h"
+#include "sha256.h"
 #include "../Movie.h"
 #include "../User.h"
 

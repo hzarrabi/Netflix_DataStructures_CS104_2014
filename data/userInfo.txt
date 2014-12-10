@@ -1,5 +1,6 @@
 BEGIN aaroncot
 NAME: Aaron Cote
+PASSWORD: ac7c4aa84bf1e7f98cd55ec8241a579f163d58f39f6d06709be97ecd2fc8e8cc
 BEGIN QUEUE
 City Lights
 The Hobbit: The Desolation of Smaug

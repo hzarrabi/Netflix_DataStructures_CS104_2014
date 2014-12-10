@@ -5,10 +5,11 @@
 
 using namespace std; 
 //constuctor
-User::User (string ID, string name)
+User::User (string ID, string name, string aPassword)
 {
 	userID=ID;
 	userName=name;
+	password=aPassword;
 	rentedMovie=NULL;
 	numMovies=0;
 	movieQ = new Queue<Movie*>;
@@ -45,6 +46,13 @@ string User::getName () const
 {
 	return userName;
 }
+
+
+string User::getPassword() const
+{
+	return password;
+}
+
 
 //movieQueue
 Queue<Movie*>* User::movieQueue ()

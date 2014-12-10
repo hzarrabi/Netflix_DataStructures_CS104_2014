@@ -12,9 +12,11 @@ LoginWindow::LoginWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 
 	login = new QLineEdit;
+	password=new QLineEdit;
 
 	QFormLayout *fl = new QFormLayout;
 	fl->addRow("User ID", login);
+	fl->addRow("Password", password);
 
 	QHBoxLayout *buttonLayout = new QHBoxLayout;
 	quitButton = new QPushButton ("&Quit"); // &(letter) underlines letter and if you do alt+(letter) it will click that button

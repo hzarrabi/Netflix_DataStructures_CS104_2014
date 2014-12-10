@@ -50,6 +50,7 @@ ifstream file;//the file object for the main file
           string userID1;
           string userName1;
           string checkedMovie;//movied that is checked out
+          string password;
           int whichBegin=1;//used to do specific begin command
           while(getline(userData,buffer))
           {
@@ -65,7 +66,12 @@ ifstream file;//the file object for the main file
             else if(command=="NAME:")
             {
               userName1=buffer.substr(buffer.find_first_of(" ")+1);
-              userAccount = new User(userID1,userName1);
+              //userAccount = new User(userID1,userName1);
+            }
+            else if(command=="PASSWORD:")
+            {
+              password=buffer.substr(buffer.find_first_of(" ")+1);
+              userAccount = new User(userID1,userName1,password);
             }
             else if(command=="MOVIE:")
             {
@@ -487,7 +493,7 @@ else if(yellow==2)
 }
 
 
-//NEWUSERDISPLAY
+/*//NEWUSERDISPLAY
 void Netflix::newUserDisplay()
 {
 string newUserName;
@@ -509,7 +515,7 @@ string newUserName;
     cout<<"Your account has been made!"<<endl;
     keywordMenu();
 }
-
+*/
 
 //WRITEFILE
 void Netflix::writeFile()
@@ -531,6 +537,7 @@ void Netflix::writeFile()
               Pair<string, User*> p = *f;
               myFile<<"BEGIN "<<p.first<<endl;
               myFile<<"NAME: "<<p.second->getName()<<endl;
+              myFile<<"PASSWORD: "<<p.second->getPassword()<<endl;
               if(p.second->currentMovie()!=NULL)
               {
                 myFile<<"MOVIE: "<<p.second->currentMovie()->getTitle()<<endl;

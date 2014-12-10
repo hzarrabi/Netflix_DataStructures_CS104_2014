@@ -278,6 +278,7 @@ void KeywordWindow::keywordPressed()
 void KeywordWindow::actorPressed()
 {
 	string theActor = search->text().toStdString();//making qlineEdit into string
+	cout<<sha256(theActor)<<endl;
 	if(temp->findKeywords(theActor)>0)
 	{
 		l=new displayWindow(this,theActor,temp);

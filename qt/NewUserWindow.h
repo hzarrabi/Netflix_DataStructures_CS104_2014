@@ -40,7 +40,7 @@ protected:
 private:
     //Ui::Dialog *ui;
     QPushButton *confirm, *cancel;
-	QLineEdit *login, *password;
+	QLineEdit *login, *password, *thePassword;
 
 
 };

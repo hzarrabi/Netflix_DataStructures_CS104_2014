@@ -36,7 +36,7 @@ class LoginWindow : public QWidget
 
 	private:
 		QPushButton *quitButton, *loginButton, *newUserButton;
-		QLineEdit *login;//this is the text area that takes in the loginID
+		QLineEdit *login, *password;//this is the text area that takes in the loginID
 		Netflix *temp;
 		KeywordWindow *w;
 		Dialog *mDialog;
