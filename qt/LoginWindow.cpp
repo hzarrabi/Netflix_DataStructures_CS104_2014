@@ -46,7 +46,10 @@ LoginWindow::LoginWindow (QWidget* parent, Netflix *n) : QWidget (parent)
 void LoginWindow::loggedIn()
 {
 	string userID = login->text().toStdString();//making qlineEdit into string
-	if(tempU->keyExist(userID))
+	string aPassword=password->text().toStdString();
+	cout<<tempU->get(userID)->getPassword()<<endl;
+	cout<<sha256(aPassword)<<endl;
+	if(tempU->keyExist(userID) && tempU->get(userID)->getPassword()== sha256(aPassword))
 	{
 		temp->setLogginID(userID);
 		w=new KeywordWindow(this,temp);
