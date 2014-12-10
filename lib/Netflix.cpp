@@ -550,6 +550,10 @@ void Netflix::writeFile()
               {
                 myFile<<"MOVIE: "<<p.second->currentMovie()->getTitle()<<endl;
               }
+              myFile<<"PASSWORD: "<<p.second->getPassword()<<endl;
+              myFile<<"ADDRESS: "<<p.second->address<<endl;
+              myFile<<"CC#: "<<p.second->ccNum<<endl;
+              myFile<<"CHARGES: "<<p.second->charges<<endl;
               if(!p.second->movieQueue()->isEmpty())
               {
                 myFile<<"BEGIN QUEUE"<<endl;
