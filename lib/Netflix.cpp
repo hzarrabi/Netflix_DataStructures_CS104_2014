@@ -51,6 +51,9 @@ ifstream file;//the file object for the main file
           string userName1;
           string checkedMovie;//movied that is checked out
           string password;
+          string address;
+          int ccNum;
+          int charges;
           int whichBegin=1;//used to do specific begin command
           while(getline(userData,buffer))
           {
@@ -70,8 +73,25 @@ ifstream file;//the file object for the main file
             }
             else if(command=="PASSWORD:")
             {
+              cerr<<"issdfdsfsadf??"<<endl;
               password=buffer.substr(buffer.find_first_of(" ")+1);
-              userAccount = new User(userID1,userName1,password);
+              cout<<password<<endl;
+            }
+            else if(command=="ADDRESS:")
+            {
+              cerr<<"is it the constructor??"<<endl;
+              address=buffer.substr(buffer.find_first_of(" ")+1);
+            }
+            else if(command=="CC#:")
+            {
+              string hello=buffer.substr(buffer.find_first_of(" ")+1);
+              ccNum=atoi( hello.c_str() );
+            }
+            else if(command=="CHARGES:")
+            {
+              string hello=buffer.substr(buffer.find_first_of(" ")+1);
+              charges=atoi( hello.c_str() );
+              userAccount = new User(userID1,userName1,password,address,ccNum,charges);
             }
             else if(command=="MOVIE:")
             {

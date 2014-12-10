@@ -13,7 +13,7 @@ using namespace std;
 
 class User {
   public:
-    User (string ID, string name, string aPassword);  
+    User (string ID, string name, string aPassword, string address, int ccNUM, int charges);  
     /* constructor that generates a user with the given name and ID.
        While multiple users may have the same name, the ID should be unique
        (e.g., an e-mail address), so that users can log in with it. */
@@ -66,6 +66,9 @@ class User {
     string userID;
     string userName;
     string password;
+    string address;
+    int ccNum;
+    int charges;
     Queue<Movie*> *movieQ;//queue that holds movie objects
     int numMovies;//holds number of movies in queue
     Movie *rentedMovie; //this points to the movie that is currently rented

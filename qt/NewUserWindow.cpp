@@ -14,12 +14,18 @@ Dialog::Dialog(QWidget *parent, Netflix *n) : QDialog(parent)//,ui(new Ui::Dialo
 	login = new QLineEdit;
 	password= new QLineEdit;
 	thePassword= new QLineEdit;
+	address=new QLineEdit;
+	CC=new QLineEdit;
 
 
 	QFormLayout *fl = new QFormLayout;
 	fl->addRow("&User ID", login);
 	fl->addRow("&Name", password);
 	fl->addRow("&Password", thePassword);
+	fl->addRow("&Address", address);
+	fl->addRow("&Credit Card #", CC);
+
+
 
 
 	QHBoxLayout *buttonLayout = new QHBoxLayout;
@@ -61,15 +67,18 @@ void Dialog::add()
 	string userID = login->text().toStdString();//making qlineEdit into string
 	string userName = password->text().toStdString();//making qlineEdit into string
 	string actualPassword=thePassword->text().toStdString();//making qlineEdit into string
-	if(tempU->keyExist(userID)||userName==""||userID=="" || actualPassword=="" )
+	string actualAdress=address->text().toStdString();//making qlineEdit into string
+	string actualCC=CC->text().toStdString();//making qlineEdit into string
+	
+	if(tempU->keyExist(userID)||userName==""||userID=="" || actualPassword=="" || actualAdress=="" || actualCC==""  )
 	{
-		  QWidget *popup = new QWidget();
-      	  popup->show();
+
 	}
 	else
 	{
 		actualPassword=sha256(actualPassword);
-		User *tempUser=new User(userID,userName,actualPassword);
+		int gooz=atoi( actualCC.c_str() );
+		User *tempUser=new User(userID,userName,actualPassword,actualAdress,gooz,0);
 		tempU->add(userID,tempUser);
 		close();
 	}

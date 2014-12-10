@@ -5,11 +5,14 @@
 
 using namespace std; 
 //constuctor
-User::User (string ID, string name, string aPassword)
+User::User (string ID, string name, string aPassword,string address, int ccNUM, int charges)
 {
 	userID=ID;
 	userName=name;
 	password=aPassword;
+	this->address=address;
+	ccNum=ccNUM;
+	this->charges=charges;
 	rentedMovie=NULL;
 	numMovies=0;
 	movieQ = new Queue<Movie*>;
@@ -66,6 +69,8 @@ void User::rentMovie (Movie *m)
 	if(rentedMovie==NULL)
 	{
 		rentedMovie=m;//if there isn't aready a movie rented out
+		int cost= m->getTitle().size();
+		charges+=cost;
 	}
 }
 
