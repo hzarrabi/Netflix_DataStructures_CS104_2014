@@ -6,6 +6,7 @@ TEMPLATE = app
 TARGET = 
 DEPENDPATH += . lib qt
 INCLUDEPATH += . lib qt
+QMAKE_CXXFLAGS += -g
 
 # Input
 HEADERS += Movie.h \

@@ -144,6 +144,7 @@ ifstream file;//the file object for the main file
               movieTitle=buffer;//puts the movie title in as key
               //cout<<movieTitle<<endl;
               //PUT movie title into set!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+              cout<<"new movie!----------"<<movieTitle<<endl;
               moviePointer = new Movie(movieTitle);
               //movieMap.add(movieTitle,moviePointer);
             }
@@ -151,7 +152,7 @@ ifstream file;//the file object for the main file
             {
               buffer=buffer.substr(buffer.find_first_of(" ")+1);
               keyword=buffer;
-              //cout<<buffer<<" this should be keyword of:"<<movieTitle<<endl;
+              cout<<buffer<<" this should be keyword of:"<<movieTitle<<endl;
               moviePointer->addKeyword(keyword);
               cout<<"added keyword:"<<keyword<<endl;;
 
@@ -691,32 +692,21 @@ void Netflix::writeFile()
   int Netflix::findKeywords(string keyword)
   {
     Map<string, Movie*>::Iterator firstIt = movieMap->begin();//iterator that will check if keyword exists
+    cerr << "Movie size: " << movieMap->size()<<endl;
     int counter1=0;
     bool chose=true;
-    while(chose)
-      {
-          if(movieMap->size()!=0)//if map is not emppty
-          {
-            Pair<string, Movie*> temp = *firstIt;//temp is a pair that holds the key and value of the iterator
+    for (Map<string, Movie*>::Iterator it = movieMap->begin(); it != movieMap->end(); ++it) 
+    {
+      
+            Pair<string, Movie*> temp = *it;//temp is a pair that holds the key and value of the iterator
             if(temp.second->getAllKeywords().contains(keyword) || temp.second->getAllActors().contains(keyword))
             {
+              cout<<temp.second->getTitle()<<endl;
+              cout<<"omggg"<<endl;
               counter1++;
             }
-            try
-            {
-              //cout<<"is this working??"<<endl;
-              ++firstIt;//iterator go to next movieMap item
-            }
-            catch(NoSuchElementException e)
-            {
-              chose=false;
-              return counter1;//returns how many times the keyword was in there
-            }
-          }
-          else
-          {
-            chose=false;
-            return counter1;
-          }
-      }
-}
+    }
+    cout<<counter1<<endl;
+    return counter1;//returns how many times the keyword was in there
+
+  }
