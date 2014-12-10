@@ -51,7 +51,7 @@ class KeywordWindow : public QDialog
 
 		QPushButton *returnMovie,*ratings , *rentMovie, *deleteQueue, *movieBack, *searchTitle, *searchKeyword, *searchActor, *logOut;
 		QLineEdit *search;
-		QLabel *currentMovie, *movieQueue;
+		QLabel *currentMovie,*price, *movieQueue;
 
 		Netflix *temp;
 		Map<string,Movie*> *tempM;

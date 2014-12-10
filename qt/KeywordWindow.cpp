@@ -23,12 +23,25 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
  	ratings=new QPushButton("&See Ratings");
  	buttonLayout->addWidget(ratings);
 
+
+ 	string ID1=n->getID();
  	string gooz=n->currentMovie();
  	QString qstr = QString::fromStdString(gooz);
 
+ 	/*QString qstr50;
+ 	if(tempU->get(ID1)->currentMovie())
+ 	{
+ 		qstr50= "Price: $" +QString::number(tempU->get(ID1)->currentMovie()->getTitle().size());
+	}
+	else
+	{
+		//cout<<"this should get called"<<endl;
+		qstr50="";
+	}*/
 
  	QVBoxLayout *rbox = new QVBoxLayout;
  	rbox->addWidget(currentMovie=new QLabel(qstr));//adding qlabel to the first layou
+ 	//rbox->addWidget(price=new QLabel(qstr50));//adding qlabel to the first layou
  	rbox->addLayout(buttonLayout);//addind button to first layout
 
  	returnBox->setLayout(rbox);
@@ -163,11 +176,9 @@ void KeywordWindow::returnPressed()
       returnMovie->setEnabled(false);
 	  currentMovie->setText("");
 	  rentMovie->setEnabled(true);//makes its button grey
-	  cout<<"fmllllllll"<<endl;
 	  	
 	  	r=new RatingWindow(this,rentedMovie,actualMovie,temp,idiot->containsRatedMovie(rentedMovie));
 		r->show();
-	  	cout<<"gayedfgdfgdoon"<<endl;
   
     }
 }
@@ -292,7 +303,6 @@ void KeywordWindow::keywordPressed()
 void KeywordWindow::actorPressed()
 {
 	string theActor = search->text().toStdString();//making qlineEdit into string
-	cout<<sha256(theActor)<<endl;
 	if(temp->findKeywords(theActor)>0)
 	{
 		l=new displayWindow(this,theActor,temp);

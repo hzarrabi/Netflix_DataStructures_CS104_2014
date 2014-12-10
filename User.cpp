@@ -99,13 +99,11 @@ void User::addRatedMovies(Movie *m, int rating)
 
 bool User::containsRatedMovie(string m)
 {
-	cout<<"wtfff"<<endl;
 	//this for loop will loop through the map of rated movies to see if the movie exists
 	try
 	{
 		for(Map<Movie*, int>::Iterator f =ratedMovies->begin(); f!=ratedMovies->end(); ++f)
 		{
-			cout<<"wtfff"<<endl;
 			Pair<Movie*, int> p = *f;//making pair that return the key and the value
 			if(m==p.first->getTitle())
 			{
