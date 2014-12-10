@@ -78,19 +78,33 @@ KeywordWindow::KeywordWindow (QWidget* parent, Netflix *n) : QDialog (parent)
 
 
  	//=======adding everything to the main layout===================================================
-
  	string ID=n->getID();
  	string name=n->currentName();
  	string total="Welcome to CSCI 104-Flix, "+name+" "+"("+ID+")";
  	QString qstr1 = QString::fromStdString(total);
+ 	string total1="ADDRESS :"+tempU->get(ID)->address;
+ 	QString qstr5 = QString::fromStdString(total1);//address
+ 	QString qstr3= 	"Credit Card# :" + QString::number(tempU->get(ID)->ccNum);
+ 	QString qstr4 = "CHARGES : $"+QString::number(tempU->get(ID)->charges);//charges
+
 
 
 	QLabel* label=new QLabel(qstr1);
 	label->setAlignment(Qt::AlignCenter);
+	QLabel* label2=new QLabel(qstr5);
+	label2->setAlignment(Qt::AlignCenter);
+	QLabel* label3=new QLabel(qstr3);
+	label3->setAlignment(Qt::AlignCenter);
+	QLabel* label4=new QLabel(qstr4);
+	label4->setAlignment(Qt::AlignCenter);
  	
 	logOut=new QPushButton("Log&out");
 
  	mainLayout->addWidget (label);
+ 	mainLayout->addWidget (label2);
+ 	mainLayout->addWidget (label3);
+ 	mainLayout->addWidget (label4);
+
 	mainLayout->addWidget(returnBox);
 	mainLayout->addWidget(queueBox);
 	mainLayout->addWidget(searchBox);

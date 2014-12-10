@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QtGui>
+#include <string>
 #include "displayWindow.h"
 #include "RatingWindow.h"
 #include "AllRatingWindow.h"

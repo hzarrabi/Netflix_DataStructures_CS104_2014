@@ -75,7 +75,6 @@ ifstream file;//the file object for the main file
             {
               cerr<<"issdfdsfsadf??"<<endl;
               password=buffer.substr(buffer.find_first_of(" ")+1);
-              cout<<password<<endl;
             }
             else if(command=="ADDRESS:")
             {
@@ -85,7 +84,9 @@ ifstream file;//the file object for the main file
             else if(command=="CC#:")
             {
               string hello=buffer.substr(buffer.find_first_of(" ")+1);
-              ccNum=atoi( hello.c_str() );
+              cout<<"should beeeee:"<<hello<<endl;
+              ccNum=atoi(hello.c_str());
+              cout<<"CCNUMBER:"<<ccNum<<endl;
             }
             else if(command=="CHARGES:")
             {

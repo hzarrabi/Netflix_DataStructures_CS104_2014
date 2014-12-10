@@ -62,13 +62,17 @@ class User {
       /*this rerturns true if a movie is not in the map
         which means that we can add the movie we rated*/
 
+
+    string address;
+    int ccNum;
+    int charges;
+
+
   private:
     string userID;
     string userName;
     string password;
-    string address;
-    int ccNum;
-    int charges;
+
     Queue<Movie*> *movieQ;//queue that holds movie objects
     int numMovies;//holds number of movies in queue
     Movie *rentedMovie; //this points to the movie that is currently rented
