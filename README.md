@@ -1,8 +1,7 @@
 # CS 104 Project Repository
 
-- **Name**: Hooman Zarrabi	
-- **USC ID**: 3759078318	
-- **Email**: hzarrabi@usc.edu
+- **Name**: Hooman Z
+
 
 
 
